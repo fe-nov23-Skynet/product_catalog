@@ -1,22 +1,22 @@
 @import 'styles/variables/theme_colors.scss';
 
 @font-face {
-  font-family: "Montserrat-Regular";
-  src: url('styles/fonts/Montserrat-Regular.ttf');
+  font-family: "Mont-Regular";
+  src: url('styles/fonts/Mont-Regular.otf');
 }
 
 @font-face {
-  font-family: "Montserrat-Bold";
-  src: url('styles/fonts/Montserrat-Bold.ttf');
+  font-family: "Monts-Bold";
+  src: url('styles/fonts/Mont-Bold.otf');
 }
 
 @font-face {
-  font-family: "Montserrat-Semibold";
-  src: url('styles/fonts/Montserrat-SemiBold.ttf');
+  font-family: "Mont-Semibold";
+  src: url('styles/fonts/Mont-SemiBold.otf');
 }
 
 html {
-  font-family: "Montserrat-Regular", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Mont-Regular", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
   line-height: 21px;
   color: $color-primary;
