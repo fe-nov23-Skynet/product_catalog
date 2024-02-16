@@ -1,5 +1,27 @@
 @import 'styles/variables/theme_colors.scss';
 
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url('styles/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url('styles/fonts/Montserrat-Bold.ttf');
+}
+
+@font-face {
+  font-family: "Montserrat-Semibold";
+  src: url('styles/fonts/Montserrat-SemiBold.ttf');
+}
+
+html {
+  font-family: "Montserrat-Regular", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  color: $color-primary;
+}
+
 body {
   background-color: $color-bg;
 }
