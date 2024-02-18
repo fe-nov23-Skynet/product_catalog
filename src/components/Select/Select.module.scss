@@ -6,17 +6,20 @@ $list-height: 200px;
 
 .select {
   position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   height: $select-height;
-  width: 176px;
+
   box-sizing: border-box;
   padding: 10px 12px;
 
   cursor: pointer;
 
   border: 1px solid $color-icons;
+  font-weight: 600;
 
   &:hover {
     border-color: $color-secondary;
@@ -24,6 +27,10 @@ $list-height: 200px;
 
   &:focus {
     border-color: $color-primary;
+  }
+
+  &_title {
+    margin: 0;
   }
 
   &_icon {
@@ -54,6 +61,8 @@ $list-height: 200px;
     padding: 6px 12px;
     box-sizing: border-box;
     color: $color-secondary;
+    font-weight: 500;
+    transition: background-color $open-duration, color $open-duration;
 
     &:hover {
       color: $color-primary;
@@ -71,15 +80,16 @@ $list-height: 200px;
   background-color: $color-white;
   max-height: $list-height;
   overflow-y: auto;
-  transform: translateY(-20%);
   opacity: 0;
   pointer-events: none;
   box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
   transition: transform $open-duration ease-out, opacity $open-duration ease-out;
+  transform: translateY(-10%) scaleY(0);
+  transform-origin: top center;
 }
 
 .list_wrapper--open {
-  transform: translateX(0%);
+  transform: translateX(0%) scaleY(1);
   opacity: 1;
   pointer-events: auto;
 }
