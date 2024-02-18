@@ -18,7 +18,6 @@ export const Select:React.FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(selectedItem || '');
   const rootRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const placeHolder = 'Select value';
 
   function handleList() {
@@ -55,10 +54,6 @@ export const Select:React.FC<Props> = (props) => {
     };
   }, []);
 
-  /* function handleBlur(e: React.FocusEvent<HTMLDivElement, Element>):void {
-    e.target
-  } */
-
   const openStyle = Styles['list_wrapper--open'];
   const closeIcon = Styles['select_icon--close'];
 
@@ -69,7 +64,6 @@ export const Select:React.FC<Props> = (props) => {
       className={Styles.select}
       onClick={handleList}
       ref={rootRef}
-      /* onBlur={handleBlur} */
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
     >
