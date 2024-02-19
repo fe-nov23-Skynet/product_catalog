@@ -1,29 +1,30 @@
 @import 'styles/variables/theme_colors.scss';
 
 @font-face {
-  font-family: "Mont-Regular";
+  font-family: "Mont";
   src: url('styles/fonts/Mont-Regular.otf');
 }
 
 @font-face {
-  font-family: "Monts-Bold";
+  font-family: "Mont";
   src: url('styles/fonts/Mont-Bold.otf');
+  font-weight: 600;
 }
 
 @font-face {
-  font-family: "Mont-Semibold";
+  font-family: "Mont";
   src: url('styles/fonts/Mont-SemiBold.otf');
+  font-weight: 500;
 }
 
 html {
-  font-family: "Mont-Regular", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Mont", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
   line-height: 21px;
   color: $color-primary;
-  /* cursor: url('styles/cursors/cursor_base.svg'), auto; */
-  /* turn it on when find a pointer pair */
+  font-weight: 500;
 }
 
 body {
-  background-color: $color-bg;
+  background-color: $color-white;
 }
