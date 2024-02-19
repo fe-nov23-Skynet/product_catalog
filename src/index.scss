@@ -8,13 +8,13 @@
 @font-face {
   font-family: "Mont";
   src: url('styles/fonts/Mont-Bold.otf');
-  font-weight: bold;
+  font-weight: 600;
 }
 
 @font-face {
   font-family: "Mont";
   src: url('styles/fonts/Mont-SemiBold.otf');
-  font-weight: 600;
+  font-weight: 500;
 }
 
 html {
@@ -23,9 +23,6 @@ html {
   line-height: 21px;
   color: $color-primary;
   font-weight: 500;
-
-  /* cursor: url('styles/cursors/cursor_base.svg'), auto; */
-  /* turn it on when find a pointer pair */
 }
 
 body {

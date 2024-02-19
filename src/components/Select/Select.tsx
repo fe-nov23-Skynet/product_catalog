@@ -2,21 +2,29 @@
 /* eslint-disable arrow-parens */
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { v4 as uuidv4 } from 'uuid';
+import { ReactComponent as ArrowDown } from
+  '../../styles/icons/chevron_arrow_down.svg';
 
 import Styles from './Select.module.scss';
 
+type SelectValue = string | number;
+
+interface SelectOption {
+  value: SelectValue;
+  title: string;
+}
+
 interface Props {
-  items: string[];
-  selectedItem?: string;
-  onSelect?: (item: string) => void;
+  options: SelectOption[];
+  selectedOption?: SelectOption;
+  onSelect?: (value: SelectValue) => void;
 }
 
 export const Select:React.FC<Props> = (props) => {
-  const { items, onSelect = () => {}, selectedItem } = props;
+  const { options, onSelect = () => {}, selectedOption } = props;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(selectedItem || '');
+  const [selectedValue, setSelectedValue] = useState(selectedOption?.title || '');
   const rootRef = useRef<HTMLDivElement>(null);
   const placeHolder = 'Select value';
 
@@ -24,18 +32,22 @@ export const Select:React.FC<Props> = (props) => {
     setIsOpen(!isOpen);
   }
 
-  function selectItem(value: string) {
-    setSelectedValue(value);
+  function selectItem(option: SelectOption) {
+    setSelectedValue(option.title);
     setIsOpen(false);
-    onSelect(value);
+    onSelect(option.value);
   }
 
-  function handleEnter(
+  function handleKeyOnOption(
     e: React.KeyboardEvent<HTMLLIElement>,
-    item: string,
+    option: SelectOption,
   ) {
     if (e.key === 'Enter') {
-      selectItem(item);
+      selectItem(option);
+    }
+
+    if (e.key === 'Escape') {
+      setIsOpen(false);
     }
   }
 
@@ -62,36 +74,39 @@ export const Select:React.FC<Props> = (props) => {
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
       className={Styles.select}
-      onClick={handleList}
       ref={rootRef}
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-      tabIndex={0}
     >
-      <p className={Styles.select_title}>
-        {selectedValue || placeHolder}
-      </p>
-      <div className={classNames(`${Styles.select_icon}`, {
-        [closeIcon]: isOpen,
-      })}
-      />
+      <button
+        className={Styles.select__button}
+        onClick={handleList}
+      >
+        <p className={Styles.select_title}>
+          {selectedValue || placeHolder}
+        </p>
+        <ArrowDown className={classNames(`${Styles.select_icon}`, {
+          [closeIcon]: isOpen,
+        })}
+        />
+      </button>
 
       <div className={classNames(`${Styles.list_wrapper}`, {
         [openStyle]: isOpen,
       })}
       >
         <ul className={Styles.select_list}>
-          {items.map(
-            item => (
+          {options.map(
+            option => (
               // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
               <li
                 className={Styles.select_item}
                 // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                 tabIndex={0}
-                onClick={() => selectItem(item)}
-                onKeyUp={e => handleEnter(e, item)}
-                key={uuidv4()}
+                onClick={() => selectItem(option)}
+                onKeyUp={e => handleKeyOnOption(e, option)}
+                key={option.value}
               >
-                {item}
+                {option.title}
               </li>
             ),
           )}
