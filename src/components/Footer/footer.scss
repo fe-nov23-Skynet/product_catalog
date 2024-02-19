@@ -1,0 +1,81 @@
+@import '../../styles/variables/theme_colors.scss';
+
+.footer {
+  // width: 100%;
+  max-width: 1440px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+
+  padding: 32px 0;
+  color: $color-secondary;
+
+  &__logo {
+    width: 88px;
+    height: 32px;
+    background-image: url('../../styles/nice_gadgets_logo.svg');
+  }
+
+  &__links {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & a {
+      color: $color-secondary;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 14px;
+    }
+  }
+
+  &__go-top {
+    align-self: center;
+    justify-self: flex-end;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 16px;
+  }
+
+
+  @media (max-width: 576px) {
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+
+    &__links {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    &__go-top {
+      align-self: center;
+    }
+  }
+}
+
+.go-top {
+  &__title {
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  &__icon {
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    background-image: url('../../styles/icons/chevron_arrow_up.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid $color-secondary;
+
+    &:hover {
+      border: 1px solid #000;
+    }
+  }
+}

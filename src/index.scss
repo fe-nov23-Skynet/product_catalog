@@ -1,18 +1,20 @@
 @import 'styles/variables/theme_colors.scss';
 
 @font-face {
-  font-family: "Mont-Regular";
+  font-family: "Mont";
   src: url('styles/fonts/Mont-Regular.otf');
 }
 
 @font-face {
-  font-family: "Monts-Bold";
+  font-family: "Mont";
   src: url('styles/fonts/Mont-Bold.otf');
+  font-weight: 600;
 }
 
 @font-face {
-  font-family: "Mont-Semibold";
+  font-family: "Mont";
   src: url('styles/fonts/Mont-SemiBold.otf');
+  font-weight: 500;
 }
 
 html {
@@ -26,4 +28,28 @@ html {
 
 body {
   background-color: $color-bg;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  padding-inline: 152px;
+
+  @media (max-width: 1200px) {
+    padding-inline: 122px;
+  }
+
+  @media (max-width: 1000px) {
+    padding-inline: 92px;
+  }
+
+  @media (max-width: 860px) {
+    padding-inline: 62px;
+  }
+
+  @media (max-width: 720px) {
+    padding-inline: 32px;
+  }
 }
