@@ -1,22 +1,25 @@
 @import 'styles/variables/theme_colors.scss';
+@import 'styles/productCard/style_product-card.scss';
 
 @font-face {
-  font-family: "Mont-Regular";
+  font-family: "Mont";
   src: url('styles/fonts/Mont-Regular.otf');
 }
 
 @font-face {
-  font-family: "Monts-Bold";
+  font-family: "Mont";
   src: url('styles/fonts/Mont-Bold.otf');
+  font-weight: bold;
 }
 
 @font-face {
-  font-family: "Mont-Semibold";
+  font-family: "Mont";
   src: url('styles/fonts/Mont-SemiBold.otf');
+  font-weight: 600;
 }
 
 html {
-  font-family: "Mont-Regular", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Mont", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
   line-height: 21px;
   color: $color-primary;
@@ -25,5 +28,21 @@ html {
 }
 
 body {
-  background-color: $color-bg;
+  background-color: $color-white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  padding: 0;
+  margin: 0;
 }

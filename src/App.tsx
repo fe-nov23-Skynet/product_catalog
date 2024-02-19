@@ -1,9 +1,9 @@
-function App() {
+import { ProductCard } from './ProductCard/ProductCard';
+
+export function App() {
   return (
     <div className="App">
-      test vercel deploy with redeploy by commit
+      <ProductCard />
     </div>
   );
 }
-
-export default App;
