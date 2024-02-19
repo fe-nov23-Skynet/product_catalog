@@ -31,10 +31,20 @@
     align-items: center;
 
     & a {
+      display: flex;
+      align-items: center;
+      padding-inline: 4px;
+      height: 100%;
       color: $color-secondary;
       font-size: 14px;
       font-weight: bold;
       line-height: 14px;
+
+      &:hover {
+        background-color: lightgrey;
+        border-radius: 4px;
+        color: $color-primary;
+      }
     }
   }
 

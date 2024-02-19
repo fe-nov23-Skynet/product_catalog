@@ -5,13 +5,13 @@ export const Footer = () => (
     <footer className="footer">
       <div className="footer__logo">
         {/* eslint-disable-next-line */}
-        <a href="#">
+        <a href="/">
           home
         </a>
       </div>
       <div className="footer__links">
         {/* eslint-disable-next-line */}
-        <a href="#">github</a>
+        <a href="#" target="_blanc">github</a>
         {/* eslint-disable-next-line */}
         <a href="#">contacts</a>
         {/* eslint-disable-next-line */}
