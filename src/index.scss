@@ -20,10 +20,13 @@ html {
   font-size: 14px;
   line-height: 21px;
   color: $color-primary;
+
   /* cursor: url('styles/cursors/cursor_base.svg'), auto; */
   /* turn it on when find a pointer pair */
 }
 
 body {
   background-color: $color-bg;
+  margin: 0; // added margin
+  box-sizing: border-box; //we need it global
 }
