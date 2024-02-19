@@ -37,19 +37,11 @@ a {
 .container {
   padding-inline: 152px;
 
-  @media (max-width: 1200px) {
-    padding-inline: 122px;
-  }
-
-  @media (max-width: 1000px) {
-    padding-inline: 92px;
-  }
-
   @media (max-width: 860px) {
     padding-inline: 62px;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 576px) {
     padding-inline: 32px;
   }
 }
