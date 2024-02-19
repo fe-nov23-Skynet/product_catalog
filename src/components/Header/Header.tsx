@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './header.scss';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import cn from 'classnames';
-import { ReactComponent as Logo } from '../../styles/icons/Logo.svg';
 import { ReactComponent as Favorites } from '../../styles/icons/Favourites.svg';
 import { ReactComponent as Cart } from '../../styles/icons/Cart.svg';
 
@@ -18,10 +17,9 @@ export function Header() {
     <header className="header">
       <NavLink
         to="/"
-        className="header_logo"
-      >
-        <Logo />
-      </NavLink>
+        className="header_logo__img"
+      />
+
       <div className="header_container">
         <nav className="header_nav">
           <NavLink
@@ -54,21 +52,21 @@ export function Header() {
         </nav>
         <div className="header_box">
           <div className="header_box__container">
-            <NavLink
+            <Link
               to="favourites"
               className="header_box__link"
             >
               <Favorites />
-            </NavLink>
+            </Link>
           </div>
 
           <div className="header_box__container">
-            <NavLink
+            <Link
               to="cart"
               className="header_box__link"
             >
               <Cart />
-            </NavLink>
+            </Link>
           </div>
         </div>
       </div>

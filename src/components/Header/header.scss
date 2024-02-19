@@ -1,26 +1,36 @@
+@import '../../styles/variables/theme_colors.scss';
+@import '../../styles/mixins.scss';
 .header {
   display: flex;
-  // outline: 2px solid red;
   height: 48px;
-  border-bottom: 1px solid #89939A;
+  border-bottom: 1px solid $color-secondary;
 
-  @media screen and (min-width: 1200px) {
+  @include on-desktop {
     height: 64px;
   }
 
-  &_logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 128px;
-    outline: 2px solid red;
+    &_logo__img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 96px;
+      margin-right: 16px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../../styles/icons/LogoSmall.svg');
+    
+      @include on-desktop {
+      width: 128px;
+      margin-right: 24px;
+        background-image: url('../../styles/icons/LogoBig.svg');
+      
+      }
   }
 
   &_container {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    // outline: 1px solid green;
   }
 
   &_nav {
@@ -28,35 +38,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // outline: 2px solid red;
 
     &__link {
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: #89939A;
+      color: $color-secondary;
       font-family: Mont;
       font-size: 12px;
       font-weight: 800;
       line-height: 11px;
       letter-spacing: 0.04em;
       height: 100%;
-      // outline: 2px solid red;
     }
 
     &__link--active {
       position: relative;
-      // display: flex;
-      // align-items: center;
-      // text-decoration: none;
-      // color: #313237;
-      // font-family: Mont;
-      // font-size: 12px;
-      // font-weight: 800;
-      // line-height: 11px;
-      // letter-spacing: 0.04em;
-      // height: 100%;
-      // outline: 2px solid red;
+      color: $color-primary;
 
       &::after {
         content: '';
@@ -65,7 +63,7 @@
         bottom: 0;
         width: 100%;
         height: 2px;
-        background-color: #313237;
+        background-color: $color-primary;
       }
     }
   }
@@ -76,20 +74,27 @@
 }
 
 .header_box__container {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+    height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid #89939A;
+  border-left: 1px solid $color-secondary;
+  
+    @include on-desktop {
+      width: 64px;
+      height: 64px;
+    }
 }
 
 .header_box__link {
-  width: 16px;
-  height: 16px;
   text-decoration: none;
-  color: #89939A;
+  color: $color-secondary;
   padding: 0;
   margin: 0;
-  padding: 24px;
+  padding: 13px 15px;
+  
+    @include on-desktop {
+      padding: 21px 24px;
+    }
 }
