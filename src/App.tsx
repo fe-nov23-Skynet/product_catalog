@@ -1,7 +1,15 @@
-function App() {
+import { Outlet } from 'react-router-dom';
+
+export function App() {
   return (
     <div className="App">
-      test vercel deploy with redeploy by commit
+      <div>Header</div>
+
+      <div className="section">
+        <div className="container">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 }
