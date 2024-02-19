@@ -1,0 +1,25 @@
+@import '../../styles/variables/theme_colors.scss';
+
+.catalog {
+  &__title {
+    grid-column: 1 / -1;
+  }
+
+  &__info {
+    grid-column: 1 / -1;
+    color: $color-secondary;
+   }
+
+  &__settings {
+    display: block;
+    grid-column: 1 / -1;
+  }
+
+  &__sort {
+    grid-column: span 4;
+  }
+
+  &__itemsOnPage {
+    grid-column: span 3;
+  }
+}
