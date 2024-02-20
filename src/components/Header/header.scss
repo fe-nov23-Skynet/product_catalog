@@ -1,0 +1,100 @@
+@import '../../styles/variables/theme_colors.scss';
+@import '../../styles/mixins.scss';
+.header {
+  display: flex;
+  height: 48px;
+  border-bottom: 1px solid $color-secondary;
+
+  @include on-desktop {
+    height: 64px;
+  }
+
+    &_logo__img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 96px;
+      margin-right: 16px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../../styles/icons/LogoSmall.svg');
+    
+      @include on-desktop {
+      width: 128px;
+      margin-right: 24px;
+        background-image: url('../../styles/icons/LogoBig.svg');
+      
+      }
+  }
+
+  &_container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &_nav {
+    width: 425px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: $color-secondary;
+      font-family: Mont;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 11px;
+      letter-spacing: 0.04em;
+      height: 100%;
+    }
+
+    &__link--active {
+      position: relative;
+      color: $color-primary;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $color-primary;
+      }
+    }
+  }
+}
+
+.header_box {
+  display: flex;
+}
+
+.header_box__container {
+  width: 48px;
+    height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid $color-secondary;
+  
+    @include on-desktop {
+      width: 64px;
+      height: 64px;
+    }
+}
+
+.header_box__link {
+  text-decoration: none;
+  color: $color-secondary;
+  padding: 0;
+  margin: 0;
+  padding: 13px 15px;
+  
+    @include on-desktop {
+      padding: 21px 24px;
+    }
+}
