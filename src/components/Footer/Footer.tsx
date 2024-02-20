@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import './footer.scss';
 
@@ -13,10 +14,9 @@ export const Footer = () => (
       <div className="footer__links">
         {/* eslint-disable-next-line */}
         <a href="#" target="_blanc">github</a>
-        {/* eslint-disable-next-line */}
-        <a href="#">contacts</a>
-        {/* eslint-disable-next-line */}
-        <a href="#">rights</a>
+        <a href="#">
+          home
+        </a>
       </div>
       <div className="footer__go-top go-top">
         <div className="go-top__title">Back to top</div>
