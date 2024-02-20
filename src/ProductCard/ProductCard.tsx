@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import classNames from 'classnames';
 import emptyHeart from '../styles/icons/favourites_heart_like.svg';
 import filledHeart from '../styles/icons/favourites_heart_filled.svg';
 import { Product } from '../types/Product';
 
-type Props = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface Props {
   product: Product;
-};
+  className?: string;
+}
 
-export const ProductCard: React.FC<Props> = ({ product }) => {
+export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const [favoriteProduct, setfavoriteProduct] = useState('');
 
   const makeFavorite = () => {
@@ -20,7 +23,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
   return (
     <article
-      className="card"
+      className={classNames('card', className)}
     >
       <img
         className="card__img"

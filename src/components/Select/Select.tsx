@@ -15,10 +15,11 @@ interface SelectOption {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-interface Props extends Record<string, any> {
+interface Props {
   options: SelectOption[];
   selectedOption?: SelectOption;
   onSelect?: (value: SelectValue) => void;
+  className: string;
 }
 
 export const Select:React.FC<Props> = (props) => {
@@ -27,7 +28,7 @@ export const Select:React.FC<Props> = (props) => {
     options,
     onSelect = () => {},
     selectedOption,
-    className,
+    className = '',
     ...other
   } = props;
 

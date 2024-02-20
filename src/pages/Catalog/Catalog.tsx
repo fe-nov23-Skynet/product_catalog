@@ -1,5 +1,7 @@
 import { Select } from '../../components/Select/Select';
 import Styles from './Catalog.module.scss';
+import phones from '../../productApi/phones.json';
+import { ProductCard } from '../../ProductCard/ProductCard';
 
 export const Catalog: React.FC = () => {
   const sortBy = [
@@ -16,6 +18,9 @@ export const Catalog: React.FC = () => {
     { value: 4, title: '4' },
   ];
 
+  const phonesArr = phones;
+  phonesArr.length = 8;
+
   return (
     <div className={Styles.catalog}>
       <h1 className={Styles.catalog__title}>Mobile Phones</h1>
@@ -25,6 +30,12 @@ export const Catalog: React.FC = () => {
       <Select options={sortBy} className={Styles.catalog__sort} />
       <Select options={itemsOnPage} className={Styles.catalog__itemsOnPage} />
       {/* </div> */}
+
+      <div className={Styles.catalog__list}>
+        {phonesArr.map(
+          phone => <ProductCard product={phone} className={Styles.catalog__product} />,
+        )}
+      </div>
     </div>
   );
 };
