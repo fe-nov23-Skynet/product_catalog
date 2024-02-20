@@ -26,8 +26,8 @@ export const TabletsPage: React.FC = () => {
       <h1 className={Styles.tablets_page__title}>Tablets</h1>
       <span className={Styles.tablets_page__info}>{`${phonesArr.length} models`}</span>
 
-      <Select options={sortBy} className={Styles.tablets_page__sort} />
-      <Select options={itemsOnPage} className={Styles.tablets_page__itemsOnPage} />
+      <Select title="Sort by" options={sortBy} className={Styles.tablets_page__sort} />
+      <Select title="Items on page" options={itemsOnPage} className={Styles.tablets_page__itemsOnPage} />
 
       <Catalog products={phonesArr} />
     </div>

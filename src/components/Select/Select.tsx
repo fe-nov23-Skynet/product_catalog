@@ -16,6 +16,7 @@ interface SelectOption {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
+  title: string;
   options: SelectOption[];
   selectedOption?: SelectOption;
   onSelect?: (value: SelectValue) => void;
@@ -25,6 +26,7 @@ interface Props {
 export const Select:React.FC<Props> = (props) => {
   // eslint-disable-next-line object-curly-newline
   const {
+    title,
     options,
     onSelect = () => {},
     selectedOption,
@@ -88,6 +90,9 @@ export const Select:React.FC<Props> = (props) => {
       {...other}
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
     >
+      <span className={Styles.select__name}>
+        {title}
+      </span>
       <button
         className={Styles.select__button}
         onClick={handleList}
@@ -99,30 +104,29 @@ export const Select:React.FC<Props> = (props) => {
           [closeIcon]: isOpen,
         })}
         />
+        <div className={classNames(`${Styles.list_wrapper}`, {
+          [openStyle]: isOpen,
+        })}
+        >
+          <ul className={Styles.select_list}>
+            {options.map(
+              option => (
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+                <li
+                  className={Styles.select_item}
+                  // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+                  tabIndex={0}
+                  onClick={() => selectItem(option)}
+                  onKeyUp={e => handleKeyOnOption(e, option)}
+                  key={option.value}
+                >
+                  {option.title}
+                </li>
+              ),
+            )}
+          </ul>
+        </div>
       </button>
-
-      <div className={classNames(`${Styles.list_wrapper}`, {
-        [openStyle]: isOpen,
-      })}
-      >
-        <ul className={Styles.select_list}>
-          {options.map(
-            option => (
-              // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-              <li
-                className={Styles.select_item}
-                // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-                tabIndex={0}
-                onClick={() => selectItem(option)}
-                onKeyUp={e => handleKeyOnOption(e, option)}
-                key={option.value}
-              >
-                {option.title}
-              </li>
-            ),
-          )}
-        </ul>
-      </div>
     </div>
   );
 };
