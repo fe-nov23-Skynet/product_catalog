@@ -14,14 +14,22 @@ interface SelectOption {
   title: string;
 }
 
-interface Props {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface Props extends Record<string, any> {
   options: SelectOption[];
   selectedOption?: SelectOption;
   onSelect?: (value: SelectValue) => void;
 }
 
 export const Select:React.FC<Props> = (props) => {
-  const { options, onSelect = () => {}, selectedOption } = props;
+  // eslint-disable-next-line object-curly-newline
+  const {
+    options,
+    onSelect = () => {},
+    selectedOption,
+    className,
+    ...other
+  } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(selectedOption?.title || '');
@@ -73,17 +81,19 @@ export const Select:React.FC<Props> = (props) => {
     // eslint-disable-next-line max-len
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
-      className={Styles.select}
+      className={classNames(`${Styles.select}`, className)}
       ref={rootRef}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...other}
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
     >
       <button
         className={Styles.select__button}
         onClick={handleList}
       >
-        <p className={Styles.select_title}>
+        <span className={Styles.select_title}>
           {selectedValue || placeHolder}
-        </p>
+        </span>
         <ArrowDown className={classNames(`${Styles.select_icon}`, {
           [closeIcon]: isOpen,
         })}

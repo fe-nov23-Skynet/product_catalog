@@ -36,6 +36,7 @@
   "rules": {
     "react/prop-types": 0,
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/indent": ["error", 2],
     "react/jsx-indent": ["error", 2],
     "react/jsx-indent-props": ["error", 2],
