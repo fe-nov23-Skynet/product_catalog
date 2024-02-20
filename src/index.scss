@@ -1,4 +1,5 @@
 @import 'styles/variables/theme_colors.scss';
+@import 'styles/productCard/style_product-card.scss';
 @import 'styles/mixins.scss';
 
 @font-face {
@@ -27,6 +28,7 @@ html {
 }
 
 body {
+  margin: 0;
   background-color: $color-white;
 }
 
