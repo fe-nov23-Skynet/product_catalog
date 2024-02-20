@@ -1,0 +1,34 @@
+@import '../../styles/variables/theme_colors.scss';
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  padding-top: 25px;
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crumb_arrow {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.crumb_link {
+  text-decoration: none;
+  font-family: Mont;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+  letter-spacing: 0em;
+  color: $color-primary;
+}
+
+.crumb_link--active {
+  color: $color-secondary;
+}
