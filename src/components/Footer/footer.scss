@@ -1,9 +1,9 @@
 @import '../../styles/variables/theme_colors.scss';
 
 .footer {
-  // width: 100%;
   max-width: 1440px;
   display: grid;
+  grid-column: 1 / -1;
   grid-template-columns: 1fr auto 1fr;
   justify-content: space-between;
 
@@ -16,7 +16,7 @@
     background-image: url('../../styles/nice_gadgets_logo.svg');
     background-repeat: no-repeat;
 
-    & a {
+    & .home_link {
       display: block;
       line-height: 32px;
       color: transparent;
@@ -31,10 +31,20 @@
     align-items: center;
 
     & a {
+      display: flex;
+      align-items: center;
+      padding-inline: 4px;
+      height: 100%;
       color: $color-secondary;
       font-size: 14px;
       font-weight: bold;
       line-height: 14px;
+
+      &:hover {
+        background-color: lightgrey;
+        border-radius: 4px;
+        color: $color-primary;
+      }
     }
   }
 
