@@ -3,10 +3,10 @@ import Styles from './Catalog.module.scss';
 
 export const Catalog: React.FC = () => {
   const sortBy = [
-    { value: 1, title: '1' },
-    { value: 2, title: '2' },
-    { value: 3, title: '3' },
-    { value: 4, title: '4' },
+    { value: 1, title: 'Price low' },
+    { value: 4, title: 'Price high' },
+    { value: 2, title: 'Newest' },
+    { value: 3, title: 'Oldest' },
   ];
 
   const itemsOnPage = [
@@ -17,7 +17,7 @@ export const Catalog: React.FC = () => {
   ];
 
   return (
-    <>
+    <div className={Styles.catalog}>
       <h1 className={Styles.catalog__title}>Mobile Phones</h1>
       <span className={Styles.catalog__info}>95 models</span>
 
@@ -25,6 +25,6 @@ export const Catalog: React.FC = () => {
       <Select options={sortBy} className={Styles.catalog__sort} />
       <Select options={itemsOnPage} className={Styles.catalog__itemsOnPage} />
       {/* </div> */}
-    </>
+    </div>
   );
 };

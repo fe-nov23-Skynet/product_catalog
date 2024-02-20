@@ -1,6 +1,10 @@
 @import '../../styles/variables/theme_colors.scss';
+@import '../../styles/mixins.scss';
+
 
 .catalog {
+  @include page-grid();
+
   &__title {
     grid-column: 1 / -1;
   }
@@ -16,10 +20,18 @@
   }
 
   &__sort {
-    grid-column: span 4;
+    grid-column: span 2;
+
+    @include on-tablet {
+      grid-column: span 4;
+    }
   }
 
   &__itemsOnPage {
-    grid-column: span 3;
+    grid-column: span 2;
+    
+    @include on-tablet {
+      grid-column: span 3;
+    }
   }
 }
