@@ -66,3 +66,19 @@ h4 {
   font-size: 20px;
   line-height: 26px;
 }
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  padding-inline: 152px;
+
+  @media (max-width: 860px) {
+    padding-inline: 62px;
+  }
+
+  @media (max-width: 576px) {
+    padding-inline: 32px;
+  }
+}
