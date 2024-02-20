@@ -1,25 +1,26 @@
 @import '../../styles/variables/theme_colors.scss';
+@import '../../styles/mixins.scss';
+
 
 .catalog {
-  &__title {
+  @include page-grid();
+
+  &__list {
+    @include page-grid();
     grid-column: 1 / -1;
+    row-gap: 40px;
+    margin-top: 24px;
   }
 
-  &__info {
+  &__product {
     grid-column: 1 / -1;
-    color: $color-secondary;
-   }
 
-  &__settings {
-    display: block;
-    grid-column: 1 / -1;
-  }
+    @include on-tablet {
+      grid-column: span 4;
+    }
 
-  &__sort {
-    grid-column: span 4;
-  }
-
-  &__itemsOnPage {
-    grid-column: span 3;
+    @include on-desktop {
+      grid-column: span 6;
+    }
   }
 }
