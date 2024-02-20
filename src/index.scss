@@ -1,5 +1,6 @@
 @import 'styles/variables/theme_colors.scss';
 @import './ProductCard/style_product-card.scss';
+@import 'styles/mixins.scss';
 
 @font-face {
   font-family: "Mont";
@@ -27,21 +28,46 @@ html {
 }
 
 body {
+  margin: 0;
   background-color: $color-white;
+}
+
+body, h1, h2, h3, h4, h5, h6, ul, p {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 * {
   box-sizing: border-box;
 }
 
-p {
-  padding: 0;
-  margin: 0;
+h1 {
+   font-weight: 800;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.01em;
 }
 
-h1,
-h2,
+h2 {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+}
+
 h3 {
-  padding: 0;
-  margin: 0;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 31px;
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+a {
+  text-decoration: none;
 }
