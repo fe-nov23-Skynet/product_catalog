@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import emptyHeart from '../styles/icons/favourites_heart_like.svg';
 import filledHeart from '../styles/icons/favourites_heart_filled.svg';
-import products from '../productApi/products.json';
+import { Product } from '../types/Product';
 
-export const ProductCard = () => {
+type Props = {
+  product: Product;
+};
+
+export const ProductCard: React.FC<Props> = ({ product }) => {
   const [favoriteProduct, setfavoriteProduct] = useState('');
 
   const makeFavorite = () => {
     if (!favoriteProduct) {
-      setfavoriteProduct(products.id);
+      setfavoriteProduct(product.id);
     } else {
       setfavoriteProduct('');
     }
@@ -20,18 +24,18 @@ export const ProductCard = () => {
     >
       <img
         className="card__img"
-        src={products.images[0]}
+        src={product.images[0]}
         alt="Apple iPhone 11 Pro Max 64GB Gold"
       />
 
       <h1 className="card__title">
-        {products.name}
+        {product.name}
       </h1>
 
       <div className="card__price-text">
-        {products.priceDiscount}
+        {product.priceDiscount}
         <span className="card__price-text--crossed">
-          {products.priceRegular}
+          {product.priceRegular}
           <div className="card__cross-line" />
         </span>
       </div>
@@ -43,19 +47,19 @@ export const ProductCard = () => {
           Screen
         </p>
         <p className="card__product-info-value">
-          {products.screen}
+          {product.screen}
         </p>
         <p className="card__product-info-prop">
           Capacity
         </p>
         <p className="card__product-info-value">
-          {products.capacity}
+          {product.capacity}
         </p>
         <p className="card__product-info-prop">
           RAM
         </p>
         <p className="card__product-info-value">
-          {products.ram}
+          {product.ram}
         </p>
       </h3>
 
@@ -70,7 +74,7 @@ export const ProductCard = () => {
         <button className="card__make-favorite" onClick={makeFavorite}>
           <img
             className="card__make-favorite-img"
-            src={favoriteProduct === products.id ? filledHeart : emptyHeart}
+            src={favoriteProduct === product.id ? filledHeart : emptyHeart}
             alt="Make favorite"
           />
         </button>
