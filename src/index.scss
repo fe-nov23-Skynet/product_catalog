@@ -1,4 +1,5 @@
 @import 'styles/variables/theme_colors.scss';
+@import 'styles/productCard/style_product-card.scss';
 @import 'styles/mixins.scss';
 
 @font-face {
@@ -65,4 +66,8 @@ h4 {
   font-weight: 500;
   font-size: 20px;
   line-height: 26px;
+}
+
+a {
+  text-decoration: none;
 }
