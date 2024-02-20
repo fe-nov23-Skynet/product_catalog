@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import './footer.scss';
 
@@ -14,7 +13,7 @@ export const Footer = () => (
       <div className="footer__links">
         {/* eslint-disable-next-line */}
         <a href="#" target="_blanc">github</a>
-        <a href="#">
+        <a href="#/">
           home
         </a>
       </div>
