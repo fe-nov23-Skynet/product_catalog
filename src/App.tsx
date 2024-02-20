@@ -1,9 +1,18 @@
 import { Footer } from './components/Footer/Footer';
-
-function App() {
+import { Outlet } from 'react-router-dom';
+import { Header } from './components/Header/Header';
+  
+export function App() {
   return (
     <div className="App">
-      test vercel deploy with redeploy by commit
+      <Header />
+
+      <div className="section">
+        <div className="container">
+          <Outlet />
+        </div>
+      </div>
+      
       <Footer />
     </div>
   );
