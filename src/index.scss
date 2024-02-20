@@ -1,4 +1,5 @@
 @import 'styles/variables/theme_colors.scss';
+@import 'styles/productCard/style_product-card.scss';
 @import 'styles/mixins.scss';
 
 @font-face {
@@ -69,16 +70,4 @@ h4 {
 
 a {
   text-decoration: none;
-}
-
-.container {
-  padding-inline: 152px;
-
-  @media (max-width: 860px) {
-    padding-inline: 62px;
-  }
-
-  @media (max-width: 576px) {
-    padding-inline: 32px;
-  }
 }
