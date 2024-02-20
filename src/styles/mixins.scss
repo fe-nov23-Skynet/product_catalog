@@ -23,7 +23,7 @@
   @include on-tablet {
     --columns: 12;
     padding-inline: 24px;
-   }
+  }
 
   @include on-desktop {
     --columns: 24;
