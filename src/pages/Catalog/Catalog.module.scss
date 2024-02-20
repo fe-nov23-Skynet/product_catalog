@@ -5,40 +5,6 @@
 .catalog {
   @include page-grid();
 
-  &__title {
-    grid-column: 1 / -1;
-    margin-top: 40px; /* remoove it after breadcrumbs implementations */
-    margin-bottom: 8px;
-  }
-
-  &__info {
-    grid-column: 1 / -1;
-    color: $color-secondary;
-    margin-bottom: 40px;
-   }
-
-  &__settings {
-    display: block;
-    grid-column: 1 / -1;
-    
-  }
-
-  &__sort {
-    grid-column: span 2;
-
-    @include on-tablet {
-      grid-column: span 4;
-    }
-  }
-
-  &__itemsOnPage {
-    grid-column: span 2;
-    
-    @include on-tablet {
-      grid-column: span 3;
-    }
-  }
-
   &__list {
     @include page-grid();
     grid-column: 1 / -1;
