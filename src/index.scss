@@ -72,6 +72,10 @@ a {
   text-decoration: none;
 }
 
+main {
+  min-height: calc(100vh - 177px);
+}
+
 .App:has(.menu) {
   overflow: hidden;
   height: 100vh;
