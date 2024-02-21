@@ -23,4 +23,21 @@
       grid-column: span 6;
     }
   }
+
+  &__paginationWrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    justify-self: center;
+  }
+  
+  &__customPagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  &__customPagination li {
+    margin-right: 10px;
+  }
 }
