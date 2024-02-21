@@ -11,7 +11,7 @@ interface Props {
 
 export const ITEMS_PER_PAGE = 10;
 
-export const PaginationExample: React.FC<Props> = ({
+export const PaginationBlock: React.FC<Props> = ({
   total,
   currentPage,
   setCurrentPage,

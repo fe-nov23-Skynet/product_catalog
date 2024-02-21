@@ -4,7 +4,7 @@ import { Select } from '../../components/Select/Select';
 import Styles from './Catalog.module.scss';
 import { ProductCard } from '../../ProductCard/ProductCard';
 import { Product } from '../../types/Product';
-import { PaginationExample, ITEMS_PER_PAGE } from '../../components/Pagination/Pagination';
+import { PaginationBlock, ITEMS_PER_PAGE } from '../../components/Pagination/Pagination';
 
 interface Props {
   products: Product[];
@@ -33,7 +33,7 @@ export const Catalog: React.FC<Props> = ({ products }) => {
         )}
       </ul>
       <div className={Styles.catalog__paginationWrapper}>
-        <PaginationExample
+        <PaginationBlock
           className={Styles.catalog__customPagination}
           currentPage={currentPage}
           total={products.length}
