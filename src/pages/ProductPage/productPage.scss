@@ -1,9 +1,9 @@
 @import '../../styles/mixins.scss';
+@import '../../styles/variables/theme_colors.scss';
 
 .product-page {
-  &__specs {
+  &__info {
     @include page-grid();
-    position: relative;
   }
   
   &__title {
@@ -11,19 +11,42 @@
   }
 
   &__images {
+    grid-column: 1/-1;
+
+    @include on-tablet(){
+      grid-column: 1/ 7;
+    }
+
+    @include on-desktop() {
+      grid-column: 1 / 13;
+    }   
+  }
+
+  &__about {
+    grid-column: 1 / -1;
+
     @include on-desktop() {
       grid-column: 1 / 13;
     }
   }
 
   &__settings {
-    grid-column: 14 / 21;
+    grid-column: 1/-1;
+
+    @include on-tablet(){
+      grid-column: 8/-1;
+    }
+
+    @include on-desktop() {
+      grid-column: 14 / 21;
+    }
   }
 
   &__id {
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    right: 0;  
+    right: 0;  */ 
+    color: $color-icons;
   }
 
   &__colors {
@@ -32,6 +55,43 @@
   }
 
   &__list {
+    display: flex;
+  }
+
+  &__specs {
+    grid-column: 1 / -1;
+    @include on-desktop() {
+      grid-column: 14 / -1;
+    }
+  }
+}
+
+.colors__header {
+  display: flex;
+  justify-content: space-between;
+  height: min-content;
+  grid-column: 1 / -1;
+
+  @include on-desktop() {
+    grid-column: 14 / -1;
+  }
+}
+
+.id--on-mobile {
+  @include on-desktop() {
+    display: none;
+  }
+}
+
+.id--on-desktop{
+  display: none;
+  width: max-content;
+
+  grid-column-start: auto; 
+  grid-column-end: -1;
+  justify-self: end;
+
+  @include on-desktop() {
     display: flex;
   }
 }
