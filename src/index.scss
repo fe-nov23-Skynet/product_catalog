@@ -71,3 +71,7 @@ h4 {
 a {
   text-decoration: none;
 }
+
+main {
+  min-height: calc(100vh - 177px);
+}

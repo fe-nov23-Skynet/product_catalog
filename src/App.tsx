@@ -8,12 +8,12 @@ export function App() {
     <div className="App">
       <Header />
 
-      <div className="section">
+      <main className="section">
         <div className="container">
           <Breadcrumbs />
           <Outlet />
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>
