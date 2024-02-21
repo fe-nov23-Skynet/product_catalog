@@ -75,7 +75,7 @@
 
 .header_box__container {
   width: 48px;
-    height: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,6 +95,6 @@
   padding: 13px 15px;
   
     @include on-desktop {
-      padding: 21px 24px;
+      padding: 21px 23px;
     }
 }
