@@ -6,7 +6,23 @@
     @include page-grid();
     row-gap: 80px;
   }
-  
+
+  &__back-link {
+    margin-top: 40px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+    color: $color-secondary;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
   &__title {
     grid-column: 1 / -1;
   }
@@ -83,7 +99,7 @@
   &__specs {
     display: flex;
     flex-direction: column;
-    gap: 25px; 
+    gap: 25px;
 
     grid-column: 1 / -1;
 
@@ -118,7 +134,7 @@
   display: none;
   width: max-content;
 
-  grid-column-start: auto; 
+  grid-column-start: auto;
   grid-column-end: -1;
   justify-self: end;
 

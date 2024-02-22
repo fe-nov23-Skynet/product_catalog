@@ -1,74 +1,69 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
 import { Product } from '../../types/Product';
 import emptyHeart from '../../styles/icons/favourites_heart_like.svg';
 import './productPage.scss';
 
-import products from '../../productApi/phones.json';
 import { SpecsList } from '../../components/SpecsList';
-import { Spec } from '../../types/Spec';
+import { Loader } from '../../components/Loader';
+import { ReactComponent as IconLeft } from '../../styles/icons/chevron_arrow_left.svg';
+import { getSpecsList } from '../../utils/getSpecsList';
+import { getProduct } from '../../api/api';
 
 interface Props {
   product: Product;
 }
 
-function getSpecsList(fromProduct: Product, filters: string[]) {
-  return Object.entries(fromProduct).map(([key, value]) => {
-    if (filters.includes(key)) {
-      return { title: key, value: String(value) };
-    }
-    return null;
-  }).filter(obj => obj !== null) as Spec[];
-}
+const SPECS_LONG = [
+  'screen',
+  'resolution',
+  'processor',
+  'ram',
+  'capacity',
+  'camera',
+  'zoom',
+  'cell',
+];
+const SPECS_SHORT = [
+  'screen',
+  'resolution',
+  'processor',
+  'ram',
+];
 
 export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
-  // const { product } = props;
-  const a = 0;
-  const product = products[0];
+  const currentPath = useLocation().pathname.split('/')[1];
+  const { id: productId } = useParams();
+
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    getProduct(currentPath, productId as string)
+      .then(productS => setProduct(productS))
+      .catch()
+      .finally();
+  }, []);
+
   const numericID = 3587941;
 
-  const descriptionSpecsList = [
-    'screen',
-    'resolution',
-    'processor',
-    'ram',
-    'capacity',
-    'camera',
-    'zoom',
-    'cell',
-  ];
-  const shortSpecsList = [
-    'screen',
-    'resolution',
-    'processor',
-    'ram',
-  ];
-
-  const descriptionSpecs: Spec[] = getSpecsList(product, descriptionSpecsList);
-  const shortSpecs: Spec[] = getSpecsList(product, shortSpecsList);
-  /* const list: Spec[] = descriptionSpecsList.map(
-    spec => ({
-      title: spec,
-      value: String(product[spec]) || '',
-    }),
-  ); */
-
-  /* const descriptionSpecs = descriptionSpecsList
-    .map(key => ({ [key]: product[key] })); */
-
-  // Object.keys(product).filter(spec => reference[spec] === 1);
+  if (!product) {
+    return <Loader />;
+  }
 
   return (
     <section className="product-page">
-      <div>
-        <Link to="#/">Back</Link>
-      </div>
+      <Link to={`/${currentPath}`} className="product-page__back-link">
+        <IconLeft />
+        Back
+      </Link>
 
       <h2 className="product-page__title">{product.name}</h2>
 
       <div className="product-page__info">
         <div className="product-page__images">
           <img
-            src={product.images[0]}
+            src={`/${product.images[0].replace('imgs', 'img')}`}
             alt={product.name}
             className="product-page__images-main"
           />
@@ -136,7 +131,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             </div>
           </div>
 
-          <SpecsList specs={shortSpecs} boldValue />
+          <SpecsList specs={getSpecsList(product, SPECS_SHORT)} boldValue />
         </div>
         <span className="product-page__id text-s-12 id--on-desktop">{`ID: ${numericID}`}</span>
         <div className="product-page__about">
@@ -160,7 +155,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             <hr />
           </h3>
 
-          <SpecsList specs={descriptionSpecs} />
+          <SpecsList specs={getSpecsList(product, SPECS_SHORT)} />
         </div>
       </div>
     </section>
