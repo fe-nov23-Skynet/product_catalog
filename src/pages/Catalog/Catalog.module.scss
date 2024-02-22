@@ -15,6 +15,12 @@
   &__product {
     grid-column: 1 / -1;
 
+    transition: transform .3s;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
     @include on-tablet {
       grid-column: span 4;
     }
@@ -40,13 +46,13 @@
       grid-column: 10 / 16;
     }
   }
-  
+
   &__customPagination {
     display: flex;
     list-style: none;
     padding: 0;
   }
-  
+
   &__customPagination li {
     margin-right: 10px;
   }
