@@ -24,7 +24,7 @@ html {
   font-size: 14px;
   line-height: 21px;
   color: $color-primary;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 body {
@@ -72,6 +72,12 @@ a {
   text-decoration: none;
 }
 
+hr {
+  border: none;
+  border-top: 1px solid $color-elements;
+  margin: 0;
+}
+
 main {
   min-height: calc(100vh - 177px);
 }
@@ -84,4 +90,14 @@ main {
     overflow: auto;
     height: auto;
   }
+}
+
+.text-s-12 {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 500;
+}
+
+.text-gray {
+  color: $color-secondary;
 }
