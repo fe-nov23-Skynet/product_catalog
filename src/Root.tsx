@@ -5,6 +5,7 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { PhonesPage } from './pages/PhonesPage';
 import { TabletsPage } from './pages/TabletsPage';
 import { AccessoriesPage } from './pages/AccessoriesPage';
+import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage/CartPage';
 
 export const Root = () => (
@@ -12,11 +13,20 @@ export const Root = () => (
     <Route path="/" element={<App />}>
       <Route index element={<h1 className="title">Home Page</h1>} />
       <Route path="home" element={<Navigate to="/" />} />
-      <Route path="phones" element={<PhonesPage />} />
-      <Route path="tablets" element={<TabletsPage />} />
-      <Route path="accessories" element={<AccessoriesPage />} />
+      <Route path="phones">
+        <Route index element={<PhonesPage />} />
+        <Route path=":id" element={<ProductPage />} />
+      </Route>
+      <Route path="tablets">
+        <Route index element={<TabletsPage />} />
+        <Route path=":id" element={<ProductPage />} />
+      </Route>
+      <Route path="accessories">
+        <Route index element={<AccessoriesPage />} />
+        <Route path=":id?" element={<ProductPage />} />
+      </Route>
       <Route path="favourites" element={<h1 className="title">Favourites Page</h1>} />
-      <Route path="cart" element={<CartPage />} />
+      <Route path="cart" element={<h1 className="title">Cart Page</h1>} />
 
       <Route path="*" element={<NotFoundPage />} />
     </Route>

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import classNames from 'classnames';
+import { Link, useLocation } from 'react-router-dom';
 import emptyHeart from '../styles/icons/favourites_heart_like.svg';
 import filledHeart from '../styles/icons/favourites_heart_filled.svg';
 import { Product } from '../types/Product';
+import { client } from '../api/fetchClient';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
@@ -12,6 +14,7 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const [favoriteProduct, setfavoriteProduct] = useState('');
+  const currentPath = useLocation().pathname;
 
   const makeFavorite = () => {
     if (!favoriteProduct) {
@@ -32,7 +35,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       />
 
       <h1 className="card__title">
-        {product.name}
+        <Link to={`${currentPath}/${product.id}`}>{product.name}</Link>
       </h1>
 
       <div className="card__price-text">
