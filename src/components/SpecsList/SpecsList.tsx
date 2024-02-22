@@ -16,7 +16,7 @@ export const SpecsList: React.FC<Props> = (props) => {
   return (
     <ul className={classNames('specs-list', className)}>
       {specs.map(spec => (
-        <li className="specs-list__item">
+        <li className="specs-list__item" key={spec.title}>
           <span
             className={classNames('text-gray', 'specs-list__spec', {
               'specs-list__uppercase': spec.title.toLocaleLowerCase() === RAM,
