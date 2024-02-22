@@ -1,6 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable arrow-parens */
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 import { ReactComponent as ArrowDown } from
   '../../styles/icons/chevron_arrow_down.svg';
@@ -19,8 +25,9 @@ interface Props {
   title: string;
   options: SelectOption[];
   selectedOption?: SelectOption;
-  onSelect?: (value: SelectValue) => void;
+  onSelect?: Dispatch<SetStateAction<string | number>>;
   className: string;
+
 }
 
 export const Select:React.FC<Props> = (props) => {
