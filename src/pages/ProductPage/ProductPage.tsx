@@ -5,32 +5,32 @@ import { Product } from '../../types/Product';
 import emptyHeart from '../../styles/icons/favourites_heart_like.svg';
 import './productPage.scss';
 
-import products from '../../productApi/phones.json';
 import { SpecsList } from '../../components/SpecsList';
-import { Spec } from '../../types/Spec';
-import { client } from '../../api/fetchClient';
 import { Loader } from '../../components/Loader';
 import { ReactComponent as IconLeft } from '../../styles/icons/chevron_arrow_left.svg';
+import { getSpecsList } from '../../utils/getSpecsList';
+import { getProduct } from '../../api/api';
 
 interface Props {
   product: Product;
 }
 
-function getProduct(currentPath: string, productId: string) {
-  return client.get<Product[]>(`api/${currentPath}.json`)
-    .then(
-      productsServer => productsServer.find(({ id }) => id === productId) || null,
-    );
-}
-
-function getSpecsList(fromProduct: Product, filters: string[]) {
-  return Object.entries(fromProduct).map(([key, value]) => {
-    if (filters.includes(key)) {
-      return { title: key, value: String(value) };
-    }
-    return null;
-  }).filter(obj => obj !== null) as Spec[];
-}
+const SPECS_LONG = [
+  'screen',
+  'resolution',
+  'processor',
+  'ram',
+  'capacity',
+  'camera',
+  'zoom',
+  'cell',
+];
+const SPECS_SHORT = [
+  'screen',
+  'resolution',
+  'processor',
+  'ram',
+];
 
 export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const currentPath = useLocation().pathname.split('/')[1];
@@ -46,23 +46,6 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   }, []);
 
   const numericID = 3587941;
-
-  const descriptionSpecsList = [
-    'screen',
-    'resolution',
-    'processor',
-    'ram',
-    'capacity',
-    'camera',
-    'zoom',
-    'cell',
-  ];
-  const shortSpecsList = [
-    'screen',
-    'resolution',
-    'processor',
-    'ram',
-  ];
 
   if (!product) {
     return <Loader />;
@@ -148,7 +131,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             </div>
           </div>
 
-          <SpecsList specs={getSpecsList(product, shortSpecsList)} boldValue />
+          <SpecsList specs={getSpecsList(product, SPECS_SHORT)} boldValue />
         </div>
         <span className="product-page__id text-s-12 id--on-desktop">{`ID: ${numericID}`}</span>
         <div className="product-page__about">
@@ -172,7 +155,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             <hr />
           </h3>
 
-          <SpecsList specs={getSpecsList(product, descriptionSpecsList)} />
+          <SpecsList specs={getSpecsList(product, SPECS_SHORT)} />
         </div>
       </div>
     </section>
