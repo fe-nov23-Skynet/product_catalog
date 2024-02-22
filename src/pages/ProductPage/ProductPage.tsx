@@ -67,7 +67,11 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
       <div className="product-page__info">
         <div className="product-page__images">
-          <img src={product.images[0]} alt={product.name} />
+          <img
+            src={product.images[0]}
+            alt={product.name}
+            className="product-page__images-main"
+          />
         </div>
 
         <div className="product-page__settings">
@@ -105,29 +109,31 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             </p>
           </div>
 
-          <div className="card__price-text">
-            {product.priceDiscount}
-            <span className="card__price-text--crossed">
-              {product.priceRegular}
-              <div className="card__cross-line" />
-            </span>
-          </div>
+          <div className="product-page__settings-group">
+            <div className="card__price-text">
+              {product.priceDiscount}
+              <span className="card__price-text--crossed">
+                {product.priceRegular}
+                <div className="card__cross-line" />
+              </span>
+            </div>
 
-          <div className="card__submit-container">
-            <a
-              className="card__button-submit"
-              href="/"
-            >
-              Add to cart
-            </a>
+            <div className="card__submit-container">
+              <a
+                className="card__button-submit"
+                href="/"
+              >
+                Add to cart
+              </a>
 
-            <button className="card__make-favorite">
-              <img
-                className="card__make-favorite-img"
-                src={emptyHeart}
-                alt="Make favorite"
-              />
-            </button>
+              <button className="card__make-favorite">
+                <img
+                  className="card__make-favorite-img"
+                  src={emptyHeart}
+                  alt="Make favorite"
+                />
+              </button>
+            </div>
           </div>
 
           <SpecsList specs={shortSpecs} boldValue />
@@ -135,7 +141,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
         <span className="product-page__id text-s-12 id--on-desktop">{`ID: ${numericID}`}</span>
         <div className="product-page__about">
           <h3>
-            About
+            <p className="product-page__specs-title">About</p>
             <hr />
           </h3>
 
@@ -150,7 +156,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
         </div>
         <div className="product-page__specs">
           <h3>
-            Tech specs
+            <p className="product-page__specs-title">Tech specs</p>
             <hr />
           </h3>
 
