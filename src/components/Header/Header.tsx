@@ -20,6 +20,13 @@ export function Header() {
     'header_nav__link--active': isActive,
   });
 
+  const boxItemClassName = (
+    { isActive }: { isActive: boolean },
+  ) => cn({
+    header_box__link: !menuOpen,
+    'header_nav__link--active': isActive,
+  });
+
   const changeMenuOpen = () => setMenuOpen(!menuOpen);
 
   return (
@@ -64,21 +71,21 @@ export function Header() {
 
           <div className="header_box">
             <div className="header_box__container">
-              <Link
+              <NavLink
                 to="favourites"
-                className="header_box__link"
+                className={boxItemClassName}
               >
                 <Favorites />
-              </Link>
+              </NavLink>
             </div>
 
             <div className="header_box__container">
-              <Link
+              <NavLink
                 to="cart"
-                className="header_box__link"
+                className={boxItemClassName}
               >
                 <Cart />
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>
