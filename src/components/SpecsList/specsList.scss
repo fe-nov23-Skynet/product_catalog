@@ -1,0 +1,22 @@
+.specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__spec {
+    text-transform: capitalize;
+  }
+
+  &__uppercase {
+    text-transform: uppercase;
+  }
+
+  &__boldValue {
+    font-weight: 500;
+  }
+}

@@ -3,10 +3,21 @@ import { Product } from '../../types/Product';
 import emptyHeart from '../../styles/icons/favourites_heart_like.svg';
 import './productPage.scss';
 
-import products from '../../productApi/tablets.json';
+import products from '../../productApi/phones.json';
+import { SpecsList } from '../../components/SpecsList';
+import { Spec } from '../../types/Spec';
 
 interface Props {
   product: Product;
+}
+
+function getSpecsList(fromProduct: Product, filters: string[]) {
+  return Object.entries(fromProduct).map(([key, value]) => {
+    if (filters.includes(key)) {
+      return { title: key, value: String(value) };
+    }
+    return null;
+  }).filter(obj => obj !== null) as Spec[];
 }
 
 export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
@@ -14,6 +25,37 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const a = 0;
   const product = products[0];
   const numericID = 3587941;
+
+  const descriptionSpecsList = [
+    'screen',
+    'resolution',
+    'processor',
+    'ram',
+    'capacity',
+    'camera',
+    'zoom',
+    'cell',
+  ];
+  const shortSpecsList = [
+    'screen',
+    'resolution',
+    'processor',
+    'ram',
+  ];
+
+  const descriptionSpecs: Spec[] = getSpecsList(product, descriptionSpecsList);
+  const shortSpecs: Spec[] = getSpecsList(product, shortSpecsList);
+  /* const list: Spec[] = descriptionSpecsList.map(
+    spec => ({
+      title: spec,
+      value: String(product[spec]) || '',
+    }),
+  ); */
+
+  /* const descriptionSpecs = descriptionSpecsList
+    .map(key => ({ [key]: product[key] })); */
+
+  // Object.keys(product).filter(spec => reference[spec] === 1);
 
   return (
     <section className="product-page">
@@ -29,36 +71,39 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
         </div>
 
         <div className="product-page__settings">
-          <div className="colors__header">
-            <span className="product-page__colors-title">Available colors</span>
-            <span className="product-page__id id--on-mobile">{`ID: ${numericID}`}</span>
+
+          <div className="product-page__settings-group">
+            <p className="product-page__colors">
+              <div className="colors__header">
+                <span className="product-page__settings-title">Available colors</span>
+                <span className="product-page__id id--on-mobile">{`ID: ${numericID}`}</span>
+              </div>
+
+              <ul className="product-page__settings-list">
+                <li><input type="radio" /></li>
+                <li><input type="radio" /></li>
+                <li><input type="radio" /></li>
+                <li><input type="radio" /></li>
+              </ul>
+
+              <hr />
+            </p>
+
+            <p className="product-page__capacity">
+              <span className="product-page__settings-title">Select capacity</span>
+
+              <ul className="product-page__settings-list">
+                {product.capacityAvailable.map(capacity => (
+                  <li>
+                    <input type="radio" />
+                    {`${capacity}`}
+                  </li>
+                ))}
+              </ul>
+
+              <hr />
+            </p>
           </div>
-
-          <div className="product-page__colors">
-            <ul className="product-page__list">
-              <li><input type="radio" /></li>
-              <li><input type="radio" /></li>
-              <li><input type="radio" /></li>
-              <li><input type="radio" /></li>
-            </ul>
-          </div>
-
-          <hr />
-
-          <div className="product-page__capacity">
-            <span className="product-page__colors-title">Select capacity</span>
-
-            <ul className="product-page__list">
-              {product.capacityAvailable.map(capacity => (
-                <li>
-                  <input type="radio" />
-                  {`${capacity}`}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <hr />
 
           <div className="card__price-text">
             {product.priceDiscount}
@@ -85,97 +130,31 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             </button>
           </div>
 
-          <h3 className="card__product-info">
-            <p className="card__product-info-prop">
-              Screen
-            </p>
-            <p className="card__product-info-value">
-              {product.screen}
-            </p>
-            <p className="card__product-info-prop">
-              Resolution
-            </p>
-            <p className="card__product-info-value">
-              {product.resolution}
-            </p>
-            <p className="card__product-info-prop">
-              Processor
-            </p>
-            <p className="card__product-info-value">
-              {product.processor}
-            </p>
-            <p className="card__product-info-prop">
-              RAM
-            </p>
-            <p className="card__product-info-value">
-              {product.ram}
-            </p>
-          </h3>
+          <SpecsList specs={shortSpecs} boldValue />
         </div>
         <span className="product-page__id text-s-12 id--on-desktop">{`ID: ${numericID}`}</span>
         <div className="product-page__about">
-          <h3>About</h3>
-          <hr />
+          <h3>
+            About
+            <hr />
+          </h3>
+
           {product.description.map((description) => (
             <>
               <h4>{description.title}</h4>
-              <p>{description.text}</p>
+              {description.text.map(p => (
+                <p className="text-gray">{p}</p>
+              ))}
             </>
           ))}
         </div>
         <div className="product-page__specs">
-          <h3>Tech specs</h3>
-          <hr />
-          <h3 className="card__product-info">
-            <p className="card__product-info-prop">
-              Screen
-            </p>
-            <p className="card__product-info-value">
-              {product.screen}
-            </p>
-            <p className="card__product-info-prop">
-              Resolution
-            </p>
-            <p className="card__product-info-value">
-              {product.resolution}
-            </p>
-            <p className="card__product-info-prop">
-              Processor
-            </p>
-            <p className="card__product-info-value">
-              {product.processor}
-            </p>
-            <p className="card__product-info-prop">
-              RAM
-            </p>
-            <p className="card__product-info-value">
-              {product.ram}
-            </p>
-            <p className="card__product-info-prop">
-              Built in memory
-            </p>
-            <p className="card__product-info-value">
-              {product.capacity}
-            </p>
-            <p className="card__product-info-prop">
-              Camera
-            </p>
-            <p className="card__product-info-value">
-              {product.camera}
-            </p>
-            <p className="card__product-info-prop">
-              Zoom
-            </p>
-            <p className="card__product-info-value">
-              {product.zoom}
-            </p>
-            <p className="card__product-info-prop">
-              Cell
-            </p>
-            <p className="card__product-info-value">
-              {product.cell}
-            </p>
+          <h3>
+            Tech specs
+            <hr />
           </h3>
+
+          <SpecsList specs={descriptionSpecs} />
         </div>
       </div>
     </section>
