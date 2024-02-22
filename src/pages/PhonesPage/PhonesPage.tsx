@@ -4,6 +4,7 @@ import { Catalog } from '../Catalog';
 import Styles from './Phones.module.scss';
 
 export const PhonesPage: React.FC = () => {
+  /* const id = use */
   const sortBy = [
     { value: 1, title: 'Price low' },
     { value: 4, title: 'Price high' },
