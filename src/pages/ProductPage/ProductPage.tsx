@@ -1,6 +1,7 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { Product } from '../../types/Product';
 import emptyHeart from '../../styles/icons/favourites_heart_like.svg';
 import './productPage.scss';
@@ -10,6 +11,9 @@ import { Loader } from '../../components/Loader';
 import { ReactComponent as IconLeft } from '../../styles/icons/chevron_arrow_left.svg';
 import { getSpecsList } from '../../utils/getSpecsList';
 import { getProduct } from '../../api/api';
+import { RootState } from '../../redux/store';
+import { addProduct, removeProduct } from '../../features/cartSlice';
+import { addFavoriteProduct, removeFavoriteProduct } from '../../features/favoritesSlice';
 
 interface Props {
   product: Product;
@@ -38,6 +42,39 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
   const [product, setProduct] = useState<Product | null>(null);
 
+  const cart = useSelector((state: RootState) => state.cart.cartProducts);
+  const dispatch = useDispatch();
+  const addProductToCart = (productToAdd: Product) => {
+    dispatch(addProduct(productToAdd));
+  };
+  const removeProductFromCart = (productToAdd: Product) => {
+    dispatch(removeProduct(productToAdd));
+  };
+
+  const favorites = useSelector((state: RootState) => state.favorites.favoritesProducts);
+
+  const addProductToFavorites = (productToAdd: Product) => {
+    dispatch(addFavoriteProduct(productToAdd));
+  };
+  const removeProductFromFavorites = (productToAdd: Product) => {
+    dispatch(removeFavoriteProduct(productToAdd));
+  };
+
+  function handleAddtoCart(productToHandle: Product) {
+    if (cart.some(({ id }) => id === productToHandle.id) && product) {
+      removeProductFromCart(productToHandle);
+    } else {
+      addProductToCart(productToHandle);
+    }
+  }
+  function handleFavorite(productToHandle: Product) {
+    if (favorites.some(({ id }) => id === productToHandle.id) && product) {
+      removeProductFromFavorites(productToHandle);
+    } else {
+      addProductToFavorites(productToHandle);
+    }
+  }
+
   useEffect(() => {
     getProduct(currentPath, productId as string)
       .then(productS => setProduct(productS))
@@ -57,7 +94,6 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
         <IconLeft />
         Back
       </Link>
-
       <h2 className="product-page__title">{product.name}</h2>
 
       <div className="product-page__info">
@@ -72,28 +108,28 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
         <div className="product-page__settings">
 
           <div className="product-page__settings-group">
-            <p className="product-page__colors">
+            <div className="product-page__colors">
               <div className="colors__header">
                 <span className="product-page__settings-title">Available colors</span>
                 <span className="product-page__id id--on-mobile">{`ID: ${numericID}`}</span>
               </div>
 
               <ul className="product-page__settings-list">
-                <li><input type="radio" /></li>
-                <li><input type="radio" /></li>
-                <li><input type="radio" /></li>
-                <li><input type="radio" /></li>
+                <li key={1}><input type="radio" /></li>
+                <li key={2}><input type="radio" /></li>
+                <li key={3}><input type="radio" /></li>
+                <li key={4}><input type="radio" /></li>
               </ul>
 
               <hr />
-            </p>
+            </div>
 
-            <p className="product-page__capacity">
+            <div className="product-page__capacity">
               <span className="product-page__settings-title">Select capacity</span>
 
               <ul className="product-page__settings-list">
                 {product.capacityAvailable.map(capacity => (
-                  <li>
+                  <li key={capacity}>
                     <input type="radio" />
                     {`${capacity}`}
                   </li>
@@ -101,7 +137,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               </ul>
 
               <hr />
-            </p>
+            </div>
           </div>
 
           <div className="product-page__settings-group">
@@ -114,14 +150,17 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             </div>
 
             <div className="card__submit-container">
-              <a
+              <button
                 className="card__button-submit"
-                href="/"
+                onClick={() => handleAddtoCart(product)}
               >
                 Add to cart
-              </a>
+              </button>
 
-              <button className="card__make-favorite">
+              <button
+                className="card__make-favorite"
+                onClick={() => handleFavorite(product)}
+              >
                 <img
                   className="card__make-favorite-img"
                   src={emptyHeart}
@@ -141,12 +180,12 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
           </h3>
 
           {product.description.map((description) => (
-            <>
+            <React.Fragment key={description.title}>
               <h4>{description.title}</h4>
               {description.text.map(p => (
-                <p className="text-gray">{p}</p>
+                <p className="text-gray" key={p}>{p}</p>
               ))}
-            </>
+            </React.Fragment>
           ))}
         </div>
         <div className="product-page__specs">
