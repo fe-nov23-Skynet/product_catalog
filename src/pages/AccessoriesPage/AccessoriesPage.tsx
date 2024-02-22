@@ -19,7 +19,7 @@ export const AccessoriesPage: React.FC = () => {
   ];
 
   const accessoriesArr = accessories;
-  accessoriesArr.length = 15;
+  // accessoriesArr.length = 15;
 
   return (
     <div className={Styles.accessories_page}>
