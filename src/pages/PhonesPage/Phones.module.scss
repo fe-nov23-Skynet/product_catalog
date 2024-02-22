@@ -23,22 +23,6 @@
     
   }
 
-  &__sort {
-    grid-column: span 2;
-
-    @include on-tablet {
-      grid-column: span 4;
-    }
-  }
-
-  &__itemsOnPage {
-    grid-column: span 2;
-    
-    @include on-tablet {
-      grid-column: span 3;
-    }
-  }
-
   &__list {
     @include page-grid();
     grid-column: 1 / -1;
