@@ -8,6 +8,8 @@ import { ReactComponent as Plus } from '../../styles/icons/plus.svg';
 export const CartPage: React.FC = () => {
   const productsCart = [{ ...products }, { ...products }, { ...products }];
 
+  const calculateSum = () => productsCart.map(p => p.priceDiscount).reduce((sum, p) => sum + p, 0);
+
   return (
     <div className="cart_page">
       <h1 className="cart_title">Cart</h1>
@@ -16,7 +18,7 @@ export const CartPage: React.FC = () => {
         {productsCart.map(product => (
           <div className="cart_product">
             <div className="cart_product__top">
-              <button className="cart_product__delete"><Close /></button>
+              <button className="cart_product__delete" onClick={() => {}}><Close /></button>
               <img
                 src={product.images[0]}
                 alt={`${product.namespaceId}`}
@@ -32,7 +34,7 @@ export const CartPage: React.FC = () => {
                 <button className="cart_product__number plus"><Plus /></button>
               </div>
 
-              <span className="cart_product__price">{`$${product.priceRegular}`}</span>
+              <span className="cart_product__price">{`$${product.priceDiscount}`}</span>
             </div>
           </div>
         ))}
@@ -40,11 +42,11 @@ export const CartPage: React.FC = () => {
 
       <div className="cart_total">
         <div>
-          <div className="cart_total__sum">$2657</div>
+          <div className="cart_total__sum">{`$${calculateSum()}`}</div>
           <div className="cart_total__number">{`Total for ${productsCart.length} items`}</div>
         </div>
 
-        <div className="horizontal-line" />
+        <hr />
         <button className="cart_total__checkout">Checkout</button>
       </div>
     </div>
