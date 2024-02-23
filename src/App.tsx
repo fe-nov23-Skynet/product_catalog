@@ -9,8 +9,6 @@ export function App() {
     <div className="App">
       <Header />
 
-      <SliderBar />
-
       <main className="section">
         <div className="container">
           <Breadcrumbs />

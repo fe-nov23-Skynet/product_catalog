@@ -36,7 +36,7 @@ export const cartSlice = createSlice({
       const count = isItem?.count || 0;
 
       if (count === 0) {
-        const newItem = {
+        const newItem: CartItem = {
           ...item,
           count: count + 1,
           category,
