@@ -7,3 +7,7 @@ export function getProduct(currentPath: string, productId: string) {
       productsServer => productsServer.find(({ id }) => id === productId) || null,
     );
 }
+
+export function getProducts(currentPath: string) {
+  return client.get<Product[]>(`api/${currentPath}.json`);
+}

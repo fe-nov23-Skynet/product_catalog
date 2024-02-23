@@ -1,55 +1,84 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import products from '../../productApi/products.json';
+import { useLocation, Link } from 'react-router-dom';
 import './CartPage.scss';
+import classNames from 'classnames';
 import { ReactComponent as Close } from '../../styles/icons/close.svg';
 import { ReactComponent as Minus } from '../../styles/icons/minus.svg';
 import { ReactComponent as Plus } from '../../styles/icons/plus.svg';
+import { useCartState } from '../../customHooks/useCartState';
 
 export const CartPage: React.FC = () => {
-  const productsCart = [{ ...products }, { ...products }, { ...products }];
+  const {
+    cartProducts,
+    cartCount,
+    addToCart,
+    removeFromCart,
+  } = useCartState();
 
-  const calculateSum = () => productsCart.map(p => p.priceDiscount).reduce((sum, p) => sum + p, 0);
+  const calculateSum = () => cartProducts.map(p => p.priceDiscount * p.count)
+    .reduce((sum, p) => sum + p, 0);
 
   return (
     <div className="cart_page">
       <h1 className="cart_title">Cart</h1>
 
       <div className="cart_list_products">
-        {productsCart.map(product => (
+        {cartProducts.map(product => (
           <div className="cart_product">
             <div className="cart_product__top">
-              <button className="cart_product__delete" onClick={() => {}}><Close /></button>
+              <button
+                className="cart_product__delete"
+                onClick={() => removeFromCart(product)}
+              >
+                <Close />
+              </button>
+
               <img
                 src={product.images[0]}
                 alt={`${product.namespaceId}`}
                 className="cart_product__img"
               />
-              <span className="cart_product__name">{product.name}</span>
+
+              <Link
+                to={`/${product.category}/${product.id}`}
+                className="cart_product__name"
+              >
+                {product.name}
+              </Link>
             </div>
 
             <div className="cart_product__bottom">
               <div className="number">
-                <button className="cart_product__number minus"><Minus /></button>
-                <span>1</span>
-                <button className="cart_product__number plus"><Plus /></button>
+                <button
+                  className={classNames('cart_product__number minus', {
+                    minus_black: product.count > 1,
+                  })}
+                  onClick={() => removeFromCart(product)}
+                >
+                  <Minus />
+                </button>
+
+                <span>{product.count}</span>
+
+                <button
+                  className="cart_product__number plus"
+                  onClick={() => addToCart(product, product.category)}
+                >
+                  <Plus />
+                </button>
               </div>
 
               <span className="cart_product__price">{`$${product.priceDiscount}`}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
+	@@ -43,7 +77,7 @@ export const CartPage: React.FC = () => {
       <div className="cart_total">
         <div>
           <div className="cart_total__sum">{`$${calculateSum()}`}</div>
-          <div className="cart_total__number">{`Total for ${productsCart.length} items`}</div>
+          <div className="cart_total__number">{`Total for ${cartCount} items`}</div>
         </div>
 
         <hr />
         <button className="cart_total__checkout">Checkout</button>
       </div>
     </div>
-
   );
 };

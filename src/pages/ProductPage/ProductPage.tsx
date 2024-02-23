@@ -32,7 +32,7 @@ const SPECS_LONG = [
   'zoom',
   'cell',
 ];
-const SPECS_SHORT = [
+export const SPECS_SHORT = [
   'screen',
   'resolution',
   'processor',
