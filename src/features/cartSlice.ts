@@ -7,6 +7,7 @@ export type Category = string;
 
 interface CartItem extends Product {
   count: number;
+  category: string;
 }
 
 interface CartActionItem {
@@ -35,9 +36,10 @@ export const cartSlice = createSlice({
       const count = isItem?.count || 0;
 
       if (count === 0) {
-        const newItem = {
+        const newItem: CartItem = {
           ...item,
           count: count + 1,
+          category,
         };
         state.cartProducts = [...state.cartProducts, newItem];
         state.itemsCount += 1;
