@@ -11,6 +11,7 @@ import { Loader } from '../../components/Loader';
 import { ReactComponent as IconLeft } from '../../styles/icons/chevron_arrow_left.svg';
 import { getSpecsList } from '../../utils/getSpecsList';
 import { getProduct } from '../../api/api';
+import { SelectImage } from '../../components/SelectImage/SelectImage';
 import { RootState } from '../../redux/store';
 import { addProduct, removeProduct } from '../../features/cartSlice';
 import { addFavoriteProduct, removeFavoriteProduct } from '../../features/favoritesSlice';
@@ -98,11 +99,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
       <div className="product-page__info">
         <div className="product-page__images">
-          <img
-            src={`/${product.images[0].replace('imgs', 'img')}`}
-            alt={product.name}
-            className="product-page__images-main"
-          />
+          <SelectImage product={product} />
         </div>
 
         <div className="product-page__settings">
