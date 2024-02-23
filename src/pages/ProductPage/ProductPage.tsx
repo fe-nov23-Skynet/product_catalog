@@ -15,6 +15,8 @@ import { SelectImage } from '../../components/SelectImage/SelectImage';
 import { RootState } from '../../redux/store';
 import { addProduct, removeProduct } from '../../features/cartSlice';
 import { addFavoriteProduct, removeFavoriteProduct } from '../../features/favoritesSlice';
+import { ColorLink } from '../../components/UI/ColorLink';
+import { useCartState } from '../../customHooks/useCartState';
 
 interface Props {
   product: Product;
@@ -43,50 +45,29 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
   const [product, setProduct] = useState<Product | null>(null);
 
-  const cart = useSelector((state: RootState) => state.cart.cartProducts);
-  const dispatch = useDispatch();
-  const addProductToCart = (productToAdd: Product) => {
-    dispatch(addProduct(productToAdd));
-  };
-  const removeProductFromCart = (productToAdd: Product) => {
-    dispatch(removeProduct(productToAdd));
-  };
-
-  const favorites = useSelector((state: RootState) => state.favorites.favoritesProducts);
-
-  const addProductToFavorites = (productToAdd: Product) => {
-    dispatch(addFavoriteProduct(productToAdd));
-  };
-  const removeProductFromFavorites = (productToAdd: Product) => {
-    dispatch(removeFavoriteProduct(productToAdd));
-  };
-
-  function handleAddtoCart(productToHandle: Product) {
-    if (cart.some(({ id }) => id === productToHandle.id) && product) {
-      removeProductFromCart(productToHandle);
-    } else {
-      addProductToCart(productToHandle);
-    }
-  }
-  function handleFavorite(productToHandle: Product) {
-    if (favorites.some(({ id }) => id === productToHandle.id) && product) {
-      removeProductFromFavorites(productToHandle);
-    } else {
-      addProductToFavorites(productToHandle);
-    }
-  }
+  // eslint-disable-next-line object-curly-newline
+  const { cartProducts, cartCount, handleProductInCart } = useCartState();
 
   useEffect(() => {
+    setProduct(null);
     getProduct(currentPath, productId as string)
       .then(productS => setProduct(productS))
       .catch()
       .finally();
-  }, []);
+  }, [productId, currentPath]);
 
   const numericID = 3587941;
 
   if (!product) {
     return <Loader />;
+  }
+
+  function getNewLink(id: string, color: string): string {
+    const linkParts = id.split('-');
+
+    linkParts[linkParts.length - 1] = color;
+
+    return linkParts.join('-');
   }
 
   return (
@@ -96,6 +77,8 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
         Back
       </Link>
       <h2 className="product-page__title">{product.name}</h2>
+
+      <p>{cartProducts.map(item => `${item.name} Item count: ${item.count} all count: ${cartCount}`)}</p>
 
       <div className="product-page__info">
         <div className="product-page__images">
@@ -112,10 +95,15 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               </div>
 
               <ul className="product-page__settings-list">
-                <li key={1}><input type="radio" /></li>
-                <li key={2}><input type="radio" /></li>
-                <li key={3}><input type="radio" /></li>
-                <li key={4}><input type="radio" /></li>
+                {product.colorsAvailable.map(color => (
+                  <li key={color} className="product-page__color-link">
+                    <ColorLink
+                      to={`/${currentPath}/${getNewLink(product.id, color)}`}
+                      color={color}
+                      selected={productId?.includes(color)}
+                    />
+                  </li>
+                ))}
               </ul>
 
               <hr />
@@ -149,14 +137,14 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             <div className="card__submit-container">
               <button
                 className="card__button-submit"
-                onClick={() => handleAddtoCart(product)}
+                onClick={() => handleProductInCart(product, currentPath)}
               >
                 Add to cart
               </button>
 
               <button
                 className="card__make-favorite"
-                onClick={() => handleFavorite(product)}
+              /* onClick={() => handleFavorite(product)} */
               >
                 <img
                   className="card__make-favorite-img"
