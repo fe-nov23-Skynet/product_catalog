@@ -5,6 +5,9 @@ import emptyHeart from '../styles/icons/favourites_heart_like.svg';
 import filledHeart from '../styles/icons/favourites_heart_filled.svg';
 import { Product } from '../types/Product';
 import { client } from '../api/fetchClient';
+import { SpecsList } from '../components/SpecsList';
+import { getSpecsList } from '../utils/getSpecsList';
+import { SPECS_SHORT } from '../pages/ProductPage';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
@@ -39,17 +42,22 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       </h1>
 
       <div className="card__price-text">
-        {product.priceDiscount}
+        {`$${product.priceDiscount}`}
         <span className="card__price-text--crossed">
-          {product.priceRegular}
+          {`$${product.priceRegular}`}
           <div className="card__cross-line" />
         </span>
       </div>
 
       <div className="card__just-line" />
 
-      <h3 className="card__product-info">
-        <p className="card__product-info-prop">
+      <SpecsList
+        specs={getSpecsList(product, SPECS_SHORT)}
+        boldValue
+      />
+
+      {/* <h3 className="card__product-info"> */}
+      {/* <p className="card__product-info-prop">
           Screen
         </p>
         <p className="card__product-info-value">
@@ -66,8 +74,8 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
         </p>
         <p className="card__product-info-value">
           {product.ram}
-        </p>
-      </h3>
+        </p> */}
+      {/* </h3> */}
 
       <div className="card__submit-container">
         <a
