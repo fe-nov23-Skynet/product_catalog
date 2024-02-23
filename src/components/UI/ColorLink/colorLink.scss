@@ -1,0 +1,46 @@
+@import '../../../styles/variables/theme_colors.scss';
+
+.color-link {
+  --size: 32px;
+  display: flex;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border: 1px solid $color-elements;
+  position: relative;
+  transition: transform .3s, border-color .3s;
+
+  &:not(&--active):hover {
+    transform: scale(1.05);
+    border-color: $color-icons;
+  }
+
+  &--active {
+    border-color: $color-primary;
+  }
+
+  &__circle {
+    content: '';
+    --this-size: calc(var(--size) * 0.75); /* 85% от размера */
+    position: absolute;
+    width: var(--this-size);
+    height: var(--this-size);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Перемещение на 50% относительно своих размеров */
+  }
+
+  &--green {
+    background-color: #5f7170;
+  }
+  &--white {
+    background-color: #f0f0f0;
+  }
+  &--graphite {
+    background-color: #4c4c4c;
+  }
+  &--yellow {
+    background-color: #fcdbc1;
+  }
+}
