@@ -30,6 +30,31 @@
   }
 }
 
+.empty_cart {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  .empty_text {
+    font-size: 36px;
+  }
+}
+
+.navigation_empty_cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-primary;
+  color: $color-white;
+  height: 28px;
+  border: none;
+  padding: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
 .cart_list_products {
   margin-bottom: 16px;
   grid-column: 1 / -1;

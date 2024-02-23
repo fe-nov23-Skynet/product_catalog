@@ -69,11 +69,7 @@ export const CartPage: React.FC = () => {
               </div>
 
               <span className="cart_product__price">{`$${product.priceDiscount}`}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
+	@@ -43,7 +77,7 @@ export const CartPage: React.FC = () => {
       <div className="cart_total">
         <div>
           <div className="cart_total__sum">{`$${calculateSum()}`}</div>
@@ -84,6 +80,5 @@ export const CartPage: React.FC = () => {
         <button className="cart_total__checkout">Checkout</button>
       </div>
     </div>
-
   );
 };
