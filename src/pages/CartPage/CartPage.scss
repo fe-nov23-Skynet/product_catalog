@@ -44,19 +44,16 @@
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  // grid-column: 1 / -1;
   height: 160px;
   border: 1px solid $color-elements;
   padding: 16px;
   margin-bottom: 16px;
-  
+
   @include on-tablet {
     height: 128px;
     flex-direction: row;
     justify-content: space-between;
     padding: 24px;
-    
-    // align-content: center;
   }
 
   &__top {
@@ -75,6 +72,7 @@
     background-color: inherit;
     padding: 0;
     color: $color-icons;
+    cursor: pointer;
   }
 
   &__img {
@@ -104,7 +102,6 @@
     }
   }
 
-
   &__bottom {
     display: flex;
     align-items: center;
@@ -122,11 +119,13 @@
     border: 1px solid $color-elements;
     margin-right: 13px;
     color: $color-icons;
+    cursor: pointer;
   }
 
   .plus {
     border: 1px solid $color-icons;
     margin-left: 13px;
+    cursor: pointer;
   }
 
   &__price {
@@ -135,17 +134,11 @@
     font-weight: 800;
     line-height: 31px;
     text-align: right;
-    
+
     @include on-tablet {
       width: 80px;
     }
   }
-}
-
-.horizontal-line {
-  margin: 16px 0;
-  height: 1px;
-  background: $color-elements;
 }
 
 .cart_total {
@@ -180,6 +173,7 @@
     letter-spacing: 0em;
     text-align: center;
     color: $color-secondary;
+    margin-bottom: 16px;
   }
 
   &__checkout {
@@ -188,10 +182,11 @@
     height: 48px;
     border: none;
     padding: 0;
+    margin-top: 16px;
     font-family: Mont;
     font-size: 14px;
     // font-weight: 700;
     line-height: 21px;
-
+    cursor: pointer;
   }
 }
