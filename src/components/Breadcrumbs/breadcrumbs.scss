@@ -3,13 +3,17 @@
 .breadcrumbs {
   display: flex;
   align-items: center;
-  padding-top: 25px;
+  margin-top: 25px;
 }
 
 .crumb {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.crumb_home {
+  display: flex;
 }
 
 .crumb_arrow {
@@ -30,5 +34,6 @@
 }
 
 .crumb_link--active {
+  cursor:auto;
   color: $color-secondary;
 }
