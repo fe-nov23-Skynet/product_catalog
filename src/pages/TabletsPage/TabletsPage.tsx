@@ -1,35 +1,32 @@
-import { Select } from '../../components/Select/Select';
-import tablets from '../../productApi/tablets.json';
+/* eslint-disable max-len */
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useLocation } from 'react-router';
+import { useEffect, useState } from 'react';
 import { Catalog } from '../Catalog';
 import Styles from './Tablets.module.scss';
+import { getProducts } from '../../api/api';
+import { Product } from '../../types/Product';
+import { Loader } from '../../components/Loader';
 
 export const TabletsPage: React.FC = () => {
-  const sortBy = [
-    { value: 1, title: 'Price low' },
-    { value: 4, title: 'Price high' },
-    { value: 2, title: 'Newest' },
-    { value: 3, title: 'Oldest' },
-  ];
+  const currentPath = useLocation().pathname.split('/')[1];
+  const [tabletsArr, setTabletsArr] = useState<Product[]>([]);
 
-  const itemsOnPage = [
-    { value: 10, title: '10' },
-    { value: 20, title: '20' },
-    { value: 30, title: '30' },
-    { value: 40, title: '40' },
-  ];
-
-  const phonesArr = tablets;
-  phonesArr.length = 20;
+  useEffect(() => {
+    getProducts(currentPath)
+      .then(products => setTabletsArr(products));
+  }, []);
 
   return (
     <div className={Styles.tablets_page}>
       <h1 className={Styles.tablets_page__title}>Tablets</h1>
-      <span className={Styles.tablets_page__info}>{`${phonesArr.length} models`}</span>
+      <span className={Styles.tablets_page__info}>{`${tabletsArr.length} models`}</span>
 
-      <Select title="Sort by" options={sortBy} className={Styles.tablets_page__sort} />
-      <Select title="Items on page" options={itemsOnPage} className={Styles.tablets_page__itemsOnPage} />
-
-      <Catalog products={phonesArr} />
+      {tabletsArr.length === 0 ? (
+        <Loader />
+      ) : (
+        <Catalog products={tabletsArr} />
+      )}
     </div>
   );
 };
