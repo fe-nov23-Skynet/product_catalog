@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 import emptyHeart from '../styles/icons/favourites_heart_like.svg';
 import filledHeart from '../styles/icons/favourites_heart_filled.svg';
 import { Product } from '../types/Product';
-import { client } from '../api/fetchClient';
 import { SpecsList } from '../components/SpecsList';
 import { getSpecsList } from '../utils/getSpecsList';
 import { SPECS_SHORT } from '../pages/ProductPage';
@@ -31,14 +30,16 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
     <article
       className={classNames('card', className)}
     >
-      <img
-        className="card__img"
-        src={product.images[0]}
-        alt="Apple iPhone 11 Pro Max 64GB Gold"
-      />
+      <Link to={`${currentPath}/${product.id}`}>
+        <img
+          className="card__img"
+          src={product.images[0]}
+          alt="Apple iPhone 11 Pro Max 64GB Gold"
+        />
+      </Link>
 
       <h1 className="card__title">
-        <Link to={`${currentPath}/${product.id}`}>{product.name}</Link>
+        <Link className="card__title-link" to={`${currentPath}/${product.id}`}>{product.name}</Link>
       </h1>
 
       <div className="card__price-text">
@@ -55,27 +56,6 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
         specs={getSpecsList(product, SPECS_SHORT)}
         boldValue
       />
-
-      {/* <h3 className="card__product-info"> */}
-      {/* <p className="card__product-info-prop">
-          Screen
-        </p>
-        <p className="card__product-info-value">
-          {product.screen}
-        </p>
-        <p className="card__product-info-prop">
-          Capacity
-        </p>
-        <p className="card__product-info-value">
-          {product.capacity}
-        </p>
-        <p className="card__product-info-prop">
-          RAM
-        </p>
-        <p className="card__product-info-value">
-          {product.ram}
-        </p> */}
-      {/* </h3> */}
 
       <div className="card__submit-container">
         <a

@@ -9,6 +9,5 @@ export function getProduct(currentPath: string, productId: string) {
 }
 
 export function getProducts(currentPath: string) {
-  return client.get<Product[]>(`api/${currentPath}.json`)
-    .then(productsServer => productsServer);
+  return client.get<Product[]>(`api/${currentPath}.json`);
 }

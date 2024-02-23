@@ -8,6 +8,8 @@
     display: block;
     margin: 0 auto 8px;
     width: 100%;
+    min-height: 287px;
+    object-fit: contain;
   }
 
   &__title {
@@ -21,6 +23,11 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
+  }
+
+  &__title-link {
+    text-decoration: none;
+    color: inherit;
   }
 
   &__product-info {
@@ -63,18 +70,6 @@
       color: #27AE60;
       border: 1px solid #E2E6E9;
     }
-  }
-
-  &__product-info-prop {
-    font-weight: 700;
-    color: #89939A;
-    font-size: 12px;
-  }
-
-  &__product-info-value {
-    font-weight: 700;
-    color: #313237;
-    font-size: 12px;
   }
 
   &__submit-container {
