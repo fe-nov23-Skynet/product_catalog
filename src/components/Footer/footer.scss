@@ -1,7 +1,11 @@
 @import '../../styles/variables/theme_colors.scss';
 
+.divider {
+  border-top: 1px solid $color-secondary;
+}
+
 .footer {
-  max-width: 1440px;
+  // max-width: 1440px;
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: 1fr auto 1fr;
