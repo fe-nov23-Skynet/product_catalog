@@ -25,7 +25,7 @@ export function Breadcrumbs() {
       return (
         <Fragment key={formattedCrumb}>
           {index === 0 && (
-            <Link to="/">
+            <Link to="/" className="crumb_home">
               <Home />
             </Link>
           )}
