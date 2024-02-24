@@ -9,6 +9,7 @@ import { SPECS_SHORT } from '../pages/ProductPage';
 import { CartButton } from '../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../components/Buttons/FavoriteButton/FavoriteButton';
 import { useCartState } from '../customHooks/useCartState';
+import { useFavoriteState } from '../customHooks/useFavoriteState';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
@@ -21,6 +22,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const currentPath = useLocation().pathname.split('/')[1];
 
   const { addToCart, cartProducts } = useCartState();
+  const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
 
   const makeFavorite = () => {
     if (!favoriteProduct) {
@@ -62,21 +64,15 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       />
 
       <div className="card__submit-container">
-        {/* <a
-          className="card__button-submit"
-          href="/"
-        >
-          Add to cart
-        </a> */}
         <CartButton
           onClick={() => addToCart(product, currentPath)}
           active={cartProducts.some(({ id }) => id === product.id)}
         />
 
         <FavoriteButton
-          makeFavorite={makeFavorite}
-          product={product}
-          favoriteProduct={favoriteProduct}
+          onClickAdd={() => addToFavorites(product)}
+          onClickRemove={() => removeFromFavorites(product)}
+          active={favoritesProducts.some(({ id }) => id === product.id)}
         />
       </div>
     </article>
