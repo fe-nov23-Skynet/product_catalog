@@ -17,6 +17,7 @@ import { addProduct, removeProduct } from '../../features/cartSlice';
 import { addFavoriteProduct, removeFavoriteProduct } from '../../features/favoritesSlice';
 import { ColorLink } from '../../components/UI/ColorLink';
 import { useCartState } from '../../customHooks/useCartState';
+import { OptionLink } from '../../components/UI/OptionLink';
 
 interface Props {
   product: Product;
@@ -62,12 +63,26 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
     return <Loader />;
   }
 
-  function getNewLink(id: string, color: string): string {
-    const linkParts = id.split('-');
+  function slitCapacity(capacity: string): string {
+    let capacityString = '';
 
-    linkParts[linkParts.length - 1] = color;
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < capacity.length; i++) {
+      if (capacity[i].toUpperCase() === capacity[i].toLowerCase()) {
+        capacityString += capacity[i];
+      } else {
+        capacityString += ' ';
+        capacityString += capacity.slice(i);
+        break;
+      }
+    }
+    return capacityString;
+  }
 
-    return linkParts.join('-');
+  function getNewLink(id: string, newParam: string, prevParam: string): string {
+    const newLink = id.toLowerCase().replace(prevParam.toLowerCase(), newParam.toLowerCase());
+
+    return newLink;
   }
 
   return (
@@ -77,8 +92,6 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
         Back
       </Link>
       <h2 className="product-page__title">{product.name}</h2>
-
-      <p>{cartProducts.map(item => `${item.name} Item count: ${item.count} all count: ${cartCount}`)}</p>
 
       <div className="product-page__info">
         <div className="product-page__images">
@@ -95,15 +108,21 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               </div>
 
               <ul className="product-page__settings-list">
-                {product.colorsAvailable.map(color => (
-                  <li key={color} className="product-page__color-link">
-                    <ColorLink
-                      to={`/${currentPath}/${getNewLink(product.id, color)}`}
-                      color={color}
-                      selected={productId?.includes(color)}
-                    />
-                  </li>
-                ))}
+                {product.colorsAvailable.map(colorS => {
+                  const color = colorS.replaceAll(' ', '-');
+                  const currentColor = product.color.replaceAll(' ', '-');
+                  const link = getNewLink(product.id, color, currentColor);
+
+                  return (
+                    <li key={color} className="product-page__color-link">
+                      <ColorLink
+                        to={`/${currentPath}/${link}`}
+                        color={color.replaceAll('-', '')}
+                        selected={productId?.includes(color)}
+                      />
+                    </li>
+                  );
+                })}
               </ul>
 
               <hr />
@@ -113,12 +132,20 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               <span className="product-page__settings-title">Select capacity</span>
 
               <ul className="product-page__settings-list">
-                {product.capacityAvailable.map(capacity => (
-                  <li key={capacity}>
-                    <input type="radio" />
-                    {`${capacity}`}
-                  </li>
-                ))}
+                {product.capacityAvailable.map(capacity => {
+                  const splittedCapacity = slitCapacity(capacity);
+                  const link = `/${currentPath}/${getNewLink(product.id, capacity, product.capacity)}`;
+
+                  return (
+                    <li key={capacity}>
+                      <OptionLink
+                        to={link.toLowerCase()}
+                        capacity={splittedCapacity}
+                        selected={productId?.includes(capacity.toLowerCase())}
+                      />
+                    </li>
+                  );
+                })}
               </ul>
 
               <hr />
@@ -155,7 +182,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             </div>
           </div>
 
-          <SpecsList specs={getSpecsList(product, SPECS_SHORT)} boldValue />
+          <SpecsList specs={getSpecsList(product, SPECS_SHORT)} boldValue className="text-s-12" />
         </div>
         <span className="product-page__id text-s-12 id--on-desktop">{`ID: ${numericID}`}</span>
         <div className="product-page__about">
@@ -179,7 +206,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             <hr />
           </h3>
 
-          <SpecsList specs={getSpecsList(product, SPECS_SHORT)} />
+          <SpecsList specs={getSpecsList(product, SPECS_LONG)} />
         </div>
       </div>
     </section>

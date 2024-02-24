@@ -17,6 +17,7 @@
 
   &--active {
     border-color: $color-primary;
+    pointer-events: none;
   }
 
   &__circle {
@@ -34,13 +35,56 @@
   &--green {
     background-color: #5f7170;
   }
+  &--black {
+    background-color: #1b1b1d;
+  }
+  &--purple {
+    background-color: #e5ddea;
+  }
+  &--red {
+    background-color: #b00d23;
+  }
   &--white {
     background-color: #f0f0f0;
-  }
-  &--graphite {
-    background-color: #4c4c4c;
   }
   &--yellow {
     background-color: #fcdbc1;
   }
+  &--gold {
+    background-color: #d4c9b1;
+  }
+  &--midnightgreen {
+    background-color: #4e5850;
+  }
+  &--silver {
+    background-color: #e2e4e1;
+  }
+  &--spacegray {
+    background-color: #707070;
+  }
+  &--rosegold {
+    background-color: #b76e79;
+  }
+  &--coral {
+    background-color: #e4664f;
+  }
+  &--spaceblack {
+    background-color: #201d24;
+  }
+  &--midnight {
+    background-color: #171e27;
+  }
+  &--pink {
+    background-color: #fae0d8;
+  }
+  &--blue {
+    background-color: #215e7c;
+  }
+  &--sierrablue {
+    background-color: #9bb5ce;
+  }
+  &--graphite {
+    background-color: #4c4c4c;
+  }
+
 }
