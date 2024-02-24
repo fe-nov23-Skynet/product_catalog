@@ -3,6 +3,9 @@
   border: 1px solid #E2E6E9;
   padding: 31px;
   font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
   &__img {
     display: block;
@@ -43,82 +46,33 @@
     text-align: right;
   }
 
-  &__button-submit {
-    max-width: 160px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    width: 100%;
-    height: 40px;
-    font-size: 14px;
-    font-weight: 700;
-    text-decoration: none;
-    color: #f3f3f3;
-    background-color: #313237;
-    border: none;
-    padding: 0;
-
-    &:hover {
-      background-color: #313237;
-      box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.4);
-    }
-
-    &:active {
-      background-color: white;
-      color: #27AE60;
-      border: 1px solid #E2E6E9;
-    }
-  }
-
   &__submit-container {
     display: flex;
     justify-content: space-between;
+    gap: 8px;
   }
 
-  &__make-favorite {
+  &__price {
     display: flex;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: solid 1px #B4BDC3;
-    background-color: white;
-
-    &:hover {
-      border: 1px solid #313237
-    }
-  }
-
-  &__price-container {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 8px;
     margin: 0;
-    margin-bottom: 16px;
-  }
-
-  &__price-text {
-    height: 31px;
-    display: inline-block;
     font-size: 22px;
+    line-height: 31px;
+    color: $color-primary;
+  }
+
+  &__price-current {
+    display: flex;
+    gap: 8px;
     font-weight: 800;
-    color: #313237;
-    margin-bottom: 8px;
-    line-height: 30px;
   }
 
-  &__price-text--crossed {
-    margin-left: 8px;
+  &__price-old {
+    display: flex;
+    align-items: start;
     text-decoration: line-through;
-    font-weight: 600;
-    color: #89939A;
-    position: relative;
-  }
-
-  &__just-line {
-    margin-bottom: 8px;
-    border-bottom: 1px solid #89939A;
+    font-weight: 400;
+    color: $color-secondary;
   }
 }
