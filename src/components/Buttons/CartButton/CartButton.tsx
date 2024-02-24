@@ -1,6 +1,7 @@
 import './cartButton.scss';
 
 interface Props {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick: (...args: any[]) => void
   active: boolean,
 }
