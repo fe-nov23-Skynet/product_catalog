@@ -14,6 +14,8 @@ import { SelectImage } from '../../components/SelectImage/SelectImage';
 import { ColorLink } from '../../components/UI/ColorLink';
 import { useCartState } from '../../customHooks/useCartState';
 import { OptionLink } from '../../components/UI/OptionLink';
+import { CartButton } from '../../components/Buttons/CartButton/CartButton';
+import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
 
 interface Props {
   product: Product;
@@ -44,7 +46,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const [product, setProduct] = useState<Product | null>(null);
 
   // eslint-disable-next-line object-curly-newline
-  const { cartProducts, cartCount, handleProductInCart } = useCartState();
+  const { cartProducts, addToCart } = useCartState();
 
   useEffect(() => {
     setProduct(null);
@@ -158,32 +160,27 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
           </div>
 
           <div className="product-page__settings-group">
-            <div className="card__price-text">
-              {product.priceDiscount}
-              <span className="card__price-text--crossed">
-                {product.priceRegular}
-                <div className="card__cross-line" />
+            <div className="product-page__price">
+              <span className="product-page__price-current">
+                {`$${product.priceDiscount}`}
+                <span className="product-page__price-old">
+                  {`$${product.priceRegular}`}
+                </span>
               </span>
+              <hr />
             </div>
 
-            <div className="card__submit-container">
-              <button
-                className="card__button-submit"
-                onClick={() => handleProductInCart(product, currentPath)}
-              >
-                Add to cart
-              </button>
+            <div className="product-page__buttons">
+              <CartButton
+                onClick={() => addToCart(product, currentPath)}
+                active={cartProducts.some(({ id }) => id === product.id)}
+              />
 
-              <button
-                className="card__make-favorite"
-              /* onClick={() => handleFavorite(product)} */
-              >
-                <img
-                  className="card__make-favorite-img"
-                  src={emptyHeart}
-                  alt="Make favorite"
-                />
-              </button>
+              <FavoriteButton
+                makeFavorite={() => { }}
+                product={product}
+                favoriteProduct={`f#${5}`}
+              />
             </div>
           </div>
 
