@@ -6,9 +6,9 @@ import { client } from '../api/fetchClient';
 import { SpecsList } from '../components/SpecsList';
 import { getSpecsList } from '../utils/getSpecsList';
 import { SPECS_SHORT } from '../pages/ProductPage';
+import { useCartState } from '../customHooks/useCartState';
 import { CartButton } from '../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../components/Buttons/FavoriteButton/FavoriteButton';
-import { useCartState } from '../customHooks/useCartState';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
@@ -19,7 +19,6 @@ interface Props {
 export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const [favoriteProduct, setfavoriteProduct] = useState('');
   const currentPath = useLocation().pathname.split('/')[1];
-
   const { addToCart, cartProducts } = useCartState();
 
   const makeFavorite = () => {
@@ -34,7 +33,10 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
     <article
       className={classNames('card', className)}
     >
-      <Link to={`/${currentPath}/${product.id}`}>
+      <Link
+        to={`/${currentPath}/${product.id}`}
+        state={{ prevPath: currentPath }}
+      >
         <img
           className="card__img"
           src={product.images[0]}
@@ -43,18 +45,24 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       </Link>
 
       <h1 className="card__title">
-        <Link className="card__title-link" to={`/${currentPath}/${product.id}`}>{product.name}</Link>
+        <Link
+          className="card__title-link"
+          to={`/${currentPath}/${product.id}`}
+          state={{ prevPath: `/${currentPath}` }}
+        >
+          {product.name}
+        </Link>
       </h1>
 
-      <div className="card__price-text">
-        {`$${product.priceDiscount}`}
-        <span className="card__price-text--crossed">
-          {`$${product.priceRegular}`}
-          <div className="card__cross-line" />
+      <div className={classNames('card__price')}>
+        <span className="card__price-current">
+          {`$${product.priceDiscount}`}
+          <span className="card__price-old">
+            {`$${product.priceRegular}`}
+          </span>
         </span>
+        <hr />
       </div>
-
-      <div className="card__just-line" />
 
       <SpecsList
         specs={getSpecsList(product, SPECS_SHORT)}
@@ -62,12 +70,6 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       />
 
       <div className="card__submit-container">
-        {/* <a
-          className="card__button-submit"
-          href="/"
-        >
-          Add to cart
-        </a> */}
         <CartButton
           onClick={() => addToCart(product, currentPath)}
           active={cartProducts.some(({ id }) => id === product.id)}

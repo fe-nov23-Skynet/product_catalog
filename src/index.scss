@@ -24,6 +24,7 @@ html {
   font-size: 14px;
   line-height: 21px;
   color: $color-primary;
+  scroll-behavior: smooth;
   font-weight: 400;
 }
 
@@ -100,6 +101,16 @@ main {
   font-size: 12px;
   line-height: 15px;
   font-weight: 400;
+}
+
+.text-m-22 {
+  font-size: 22px;
+  line-height: 31px;
+}
+
+.text-l-32 {
+  font-size: 32px;
+  line-height: 40px;
 }
 
 .text-gray {
