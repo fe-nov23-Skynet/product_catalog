@@ -1,0 +1,38 @@
+@import '../../../styles/variables/theme_colors.scss';
+
+.button-submit {
+  width: 160px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: $color-bg;
+  background-color: $color-primary;
+  border: none;
+  padding: 0;
+
+  &:hover {
+    background-color: $color-primary;
+    box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+.button-submited {
+  width: 160px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: $color-green;;
+  background-color: $color-bg;
+  border: 1px solid $color-elements;
+  padding: 0;
+}

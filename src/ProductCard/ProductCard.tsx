@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
-import emptyHeart from '../styles/icons/favourites_heart_like.svg';
-import filledHeart from '../styles/icons/favourites_heart_filled.svg';
 import { Product } from '../types/Product';
 import { client } from '../api/fetchClient';
+import { CartButton } from '../components/Buttons/CartButton/CartButton';
+import { FavoriteButton } from '../components/Buttons/FavoriteButton/FavoriteButton';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
@@ -76,14 +76,16 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
         >
           Add to cart
         </a>
+        {/* <CartButton  // before using remove a link above
+          onClick={() => {}}
+          active={false}
+        /> */}
 
-        <button className="card__make-favorite" onClick={makeFavorite}>
-          <img
-            className="card__make-favorite-img"
-            src={favoriteProduct === product.id ? filledHeart : emptyHeart}
-            alt="Make favorite"
-          />
-        </button>
+        <FavoriteButton
+          makeFavorite={makeFavorite}
+          product={product}
+          favoriteProduct={favoriteProduct}
+        />
       </div>
     </article>
   );
