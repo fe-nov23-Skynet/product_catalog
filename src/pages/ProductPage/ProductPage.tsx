@@ -40,7 +40,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { state } = useLocation();
   const { id: productId } = useParams();
-  console.log(state);
+
   const [product, setProduct] = useState<Product | null>(null);
 
   // eslint-disable-next-line object-curly-newline
