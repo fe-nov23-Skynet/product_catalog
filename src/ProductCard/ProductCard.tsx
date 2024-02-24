@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
-import emptyHeart from '../styles/icons/favourites_heart_like.svg';
-import filledHeart from '../styles/icons/favourites_heart_filled.svg';
 import { Product } from '../types/Product';
+import { client } from '../api/fetchClient';
 import { SpecsList } from '../components/SpecsList';
 import { getSpecsList } from '../utils/getSpecsList';
 import { SPECS_SHORT } from '../pages/ProductPage';
+import { CartButton } from '../components/Buttons/CartButton/CartButton';
+import { FavoriteButton } from '../components/Buttons/FavoriteButton/FavoriteButton';
+import { useCartState } from '../customHooks/useCartState';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
@@ -16,7 +18,9 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const [favoriteProduct, setfavoriteProduct] = useState('');
-  const currentPath = useLocation().pathname;
+  const currentPath = useLocation().pathname.split('/')[1];
+
+  const { addToCart, cartProducts } = useCartState();
 
   const makeFavorite = () => {
     if (!favoriteProduct) {
@@ -30,7 +34,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
     <article
       className={classNames('card', className)}
     >
-      <Link to={`${currentPath}/${product.id}`}>
+      <Link to={`/${currentPath}/${product.id}`}>
         <img
           className="card__img"
           src={product.images[0]}
@@ -39,7 +43,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       </Link>
 
       <h1 className="card__title">
-        <Link className="card__title-link" to={`${currentPath}/${product.id}`}>{product.name}</Link>
+        <Link className="card__title-link" to={`/${currentPath}/${product.id}`}>{product.name}</Link>
       </h1>
 
       <div className="card__price-text">
@@ -58,20 +62,22 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       />
 
       <div className="card__submit-container">
-        <a
+        {/* <a
           className="card__button-submit"
           href="/"
         >
           Add to cart
-        </a>
+        </a> */}
+        <CartButton
+          onClick={() => addToCart(product, currentPath)}
+          active={cartProducts.some(({ id }) => id === product.id)}
+        />
 
-        <button className="card__make-favorite" onClick={makeFavorite}>
-          <img
-            className="card__make-favorite-img"
-            src={favoriteProduct === product.id ? filledHeart : emptyHeart}
-            alt="Make favorite"
-          />
-        </button>
+        <FavoriteButton
+          makeFavorite={makeFavorite}
+          product={product}
+          favoriteProduct={favoriteProduct}
+        />
       </div>
     </article>
   );
