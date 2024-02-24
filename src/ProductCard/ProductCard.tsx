@@ -7,6 +7,8 @@ import { Product } from '../types/Product';
 import { SpecsList } from '../components/SpecsList';
 import { getSpecsList } from '../utils/getSpecsList';
 import { SPECS_SHORT } from '../pages/ProductPage';
+import { ProductShorts } from '../components/ProductShorts';
+import { useCartState } from '../customHooks/useCartState';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
@@ -16,7 +18,8 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const [favoriteProduct, setfavoriteProduct] = useState('');
-  const currentPath = useLocation().pathname;
+  const currentPath = useLocation().pathname.split('/')[1];
+  const { addToCart, cartProducts } = useCartState();
 
   const makeFavorite = () => {
     if (!favoriteProduct) {
@@ -30,7 +33,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
     <article
       className={classNames('card', className)}
     >
-      <Link to={`${currentPath}/${product.id}`}>
+      <Link to={`/${currentPath}/${product.id}`}>
         <img
           className="card__img"
           src={product.images[0]}
@@ -39,10 +42,10 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       </Link>
 
       <h1 className="card__title">
-        <Link className="card__title-link" to={`${currentPath}/${product.id}`}>{product.name}</Link>
+        <Link className="card__title-link" to={`/${currentPath}/${product.id}`}>{product.name}</Link>
       </h1>
 
-      <div className="card__price-text">
+      {/* <div className="card__price-text">
         {`$${product.priceDiscount}`}
         <span className="card__price-text--crossed">
           {`$${product.priceRegular}`}
@@ -55,7 +58,14 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       <SpecsList
         specs={getSpecsList(product, SPECS_SHORT)}
         boldValue
-      />
+      /> */}
+      {/* <ProductShorts
+        product={product}
+        category={currentPath}
+        inCart
+        isFavorite
+        specsList={SPECS_SHORT}
+      /> */}
 
       <div className="card__submit-container">
         <a
