@@ -2,9 +2,13 @@
 @import '../../styles/variables/theme_colors.scss';
 
 .product-page {
+  --gap: 80px;
+
+  padding-bottom: var(--gap);
+  
   &__info {
     @include page-grid();
-    row-gap: 80px;
+    row-gap: var(--gap);
   }
 
   &__back-link {
@@ -25,22 +29,19 @@
 
   &__title {
     grid-column: 1 / -1;
+    margin-bottom: 40px;
   }
 
   &__images {
     grid-column: 1/-1;
+    max-height: 420px;
 
     @include on-tablet(){
-      grid-column: 1/ 7;
+      grid-column: 1/ 8;
     }
 
     @include on-desktop() {
       grid-column: 1 / 13;
-    }
-
-    &-main {
-      width: 100%;
-      height: auto;
     }
   }
 
@@ -57,6 +58,7 @@
 
   &__settings {
     grid-column: 1/-1;
+    max-height: min-content;
 
     @include on-tablet(){
       grid-column: 8/-1;
@@ -74,6 +76,7 @@
     }
 
     &-title {
+      display: flex;
       margin-bottom: 8px;
       font-size: 12px;
       line-height: 15px;
@@ -83,6 +86,7 @@
 
     &-list {
       display: flex;
+      flex-wrap: wrap;
       margin-bottom: 24px;
       gap: 8px;
     }
