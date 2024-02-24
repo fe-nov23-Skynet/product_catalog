@@ -1,18 +1,32 @@
 /* eslint-disable max-len */
-import tablets from '../../productApi/tablets.json';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useLocation } from 'react-router';
+import { useEffect, useState } from 'react';
 import { Catalog } from '../Catalog';
 import Styles from './Tablets.module.scss';
+import { getProducts } from '../../api/api';
+import { Product } from '../../types/Product';
+import { Loader } from '../../components/Loader';
 
 export const TabletsPage: React.FC = () => {
-  const phonesArr = tablets;
-  phonesArr.length = 20;
+  const currentPath = useLocation().pathname.split('/')[1];
+  const [tabletsArr, setTabletsArr] = useState<Product[]>([]);
+
+  useEffect(() => {
+    getProducts(currentPath)
+      .then(products => setTabletsArr(products));
+  }, []);
 
   return (
     <div className={Styles.tablets_page}>
       <h1 className={Styles.tablets_page__title}>Tablets</h1>
-      <span className={Styles.tablets_page__info}>{`${phonesArr.length} models`}</span>
+      <span className={Styles.tablets_page__info}>{`${tabletsArr.length} models`}</span>
 
-      <Catalog products={phonesArr} />
+      {tabletsArr.length === 0 ? (
+        <Loader />
+      ) : (
+        <Catalog products={tabletsArr} />
+      )}
     </div>
   );
 };
