@@ -1,7 +1,7 @@
 import './cartButton.scss';
 
 interface Props {
-  onClick: () => void,
+  onClick: (...args: any[]) => void
   active: boolean,
 }
 
@@ -11,7 +11,7 @@ export function CartButton({
 }: Props) {
   return (
     <div>
-      {active ? (
+      {!active ? (
         <button
           onClick={onClick}
           className="button-submit"

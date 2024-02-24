@@ -4,7 +4,8 @@ import filledHeart from '../../../styles/icons/favourites_heart_filled.svg';
 import { Product } from '../../../types/Product';
 
 interface Props {
-  makeFavorite: () => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  makeFavorite: (...args: any[]) => void
   product: Product,
   favoriteProduct: string,
 }
