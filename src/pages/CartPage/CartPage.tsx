@@ -12,6 +12,7 @@ export const CartPage: React.FC = () => {
     cartProducts,
     cartCount,
     addToCart,
+    deleteFromCart,
     removeFromCart,
   } = useCartState();
 
@@ -43,7 +44,7 @@ export const CartPage: React.FC = () => {
                 <div className="cart_product__top">
                   <button
                     className="cart_product__delete"
-                    onClick={() => removeFromCart(product)}
+                    onClick={() => deleteFromCart(product)}
                   >
                     <Close />
                   </button>
