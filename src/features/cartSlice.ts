@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Product } from '../types/Product';
+import { useLocalStorage } from '../customHooks/useLocalStorage';
 
 // export type Category = 'phones' | 'accessories' | 'tablets';
 export type Category = string;
@@ -20,10 +21,21 @@ export interface CartState {
   itemsCount: number;
 }
 
-const initialState: CartState = {
+const initilState: CartState = {
   cartProducts: [],
   itemsCount: 0,
 };
+
+const prevState = localStorage.getItem('cartState');
+
+const initialState: CartState = prevState ? JSON.parse(prevState) : {
+  cartProducts: [],
+  itemsCount: 0,
+};
+
+function saveCartState(state: CartState) {
+  localStorage.setItem('cartState', JSON.stringify(state));
+}
 
 export const cartSlice = createSlice({
   name: 'cartProducts',
@@ -49,6 +61,8 @@ export const cartSlice = createSlice({
         isItem.count += 1;
         state.itemsCount += 1;
       }
+
+      saveCartState(state);
     },
     removeProduct: (state, action: PayloadAction<Product>) => {
       const isProductInCart = state.cartProducts.some(p => p.id === action.payload.id);
@@ -64,10 +78,21 @@ export const cartSlice = createSlice({
         state.cartProducts = state.cartProducts.filter(({ id }) => id !== action.payload.id);
         state.itemsCount -= 1;
       }
+
+      saveCartState(state);
+    },
+    deleteProduct: (state, action: PayloadAction<Product>) => {
+      const productTodelete = state.cartProducts.find(({ id }) => id === action.payload.id);
+      const countToDelete = productTodelete?.count;
+
+      state.cartProducts = state.cartProducts.filter(({ id }) => id !== productTodelete?.id);
+      state.itemsCount -= countToDelete || 0;
+
+      saveCartState(state);
     },
   },
 });
 
-export const { addProduct, removeProduct } = cartSlice.actions;
+export const { addProduct, removeProduct, deleteProduct } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -12,8 +12,11 @@ export const CartPage: React.FC = () => {
     cartProducts,
     cartCount,
     addToCart,
+    deleteFromCart,
     removeFromCart,
   } = useCartState();
+
+  const prevPath = '/cart';
 
   const calculateSum = () => cartProducts.map(p => p.priceDiscount * p.count)
     .reduce((sum, p) => sum + p, 0);
@@ -26,7 +29,12 @@ export const CartPage: React.FC = () => {
         <div className="empty_cart">
           <h1 className="empty_text">Shopping cart is empty</h1>
           <h3>But it&apos;s never too late to fix it</h3>
-          <Link to="/home" className="navigation_empty_cart">Go shopping</Link>
+          <Link
+            to="/home"
+            className="navigation_empty_cart"
+          >
+            Go shopping
+          </Link>
         </div>
       ) : (
         <>
@@ -36,7 +44,7 @@ export const CartPage: React.FC = () => {
                 <div className="cart_product__top">
                   <button
                     className="cart_product__delete"
-                    onClick={() => removeFromCart(product)}
+                    onClick={() => deleteFromCart(product)}
                   >
                     <Close />
                   </button>
@@ -50,6 +58,7 @@ export const CartPage: React.FC = () => {
                   <Link
                     to={`/${product.category}/${product.id}`}
                     className="cart_product__name"
+                    state={{ prevPath }}
                   >
                     {product.name}
                   </Link>

@@ -2,9 +2,13 @@
 @import '../../styles/variables/theme_colors.scss';
 
 .product-page {
+  --gap: 80px;
+
+  padding-bottom: var(--gap);
+
   &__info {
     @include page-grid();
-    row-gap: 80px;
+    row-gap: var(--gap);
   }
 
   &__back-link {
@@ -25,22 +29,19 @@
 
   &__title {
     grid-column: 1 / -1;
+    margin-bottom: 40px;
   }
 
   &__images {
     grid-column: 1/-1;
+    max-height: 420px;
 
     @include on-tablet(){
-      grid-column: 1/ 7;
+      grid-column: 1/ 8;
     }
 
     @include on-desktop() {
       grid-column: 1 / 13;
-    }
-
-    &-main {
-      width: 100%;
-      height: auto;
     }
   }
 
@@ -57,6 +58,7 @@
 
   &__settings {
     grid-column: 1/-1;
+    max-height: min-content;
 
     @include on-tablet(){
       grid-column: 8/-1;
@@ -74,6 +76,7 @@
     }
 
     &-title {
+      display: flex;
       margin-bottom: 8px;
       font-size: 12px;
       line-height: 15px;
@@ -83,6 +86,7 @@
 
     &-list {
       display: flex;
+      flex-wrap: wrap;
       margin-bottom: 24px;
       gap: 8px;
     }
@@ -90,6 +94,39 @@
 
   &__id {
     color: $color-icons;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 8px;
+    margin: 0;
+    font-size: 32px;
+    line-height: 40px;
+    color: $color-primary;
+
+    &-current {
+      display: flex;
+      gap: 8px;
+      font-weight: 800;
+    }
+
+    &-old {
+      display: flex;
+      align-items: end;
+      text-decoration: line-through;
+      font-size: 22px;
+      line-height: 31px;
+      font-weight: 400;
+      color: $color-secondary;
+    }
+
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 8px;
   }
 
   &__colors {
@@ -125,21 +162,32 @@
   }
 }
 
-.id--on-mobile {
-  @include on-desktop() {
-    display: none;
-  }
-}
-
-.id--on-desktop{
-  display: none;
-  width: max-content;
-
-  grid-column-start: auto;
-  grid-column-end: -1;
-  justify-self: end;
-
-  @include on-desktop() {
+.id {
+  white-space: nowrap;
+  &--on-mobile {
     display: flex;
+    flex-direction: row;
+    gap: 8px;
+    white-space: nowrap;
+    @include on-desktop() {
+      display: none;
+    }
+  }
+
+  &--on-desktop{
+
+    display: none;
+    width: max-content;
+    height: min-content;
+    gap: 8px;
+
+    grid-column-start: auto;
+    grid-column-end: -1;
+    justify-self: end;
+
+    @include on-desktop() {
+
+      display: flex;
+    }
   }
 }

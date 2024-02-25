@@ -19,7 +19,7 @@ export const AccessoriesPage: React.FC = () => {
 
   return (
     <div className={Styles.accessories_page}>
-      <h1 className={Styles.accessories_page__title}>Tablets</h1>
+      <h1 className={Styles.accessories_page__title}>Accessories</h1>
       <span className={Styles.accessories_page__info}>{`${accessoriesArr.length} models`}</span>
 
       {accessoriesArr.length === 0 ? (
