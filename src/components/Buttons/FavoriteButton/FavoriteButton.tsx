@@ -1,27 +1,33 @@
 import './favoriteButton.scss';
-import emptyHeart from '../../../styles/icons/favourites_heart_like.svg';
-import filledHeart from '../../../styles/icons/favourites_heart_filled.svg';
-import { Product } from '../../../types/Product';
+import { ReactComponent as EmptyHeart } from '../../../styles/icons/favourites_heart_like.svg';
+import { ReactComponent as FilledHeart } from '../../../styles/icons/favourites_heart_filled.svg';
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  makeFavorite: (...args: any[]) => void
-  product: Product,
-  favoriteProduct: string,
+  onClickAdd: (...args: any[]) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClickRemove: (...args: any[]) => void
+  active: boolean,
 }
 
 export function FavoriteButton({
-  makeFavorite,
-  product,
-  favoriteProduct,
+  onClickAdd,
+  onClickRemove,
+  active,
 }: Props) {
   return (
-    <button className="make-favorite" onClick={makeFavorite}>
-      <img
-        src={favoriteProduct === product.id ? filledHeart : emptyHeart}
-        alt="Make favorite"
-      />
-    </button>
-
+    <div>
+      {active ? (
+        // eslint-disable-next-line jsx-a11y/control-has-associated-label
+        <button className="make-favorite" onClick={onClickRemove}>
+          <FilledHeart />
+        </button>
+      ) : (
+        // eslint-disable-next-line jsx-a11y/control-has-associated-label
+        <button className="make-favorite" onClick={onClickAdd}>
+          <EmptyHeart />
+        </button>
+      )}
+    </div>
   );
 }

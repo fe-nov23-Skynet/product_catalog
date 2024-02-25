@@ -8,6 +8,7 @@ import { AccessoriesPage } from './pages/AccessoriesPage';
 import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage/CartPage';
 import { HomePage } from './pages/HomePage';
+import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 
 export const Root = () => (
   <Routes>
@@ -26,7 +27,7 @@ export const Root = () => (
         <Route index element={<AccessoriesPage />} />
         <Route path=":id?" element={<ProductPage />} />
       </Route>
-      <Route path="favourites" element={<h1 className="title">Favourites Page</h1>} />
+      <Route path="favourites" element={<FavouritesPage />} />
       <Route path="cart" element={<CartPage />} />
 
       <Route path="*" element={<NotFoundPage />} />
