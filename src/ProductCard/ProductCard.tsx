@@ -37,7 +37,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
     >
       <Link
         to={`/${currentPath}/${product.id}`}
-        state={{ prevPath: currentPath }}
+        state={{ prevPath: `/${currentPath}` }}
       >
         <img
           className="card__img"

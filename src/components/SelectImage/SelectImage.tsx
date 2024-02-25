@@ -1,6 +1,6 @@
 import './selectImage.scss';
 import cn from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Product } from '../../types/Product';
 
 interface Props {
@@ -9,6 +9,10 @@ interface Props {
 
 export function SelectImage({ product }: Props) {
   const [activeImage, setActiveImage] = useState(product.images?.[0]);
+
+  useEffect(() => {
+    setActiveImage(product.images?.[0]);
+  }, [product.id]);
 
   return (
     <div className="product-images">

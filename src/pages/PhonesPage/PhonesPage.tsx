@@ -2,8 +2,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
-import { Select } from '../../components/Select/Select';
-import phones from '../../productApi/phones.json';
 import { Catalog } from '../Catalog';
 import Styles from './Phones.module.scss';
 import { getProducts } from '../../api/api';
