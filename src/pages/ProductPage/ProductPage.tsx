@@ -17,6 +17,7 @@ import { OptionLink } from '../../components/UI/OptionLink';
 import { CartButton } from '../../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
+import { CopyButton } from '../../components/UI/CopyButton';
 
 interface Props {
   product: Product;
@@ -122,7 +123,10 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
                 <div className="product-page__colors">
                   <div className="colors__header">
                     <span className="product-page__settings-title">Available colors</span>
-                    <span className="product-page__id id--on-mobile">{`ID: ${numericID}`}</span>
+                    <span className="product-page__id text-s-12 id--on-mobile">
+                      {`ID: ${numericID}`}
+                      <CopyButton text={`${numericID}`} /* className="text-s-12" */ />
+                    </span>
                   </div>
 
                   <ul className="product-page__settings-list">
@@ -197,7 +201,12 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
               <SpecsList specs={getSpecsList(product, SPECS_SHORT)} boldValue className="text-s-12" />
             </div>
+            <span className="product-page__id text-s-12 id--on-desktop">
+              {`ID: ${numericID}`}
+              <CopyButton text={`${numericID}`} />
+            </span>
             <span className="product-page__id text-s-12 id--on-desktop">{`ID: ${numericID}`}</span>
+
             <div className="product-page__about">
               <h3>
                 <p className="product-page__specs-title">About</p>
