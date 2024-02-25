@@ -4,8 +4,7 @@
   position: absolute;
   display: flex;
 
-  top: 0;
-  bottom: 0;
+  height: 100%;
   left: 0;
   right: 0;
 
@@ -39,9 +38,9 @@
 
 @keyframes blur {
   0% {
-    backdrop-filter: blur(0px) brightness(100%);
+    backdrop-filter: blur(1px) grayscale(50%);
   }
   100% {
-    backdrop-filter: blur(3px) brightness(98%);
+    backdrop-filter: blur(2px) grayscale(100%);
   }
 }
