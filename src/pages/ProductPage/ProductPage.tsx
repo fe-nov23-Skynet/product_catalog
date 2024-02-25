@@ -1,6 +1,7 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
+import { sha256 } from 'hash.js';
 import { Product } from '../../types/Product';
 import emptyHeart from '../../styles/icons/favourites_heart_like.svg';
 import './productPage.scss';
@@ -17,6 +18,7 @@ import { OptionLink } from '../../components/UI/OptionLink';
 import { CartButton } from '../../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
+import { CopyButton } from '../../components/UI/CopyButton';
 
 interface Props {
   product: Product;
@@ -39,6 +41,12 @@ export const SPECS_SHORT = [
   'ram',
 ];
 
+function generateUniqueId(inputString: string): number {
+  const hash = sha256().update(inputString).digest('hex');
+  const numericHash = parseInt(hash, 16);
+  return numericHash % 10000000;
+}
+
 export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { state } = useLocation();
@@ -58,7 +66,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
       .finally();
   }, [productId, currentPath]);
 
-  const numericID = 3587941;
+  const numericID = product ? generateUniqueId(product.id) : '0000000';
 
   if (!product) {
     return <Loader />;
@@ -113,7 +121,10 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             <div className="product-page__colors">
               <div className="colors__header">
                 <span className="product-page__settings-title">Available colors</span>
-                <span className="product-page__id id--on-mobile">{`ID: ${numericID}`}</span>
+                <span className="product-page__id text-s-12 id--on-mobile">
+                  {`ID: ${numericID}`}
+                  <CopyButton text={`${numericID}`} /* className="text-s-12" */ />
+                </span>
               </div>
 
               <ul className="product-page__settings-list">
@@ -188,7 +199,10 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
           <SpecsList specs={getSpecsList(product, SPECS_SHORT)} boldValue className="text-s-12" />
         </div>
-        <span className="product-page__id text-s-12 id--on-desktop">{`ID: ${numericID}`}</span>
+        <span className="product-page__id text-s-12 id--on-desktop">
+          {`ID: ${numericID}`}
+          <CopyButton text={`${numericID}`} />
+        </span>
         <div className="product-page__about">
           <h3>
             <p className="product-page__specs-title">About</p>

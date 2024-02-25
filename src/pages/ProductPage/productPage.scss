@@ -163,21 +163,30 @@
 }
 
 .id {
+  white-space: nowrap;
   &--on-mobile {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    white-space: nowrap;
     @include on-desktop() {
       display: none;
     }
   }
-  
+
   &--on-desktop{
+
     display: none;
     width: max-content;
+    height: min-content;
+    gap: 8px;
 
     grid-column-start: auto;
     grid-column-end: -1;
     justify-self: end;
 
     @include on-desktop() {
+
       display: flex;
     }
   }
