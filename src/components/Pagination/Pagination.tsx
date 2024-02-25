@@ -1,6 +1,5 @@
 import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
-import { useState } from 'react';
 
 interface Props {
   total: number;
@@ -9,8 +8,6 @@ interface Props {
   className: string;
   itemsPerPage: number;
 }
-
-// export const ITEMS_PER_PAGE = 10;
 
 export const PaginationBlock: React.FC<Props> = ({
   total,

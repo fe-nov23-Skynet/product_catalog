@@ -10,9 +10,13 @@ import { getProducts } from '../../api/api';
 import { Product } from '../../types/Product';
 import { Loader } from '../../components/Loader';
 
+export const PhonePath = [''];
+
 export const PhonesPage: React.FC = () => {
   const currentPath = useLocation().pathname.split('/')[1];
   const [phonesArr, setPhonesArr] = useState<Product[]>([]);
+
+  PhonePath[0] = currentPath;
 
   useEffect(() => {
     getProducts(currentPath)
