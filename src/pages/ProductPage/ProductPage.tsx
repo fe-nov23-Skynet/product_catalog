@@ -16,6 +16,7 @@ import { useCartState } from '../../customHooks/useCartState';
 import { OptionLink } from '../../components/UI/OptionLink';
 import { CartButton } from '../../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
+import { useFavoriteState } from '../../customHooks/useFavoriteState';
 
 interface Props {
   product: Product;
@@ -47,6 +48,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
   // eslint-disable-next-line object-curly-newline
   const { cartProducts, addToCart } = useCartState();
+  const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
 
   useEffect(() => {
     setProduct(null);
@@ -177,9 +179,9 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               />
 
               <FavoriteButton
-                makeFavorite={() => { }}
-                product={product}
-                favoriteProduct={`f#${5}`}
+                onClickAdd={() => addToFavorites(product)}
+                onClickRemove={() => removeFromFavorites(product)}
+                active={favoritesProducts.some(({ id }) => id === product.id)}
               />
             </div>
           </div>

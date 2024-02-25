@@ -9,6 +9,7 @@ import { SPECS_SHORT } from '../pages/ProductPage';
 import { useCartState } from '../customHooks/useCartState';
 import { CartButton } from '../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../components/Buttons/FavoriteButton/FavoriteButton';
+import { useFavoriteState } from '../customHooks/useFavoriteState';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
@@ -20,6 +21,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const [favoriteProduct, setfavoriteProduct] = useState('');
   const currentPath = useLocation().pathname.split('/')[1];
   const { addToCart, cartProducts } = useCartState();
+  const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
 
   const makeFavorite = () => {
     if (!favoriteProduct) {
@@ -76,9 +78,9 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
         />
 
         <FavoriteButton
-          makeFavorite={makeFavorite}
-          product={product}
-          favoriteProduct={favoriteProduct}
+          onClickAdd={() => addToFavorites(product)}
+          onClickRemove={() => removeFromFavorites(product)}
+          active={favoritesProducts.some(({ id }) => id === product.id)}
         />
       </div>
     </article>
