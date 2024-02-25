@@ -9,6 +9,7 @@ import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage/CartPage';
 import { HomePage } from './pages/HomePage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
+import { CatalogPage } from './pages/CatalogPage';
 
 export const Root = () => (
   <Routes>
@@ -16,15 +17,15 @@ export const Root = () => (
       <Route index element={<HomePage />} />
       <Route path="home" element={<Navigate to="/" />} />
       <Route path="phones">
-        <Route index element={<PhonesPage />} />
+        <Route index element={<CatalogPage pageTitle="Mobile phones" />} />
         <Route path=":id" element={<ProductPage />} />
       </Route>
       <Route path="tablets">
-        <Route index element={<TabletsPage />} />
+        <Route index element={<CatalogPage pageTitle="Tablets" />} />
         <Route path=":id" element={<ProductPage />} />
       </Route>
       <Route path="accessories">
-        <Route index element={<AccessoriesPage />} />
+        <Route index element={<CatalogPage pageTitle="Accessories" />} />
         <Route path=":id?" element={<ProductPage />} />
       </Route>
       <Route path="favourites" element={<FavouritesPage />} />
