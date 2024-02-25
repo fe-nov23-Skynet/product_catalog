@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Product } from '../types/Product';
-import { Category, addProduct, removeProduct } from '../features/cartSlice';
+// eslint-disable-next-line object-curly-newline
+import { Category, addProduct, removeProduct, deleteProduct } from '../features/cartSlice';
 
 export const useCartState = () => {
   const cartProducts = useSelector((state: RootState) => state.cart.cartProducts);
@@ -11,6 +12,10 @@ export const useCartState = () => {
 
   const addToCart = (productToAdd: Product, category: Category) => {
     dispatch(addProduct({ category, item: productToAdd }));
+  };
+
+  const deleteFromCart = (productToAdd: Product) => {
+    dispatch(deleteProduct(productToAdd));
   };
 
   const removeFromCart = (productToAdd: Product) => {
@@ -30,6 +35,7 @@ export const useCartState = () => {
     cartCount,
     addToCart,
     removeFromCart,
+    deleteFromCart,
     handleProductInCart,
   };
 };
