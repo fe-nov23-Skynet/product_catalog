@@ -1,6 +1,7 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
+import { sha256 } from 'hash.js';
 import { Product } from '../../types/Product';
 import emptyHeart from '../../styles/icons/favourites_heart_like.svg';
 import './productPage.scss';
@@ -39,6 +40,12 @@ export const SPECS_SHORT = [
   'ram',
 ];
 
+function generateUniqueId(inputString: string): number {
+  const hash = sha256().update(inputString).digest('hex');
+  const numericHash = parseInt(hash, 16);
+  return numericHash % 10000000;
+}
+
 export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { state } = useLocation();
@@ -58,7 +65,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
       .finally();
   }, [productId, currentPath]);
 
-  const numericID = 3587941;
+  const numericID = product ? generateUniqueId(product.id) : '0000000';
 
   if (!product) {
     return <Loader />;
