@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import AOS from 'aos';
+/* import AOS from 'aos'; */
 import 'aos/dist/aos.css';
 
 import { useEffect } from 'react';
@@ -17,12 +17,12 @@ const RAM = 'ram';
 export const SpecsList: React.FC<Props> = (props) => {
   const { specs, className = '', boldValue = false } = props;
 
-  useEffect(() => {
+  /*  useEffect(() => {
     AOS.init({
       duration: 1500,
       once: true,
     });
-  }, []);
+  }, []); */
 
   return (
     <ul className={classNames('specs-list', className)}>
@@ -30,8 +30,8 @@ export const SpecsList: React.FC<Props> = (props) => {
         <li
           className="specs-list__item"
           key={spec.title}
-          data-aos-delay={i * 100}
-          data-aos="fade-left"
+          /* data-aos-delay={i * 50}
+          data-aos="fade-left" */
         >
           <span
             className={classNames('text-gray', 'specs-list__spec', {
