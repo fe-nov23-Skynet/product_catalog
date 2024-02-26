@@ -2,7 +2,7 @@
 
 .card {
   width: 100%;
-  border: 1px solid #E2E6E9;
+  border: 1px solid $color-elements;
   padding: 31px;
   font-family: inherit;
   display: flex;
@@ -27,7 +27,7 @@
     margin: 0;
     margin-bottom: 4px;
     font-weight: 500;
-    color: #060b35;
+    color: $color-primary;
     padding-top: 16px;
     margin-bottom: 8px;
     font-weight: 600;
