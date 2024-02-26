@@ -7,6 +7,7 @@
   border-bottom: 1px solid $color-secondary;
   justify-content: space-between;
 
+
   @include on-desktop {
     height: 64px;
   }
@@ -61,7 +62,7 @@
 }
 
 .header_nav__link:hover {
-  color: $color-primary;
+  @include hoverHeaderFooter;
 }
 
 .header_box {
@@ -118,7 +119,6 @@
   padding: 0;
   margin: 0;
   padding: 13px 15px;
-
   @include on-desktop {
     padding: 21px 23px;
   }
@@ -136,7 +136,8 @@
 }
 
 .menu {
-  height: 100vh;
+  height: calc(100vh - 48px);
+  animation: menuAnimationOpen .5s;
   position: relative;
 
   @include on-tablet {
@@ -144,11 +145,35 @@
   }
 }
 
+.--close {
+  animation: menuAnimationClose .5s;
+}
+
+@keyframes menuAnimationOpen {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes menuAnimationClose {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 24px;
+  padding-top: 24px;
 
   &__item {
     margin-bottom: 16px;
@@ -247,3 +272,4 @@
     background-color: $color-primary;
   }
 }
+
