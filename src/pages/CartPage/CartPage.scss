@@ -147,6 +147,11 @@
     cursor: pointer;
   }
 
+  .minus_black {
+    color: black;
+    border: 1px solid $color-icons;
+  }
+
   .plus {
     border: 1px solid $color-icons;
     margin-left: 13px;

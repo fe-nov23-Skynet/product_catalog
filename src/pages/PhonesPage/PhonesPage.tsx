@@ -2,17 +2,19 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
-import { Select } from '../../components/Select/Select';
-import phones from '../../productApi/phones.json';
 import { Catalog } from '../Catalog';
 import Styles from './Phones.module.scss';
 import { getProducts } from '../../api/api';
 import { Product } from '../../types/Product';
 import { Loader } from '../../components/Loader';
 
+export const PhonePath = [''];
+
 export const PhonesPage: React.FC = () => {
   const currentPath = useLocation().pathname.split('/')[1];
   const [phonesArr, setPhonesArr] = useState<Product[]>([]);
+
+  PhonePath[0] = currentPath;
 
   useEffect(() => {
     getProducts(currentPath)

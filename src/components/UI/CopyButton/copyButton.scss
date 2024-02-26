@@ -1,0 +1,83 @@
+@import '../../../styles/variables/theme_colors.scss';
+
+.copy-button {
+  padding: 0;
+  height: 16px;
+  width: 16px;
+  display: flex;
+  position: relative;
+
+  border: none;
+  height: min-content;
+
+  background-color: transparent;
+  transform: scale(1.2);
+  /* transform-origin: bottom; */
+  transition: transform .3s, color .3s;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    /* transform: scale(1.35); */
+    filter: drop-shadow(0px 1px 1px $color-secondary);
+    color: $color-primary;
+  }
+
+  /* &--copied {
+    flex-direction: row-reverse;
+  } */
+}
+
+.copy-icon {
+  position: absolute;
+
+  transition: transform .3s;
+  /* transform-origin: bottom; */
+  transform: scale(0) translateY(100%);
+
+  &--show {
+    transform: scale(1);
+  }
+}
+
+.done-icon {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 12px;
+  height: 12px;
+
+  color: $color-green;
+  /* border-radius: 50%; */
+
+  /* background-color: $color-green; */
+  /* border: 1px solid $color-elements; */
+  transition: transform .3s;
+  transform: scale(0);
+
+  &--show {
+    transform: scale(1.5);
+    animation: rotate .5s;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: scale(1.5) rotate(0deg) ;
+  }
+  20% {
+    transform: scale(1.5) rotate(-25deg) ;
+  }
+  50% {
+    transform: scale(1.5) rotate(15deg) ;
+  }
+  70% {
+    transform: scale(1.5) rotate(-5deg) ;
+  }
+  100% {
+    transform: scale(1.5) rotate(0deg) ;
+  }
+}
