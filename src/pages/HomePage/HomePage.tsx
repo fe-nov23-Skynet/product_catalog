@@ -7,9 +7,9 @@ import Accessories_image from '../../banner-images/Accessories.png';
 import { SliderBar } from '../../components/Swiper';
 import { Product } from '../../types/Product';
 import { getProducts } from '../../api/api';
+import { SliderGoods } from '../../components/SliderGoods/SliderGoods';
 
 export const HomePage: React.FC = () => {
-  const a = 0; // remove after adding some new variables
   const [phonesArr, setPhonesArr] = useState<Product[]>([]);
   const [tabletsArr, setTabletsArr] = useState<Product[]>([]);
   const [accessoriesArr, setAccessoriesArr] = useState<Product[]>([]);
@@ -36,7 +36,7 @@ export const HomePage: React.FC = () => {
         <SliderBar />
       </div>
       <div className={Styles.home_page__SlideBarWrapper}>
-        <SliderBar />
+        <SliderGoods title="Brand new models" products={tabletsArr} />
       </div>
       <div className="container">
         <div className={Styles.home_page__CategoryChoiseWrapper}>
@@ -60,7 +60,7 @@ export const HomePage: React.FC = () => {
         </div>
       </div>
       <div className={Styles.home_page__SlideBarWrapper}>
-        <SliderBar />
+        <SliderGoods title="Hot prices" products={phonesArr} />
       </div>
     </section>
   );

@@ -25,6 +25,7 @@
     "react-scripts": "5.0.1",
     "swiper": "^11.0.6",
     "typescript": "^4.9.5",
+    "usehooks-ts": "^2.15.1",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },
