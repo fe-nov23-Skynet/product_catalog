@@ -14,7 +14,7 @@ export const FavouritesPage: React.FC = () => {
         <div className="empty_favourites">
           <h1 className="empty_text">Favourites are empty</h1>
           <h3>But it&apos;s never too late to fix it</h3>
-          <Link to="/home" className="navigation_empty_cart">Go shopping</Link>
+          <Link to="/home" className="navigation_empty_favourites">Go shopping</Link>
         </div>
       ) : (
         <Catalog products={favoritesProducts} />

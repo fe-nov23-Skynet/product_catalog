@@ -7,6 +7,7 @@
   border-bottom: 1px solid $color-secondary;
   justify-content: space-between;
 
+
   @include on-desktop {
     height: 64px;
   }
@@ -61,7 +62,7 @@
 }
 
 .header_nav__link:hover {
-  color: $color-primary;
+  @include hoverHeaderFooter;
 }
 
 .header_box {

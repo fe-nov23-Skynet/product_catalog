@@ -144,12 +144,13 @@
     border: 1px solid $color-elements;
     margin-right: 13px;
     color: $color-icons;
-    cursor: pointer;
+    
   }
 
   .minus_black {
-    color: black;
+    color: $color-primary;
     border: 1px solid $color-icons;
+    cursor: pointer;
   }
 
   .plus {
@@ -169,6 +170,14 @@
       width: 80px;
     }
   }
+}
+
+.nocursor {
+  cursor: not-allowed;
+}
+
+.cart_product__delete:hover {
+  color: $color-primary;
 }
 
 .cart_total {
