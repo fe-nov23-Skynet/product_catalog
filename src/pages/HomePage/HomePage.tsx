@@ -11,10 +11,6 @@ import { SliderGoods } from '../../components/SliderGoods/SliderGoods';
 import { getBestPrice } from '../../utils/getBestPrice';
 import { getNewestProducts } from '../../utils/getNewestProduct';
 
-function reMapProducts() {
-
-}
-
 export const HomePage: React.FC = () => {
   const [phonesArr, setPhonesArr] = useState<Product[]>([]);
   const [tabletsArr, setTabletsArr] = useState<Product[]>([]);

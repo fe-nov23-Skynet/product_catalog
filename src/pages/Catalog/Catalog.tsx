@@ -15,7 +15,7 @@ export const Catalog: React.FC<Props> = ({ products }) => {
   const a = 0;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemPerPage] = useState(10);
+  const [itemsPerPage, setItemPerPage] = useState(12);
   const [sortedBy, setSortedBy] = useState('');
 
   const sortBy = [
@@ -26,9 +26,9 @@ export const Catalog: React.FC<Props> = ({ products }) => {
   ];
 
   const itemsOnPage = [
-    { value: 5, title: '5' },
-    { value: 20, title: '20' },
-    { value: 30, title: '30' },
+    { value: 5, title: '6' },
+    { value: 20, title: '12' },
+    { value: 30, title: '25' },
     { value: 50, title: '50' },
   ];
 

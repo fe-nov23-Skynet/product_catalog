@@ -1,0 +1,55 @@
+@import '../../styles/variables/theme_colors.scss';
+
+.rc-pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+
+  &::after {
+    display: none;
+  }
+}
+
+.rc-pagination-item,
+.rc-pagination-next,
+.rc-pagination-prev {
+  color: $color-primary;
+  border: 1px solid $color-icons;
+  border-radius: 0;
+
+  &:hover {
+    border-color: $color-primary;
+
+    & a {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+  }
+}
+
+.rc-pagination-item-active {
+  border: none;
+  &:focus {
+    border: none;
+
+    & a {
+      color: $color-hover;
+    }
+  }
+
+  background-color: $color-primary;
+}
+
+.rc-pagination-item-active a {
+  color: $color-hover;
+}
+
+.rc-pagination-prev .rc-pagination-item-link,
+.rc-pagination-next .rc-pagination-item-link {
+  border: none;
+  color: $color-primary;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
