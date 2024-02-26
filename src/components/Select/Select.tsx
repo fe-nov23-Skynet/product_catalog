@@ -30,12 +30,15 @@ interface Props {
 
 }
 
-export const Select:React.FC<Props> = (props) => {
+const SORTED_BY_DEFAULT = 'Price low';
+const ITEMS_PER_PAGE_DEFAULT = '12';
+
+export const Select: React.FC<Props> = (props) => {
   // eslint-disable-next-line object-curly-newline
   const {
     title,
     options,
-    onSelect = () => {},
+    onSelect = () => { },
     selectedOption,
     className = '',
     ...other
@@ -44,7 +47,7 @@ export const Select:React.FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(selectedOption?.title || '');
   const rootRef = useRef<HTMLDivElement>(null);
-  const placeHolder = title === 'Sort by' ? 'Price low' : '12';
+  const placeHolder = title === 'Sort by' ? SORTED_BY_DEFAULT : ITEMS_PER_PAGE_DEFAULT;
 
   function handleList() {
     setIsOpen(!isOpen);
@@ -95,7 +98,7 @@ export const Select:React.FC<Props> = (props) => {
       ref={rootRef}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
     >
       <span className={Styles.select__name}>
         {title}
