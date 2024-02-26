@@ -8,6 +8,8 @@ import { SliderBar } from '../../components/Swiper';
 import { Product } from '../../types/Product';
 import { getProducts } from '../../api/api';
 import { SliderGoods } from '../../components/SliderGoods/SliderGoods';
+import { getBestPrice } from '../../utils/getBestPrice';
+import { getNewestProducts } from '../../utils/getNewestProduct';
 
 function reMapProducts() {
 
@@ -19,6 +21,8 @@ export const HomePage: React.FC = () => {
   const [accessoriesArr, setAccessoriesArr] = useState<Product[]>([]);
 
   const allProducts = [...phonesArr, ...tabletsArr, ...accessoriesArr];
+  const bestPriceProducts = getBestPrice(allProducts);
+  const newestProducts = getNewestProducts(allProducts);
 
   useEffect(() => {
     getProducts('phones')
@@ -42,7 +46,7 @@ export const HomePage: React.FC = () => {
         <SliderBar />
       </div>
       <div className={Styles.home_page__SlideBarWrapper}>
-        <SliderGoods title="Brand new models" products={tabletsArr} />
+        <SliderGoods title="Brand new models" products={newestProducts} />
       </div>
       <div className="container">
         <div className={Styles.home_page__CategoryChoiseWrapper}>
@@ -66,7 +70,7 @@ export const HomePage: React.FC = () => {
         </div>
       </div>
       <div className={Styles.home_page__SlideBarWrapper}>
-        <SliderGoods title="Hot prices" products={phonesArr} />
+        <SliderGoods title="Hot prices" products={bestPriceProducts} />
       </div>
     </section>
   );
