@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import { sha256 } from 'hash.js';
 
+import { toast } from 'react-toastify';
 import { Product } from '../../types/Product';
 
 import { SpecsList } from '../../components/SpecsList';
@@ -18,6 +19,7 @@ import { CartButton } from '../../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { CopyButton } from '../../components/UI/CopyButton';
+import { ErrorNotification } from '../../components/ErrorNotification';
 
 import './productPage.scss';
 
@@ -65,19 +67,17 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
     setLoading(false);
   }
 
-  /* useEffect(() => {
-    AOS.init({
-      duration: 1500,
-      once: true,
-    });
-  }, []); */
+  function catchError(e: string) {
+    toast.error('Couldn`t load product, check your internet connection.');
+    setLoading(false);
+  }
 
   useEffect(() => {
     setLoading(true);
 
     getProduct(currentPath, productId as string)
       .then(saveLoadedProduct)
-      .catch()
+      .catch(catchError)
       .finally();
   }, [productId, currentPath]);
 
