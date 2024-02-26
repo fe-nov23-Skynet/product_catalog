@@ -1,10 +1,9 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import {
+  Navigate, Route, Routes,
+} from 'react-router-dom';
 
 import { App } from './App';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
-import { PhonesPage } from './pages/PhonesPage';
-import { TabletsPage } from './pages/TabletsPage';
-import { AccessoriesPage } from './pages/AccessoriesPage';
 import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage/CartPage';
 import { HomePage } from './pages/HomePage';

@@ -8,10 +8,14 @@ import { ReactComponent as Favorites } from '../../styles/icons/Favourites.svg';
 import { ReactComponent as Cart } from '../../styles/icons/Cart.svg';
 import { ReactComponent as Menu } from '../../styles/icons/menu.svg';
 import { ReactComponent as Close } from '../../styles/icons/close.svg';
+import { useFavoriteState } from '../../customHooks/useFavoriteState';
+import { useCartState } from '../../customHooks/useCartState';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [onClose, setOnClose] = useState(false);
+  const { favoritesProducts } = useFavoriteState();
+  const { cartCount } = useCartState();
 
   const navItemClassName = (
     { isActive }: { isActive: boolean },
@@ -84,6 +88,9 @@ export function Header() {
                 to="favourites"
                 className={boxItemClassName}
               >
+                {favoritesProducts.length !== 0 && (
+                  <span>{favoritesProducts.length}</span>
+                )}
                 <Favorites />
               </NavLink>
             </div>
@@ -93,6 +100,9 @@ export function Header() {
                 to="cart"
                 className={boxItemClassName}
               >
+                {cartCount !== 0 && (
+                  <span>{cartCount}</span>
+                )}
                 <Cart />
               </NavLink>
             </div>
@@ -163,6 +173,9 @@ export function Header() {
               })}
               onClick={changeMenuOpen}
             >
+              {favoritesProducts.length !== 0 && (
+                <span className="menu_item_image_fav">{favoritesProducts.length}</span>
+              )}
               <Favorites />
             </NavLink>
 
@@ -175,6 +188,9 @@ export function Header() {
               })}
               onClick={changeMenuOpen}
             >
+              {cartCount !== 0 && (
+                <span className="menu_item_image_cart">{cartCount}</span>
+              )}
               <Cart />
             </NavLink>
           </div>
