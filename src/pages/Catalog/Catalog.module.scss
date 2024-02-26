@@ -17,13 +17,13 @@
 
   &__product {
     grid-column: 1 / -1;
-    box-shadow: 0px 0px 0px 0px $color-elements;
+    box-shadow: 0px 0px 0px 0px $color-surface2;
     transition: transform .5s,
                 box-shadow .3s;
 
     &:hover {
       transform: scale(1.02);
-      box-shadow: 0px 0px 20px 2px $color-elements;
+      box-shadow: 0px 0px 20px 2px $color-surface2;
     }
 
     @include on-tablet {
