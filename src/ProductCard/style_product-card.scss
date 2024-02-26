@@ -1,3 +1,5 @@
+@import '../styles/mixins.scss';
+
 .card {
   width: 100%;
   border: 1px solid #E2E6E9;
@@ -6,13 +8,18 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  justify-content: end;
 
   &__img {
     display: block;
     margin: 0 auto 8px;
     width: 100%;
-    min-height: 287px;
+    height: 170px;
     object-fit: contain;
+
+    @include on-desktop {
+      height: 236px;
+    }
   }
 
   &__title {

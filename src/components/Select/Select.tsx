@@ -44,7 +44,7 @@ export const Select:React.FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(selectedOption?.title || '');
   const rootRef = useRef<HTMLDivElement>(null);
-  const placeHolder = 'Select value';
+  const placeHolder = title === 'Sort by' ? 'Price low' : '12';
 
   function handleList() {
     setIsOpen(!isOpen);

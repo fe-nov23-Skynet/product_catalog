@@ -55,28 +55,6 @@
     }
   }
 
-  &__customPagination {
-    display: flex;
-    list-style: none;
-    padding: 0;
-  }
-
-  // &__customPagination li {
-  //   border: 1px solid #B4BDC3;
-  //   color: #313237;
-  //   border-radius: 0;
-
-  //   &:hover {
-  //     border-color: #313237;
-  //     color: #313237;
-  //   }
-
-  //   &:active {
-  //     background-color: #313237;
-  //     color: white;
-  //   }
-  // }
-
   &__sort {
     grid-column: span 2;
 
