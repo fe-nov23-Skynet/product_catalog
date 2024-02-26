@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Product } from '../types/Product';
-import { useLocalStorage } from '../customHooks/useLocalStorage';
 
 // export type Category = 'phones' | 'accessories' | 'tablets';
 export type Category = string;

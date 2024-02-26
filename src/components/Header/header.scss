@@ -26,7 +26,15 @@
       width: 128px;
       margin-right: 24px;
       background-image: url('../../styles/icons/LogoBig.svg');
+    }
+  }
 
+  
+  .dark__theme {
+    background-image: url('../../styles/icons/LogoSmall_Dark.svg');
+
+    @include on-desktop {
+      background-image: url('../../styles/icons/LogoBig_Dark.svg');
     }
   }
 
@@ -67,6 +75,7 @@
 
 .header_box {
   display: flex;
+  align-items: center;
 }
 
 .header_box__container {
@@ -119,6 +128,7 @@
   padding: 0;
   margin: 0;
   padding: 13px 15px;
+
   @include on-desktop {
     padding: 21px 23px;
   }
@@ -272,4 +282,3 @@
     background-color: $color-primary;
   }
 }
-
