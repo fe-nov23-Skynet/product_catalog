@@ -1,3 +1,5 @@
+@import '../../styles/variables/theme_colors.scss';
+
 .rc-pagination {
   display: flex;
   list-style: none;
@@ -11,17 +13,16 @@
 .rc-pagination-item,
 .rc-pagination-next,
 .rc-pagination-prev {
-  color: #313237;
-  border: 1px solid #B4BDC3;
+  color: $color-primary;
+  border: 1px solid $color-icons;
   border-radius: 0;
 
   &:hover {
-    border-color: #313237;
-    color: #313237;
+    border-color: $color-primary;
 
     & a {
-      border-color: #313237;
-      color: #313237;
+      border-color: $color-primary;
+      color: $color-primary;
     }
   }
 }
@@ -32,23 +33,23 @@
     border: none;
 
     & a {
-      color: white;
+      color: $color-hover;
     }
   }
 
-  background-color: #313237;
+  background-color: $color-primary;
 }
 
 .rc-pagination-item-active a {
-  color: white;
+  color: $color-hover;
 }
 
 .rc-pagination-prev .rc-pagination-item-link,
 .rc-pagination-next .rc-pagination-item-link {
   border: none;
-  color: #313237;
+  color: $color-primary;
 
   &:hover {
-    color: #313237;
+    color: $color-primary;
   }
 }
