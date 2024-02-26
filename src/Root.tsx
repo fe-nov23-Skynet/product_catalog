@@ -1,8 +1,7 @@
 import {
-  Navigate, Route, Routes, useLocation,
+  Navigate, Route, Routes,
 } from 'react-router-dom';
 
-import { useEffect } from 'react';
 import { App } from './App';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { ProductPage } from './pages/ProductPage';

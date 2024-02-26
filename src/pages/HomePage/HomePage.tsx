@@ -18,8 +18,6 @@ export const HomePage: React.FC = () => {
   const [tabletsArr, setTabletsArr] = useState<Product[]>([]);
   const [accessoriesArr, setAccessoriesArr] = useState<Product[]>([]);
 
-  const allProducts = [...phonesArr, ...tabletsArr, ...accessoriesArr];
-
   useEffect(() => {
     getProducts('phones')
       .then(products => setPhonesArr(products));
