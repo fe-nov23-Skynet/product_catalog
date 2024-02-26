@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-indent */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './header.scss';
@@ -10,12 +12,15 @@ import { ReactComponent as Menu } from '../../styles/icons/menu.svg';
 import { ReactComponent as Close } from '../../styles/icons/close.svg';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { useCartState } from '../../customHooks/useCartState';
+import { ToggleButton } from './ToggleButton';
+import { useUIState } from '../../customHooks/useUIState';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [onClose, setOnClose] = useState(false);
   const { favoritesProducts } = useFavoriteState();
   const { cartCount } = useCartState();
+  const { UIState } = useUIState();
 
   const navItemClassName = (
     { isActive }: { isActive: boolean },
@@ -47,7 +52,7 @@ export function Header() {
       <header className="header">
         <NavLink
           to="/"
-          className="header_logo__img"
+          className={cn('header_logo__img', { dark__theme: UIState.isDarkMode })}
           onClick={() => setMenuOpen(false)}
         />
 
@@ -83,6 +88,8 @@ export function Header() {
           </nav>
 
           <div className="header_box">
+            <ToggleButton componentKey={1} />
+
             <div className="header_box__container">
               <NavLink
                 to="favourites"
@@ -110,9 +117,13 @@ export function Header() {
         </div>
 
         {!menuOpen ? (
-          <button className="burger-toggle" onClick={changeMenuOpen}>
-            <Menu />
-          </button>
+          <div className="header_box">
+            <ToggleButton onMobile componentKey={2} />
+            <button className="burger-toggle" onClick={changeMenuOpen}>
+              <Menu />
+            </button>
+          </div>
+
         ) : (
           <button className="burger-toggle" onClick={changeMenuOpen}>
             <Close />
