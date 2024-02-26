@@ -8,11 +8,17 @@ import { SliderBar } from '../../components/Swiper';
 import { Product } from '../../types/Product';
 import { getProducts } from '../../api/api';
 
+function reMapProducts() {
+
+}
+
 export const HomePage: React.FC = () => {
   const a = 0; // remove after adding some new variables
   const [phonesArr, setPhonesArr] = useState<Product[]>([]);
   const [tabletsArr, setTabletsArr] = useState<Product[]>([]);
   const [accessoriesArr, setAccessoriesArr] = useState<Product[]>([]);
+
+  const allProducts = [...phonesArr, ...tabletsArr, ...accessoriesArr];
 
   useEffect(() => {
     getProducts('phones')
