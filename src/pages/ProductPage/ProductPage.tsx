@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { sha256 } from 'hash.js';
 
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 import { Product } from '../../types/Product';
 
 import { SpecsList } from '../../components/SpecsList';
@@ -83,9 +84,16 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
   const numericID = product ? generateUniqueId(product.id) : '0000000';
 
-  /* if (!product && !loading) {
-    return (<h3>Error</h3>);
-  } */
+  const pageTitle = `${product?.name} - Nice Gadgets Store`;
+
+  // Формируем описание страницы с кратким описанием товара
+  const pageDescription = `Explore ${product?.name} at Nice Gadgets store. Find out more about its features and specifications.`;
+
+  // Формируем URL страницы товара
+  const pageUrl = `https://example.com/products/${product?.id}`;
+
+  // Формируем URL изображения для предпросмотра страницы товара
+  const imageUrl = product?.images[0] || '/img/category-accessories.png';
 
   function slitCapacity(capacity: string): string {
     let capacityString = '';
@@ -111,6 +119,20 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
   return (
     <section className="product-page">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:type" content="product.item" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={imageUrl} />
+      </Helmet>
+
       {loading && <Loader />}
       {state?.prevPath ? (
         <Link to={state.prevPath} className="product-page__back-link">
