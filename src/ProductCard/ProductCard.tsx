@@ -10,15 +10,17 @@ import { useCartState } from '../customHooks/useCartState';
 import { CartButton } from '../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../customHooks/useFavoriteState';
+import { FavoriteItem } from '../features/favoritesSlice';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
-  product: Product;
+  product: FavoriteItem | Product;
   className?: string;
 }
 
 export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const [favoriteProduct, setfavoriteProduct] = useState('');
+  const category = ('category' in product) ? product.category : useLocation().pathname.split('/')[1];
   const currentPath = useLocation().pathname.split('/')[1];
   const { addToCart, cartProducts } = useCartState();
   const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
@@ -36,7 +38,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       className={classNames('card', className)}
     >
       <Link
-        to={`/${currentPath}/${product.id}`}
+        to={`/${category}/${product.id}`}
         state={{ prevPath: `/${currentPath}` }}
       >
         <img
@@ -49,7 +51,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       <h1 className="card__title">
         <Link
           className="card__title-link"
-          to={`/${currentPath}/${product.id}`}
+          to={`/${category}/${product.id}`}
           state={{ prevPath: `/${currentPath}` }}
         >
           {product.name}
@@ -78,7 +80,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
         />
 
         <FavoriteButton
-          onClickAdd={() => addToFavorites(product)}
+          onClickAdd={() => addToFavorites(product, currentPath)}
           onClickRemove={() => removeFromFavorites(product)}
           active={favoritesProducts.some(({ id }) => id === product.id)}
         />

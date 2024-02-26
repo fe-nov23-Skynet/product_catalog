@@ -43,3 +43,9 @@
     margin: 0 auto;
   }
 }
+
+@mixin hoverHeaderFooter {
+  transition-duration: 1s;
+  background-color: $color-hover;
+  color: $color-primary;
+}
