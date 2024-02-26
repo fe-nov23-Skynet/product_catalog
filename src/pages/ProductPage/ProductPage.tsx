@@ -52,7 +52,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const { cartProducts, addToCart } = useCartState();
   const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
 
-  function saveLoadedProduct(productToSave: Product | null):void {
+  function saveLoadedProduct(productToSave: Product | null): void {
     setProduct(productToSave);
     setLoading(false);
   }
@@ -192,7 +192,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
                   />
 
                   <FavoriteButton
-                    onClickAdd={() => addToFavorites(product)}
+                    onClickAdd={() => addToFavorites(product, currentPath)}
                     onClickRemove={() => removeFromFavorites(product)}
                     active={favoritesProducts.some(({ id }) => id === product.id)}
                   />
