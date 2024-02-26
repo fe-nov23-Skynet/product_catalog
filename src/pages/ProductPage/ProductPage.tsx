@@ -1,11 +1,10 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { sha256 } from 'hash.js';
 
+import { toast } from 'react-toastify';
 import { Product } from '../../types/Product';
-import './productPage.scss';
 
 import { SpecsList } from '../../components/SpecsList';
 import { Loader } from '../../components/Loader';
@@ -20,6 +19,9 @@ import { CartButton } from '../../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { CopyButton } from '../../components/UI/CopyButton';
+import { ErrorNotification } from '../../components/ErrorNotification';
+
+import './productPage.scss';
 
 interface Props {
   product: Product;
@@ -42,6 +44,12 @@ export const SPECS_SHORT = [
   'ram',
 ];
 
+function generateUniqueId(inputString: string): number {
+  const hash = sha256().update(inputString).digest('hex');
+  const numericHash = parseInt(hash, 16);
+  return numericHash % 10000000;
+}
+
 export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { state } = useLocation();
@@ -59,23 +67,21 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
     setLoading(false);
   }
 
-  useEffect(() => {
-    AOS.init({
-      duration: 1500,
-      once: true,
-    });
-  }, []);
+  function catchError(e: string) {
+    toast.error('Couldn`t load product, check your internet connection.');
+    setLoading(false);
+  }
 
   useEffect(() => {
     setLoading(true);
 
     getProduct(currentPath, productId as string)
       .then(saveLoadedProduct)
-      .catch()
+      .catch(catchError)
       .finally();
   }, [productId, currentPath]);
 
-  const numericID = 3587941;
+  const numericID = product ? generateUniqueId(product.id) : '0000000';
 
   /* if (!product && !loading) {
     return (<h3>Error</h3>);
