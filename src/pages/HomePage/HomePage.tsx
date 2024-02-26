@@ -9,6 +9,10 @@ import { Product } from '../../types/Product';
 import { getProducts } from '../../api/api';
 import { SliderGoods } from '../../components/SliderGoods/SliderGoods';
 
+function reMapProducts() {
+
+}
+
 export const HomePage: React.FC = () => {
   const [phonesArr, setPhonesArr] = useState<Product[]>([]);
   const [tabletsArr, setTabletsArr] = useState<Product[]>([]);
