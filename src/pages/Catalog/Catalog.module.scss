@@ -40,15 +40,18 @@
     justify-content: center;
     margin-top: 20px;
     justify-self: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 
     grid-column: 1 / -1;
 
     @include on-tablet {
-      grid-column: 4 / 10;
+      grid-column: 5 / 11;
     }
 
     @include on-desktop {
-      grid-column: 10 / 16;
+      grid-column: 10 / 17;
+      padding-right: 20px;
     }
   }
 
@@ -58,9 +61,21 @@
     padding: 0;
   }
 
-  &__customPagination li {
-    margin-right: 10px;
-  }
+  // &__customPagination li {
+  //   border: 1px solid #B4BDC3;
+  //   color: #313237;
+  //   border-radius: 0;
+
+  //   &:hover {
+  //     border-color: #313237;
+  //     color: #313237;
+  //   }
+
+  //   &:active {
+  //     background-color: #313237;
+  //     color: white;
+  //   }
+  // }
 
   &__sort {
     grid-column: span 2;
