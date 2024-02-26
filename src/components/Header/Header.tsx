@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './header.scss';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { useState } from 'react';
 import { ReactComponent as Favorites } from '../../styles/icons/Favourites.svg';
@@ -11,6 +11,7 @@ import { ReactComponent as Close } from '../../styles/icons/close.svg';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [onClose, setOnClose] = useState(false);
 
   const navItemClassName = (
     { isActive }: { isActive: boolean },
@@ -27,7 +28,15 @@ export function Header() {
     'header_nav__link--active': isActive,
   });
 
-  const changeMenuOpen = () => setMenuOpen(!menuOpen);
+  const changeMenuOpen = () => {
+    if (menuOpen) {
+      setOnClose(true);
+    } else {
+      setOnClose(false);
+    }
+
+    setTimeout(() => setMenuOpen(!menuOpen), 200);
+  };
 
   return (
     <>
@@ -102,7 +111,7 @@ export function Header() {
       </header>
 
       {menuOpen && (
-        <div className="menu">
+        <div className={cn('menu', { '--close': onClose })}>
           <nav className="nav nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
