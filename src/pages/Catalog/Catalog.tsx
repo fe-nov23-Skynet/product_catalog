@@ -61,22 +61,27 @@ export const Catalog: React.FC<Props> = ({ products }) => {
 
   return (
     <>
-      <Select
-        title="Sort by"
-        options={sortBy}
-        className={Styles.catalog__sort}
-        onSelect={(value) => {
-          setSortedBy(value.toString());
-        }}
-      />
-      <Select
-        title="Items on page"
-        options={itemsOnPage}
-        className={Styles.catalog__itemsOnPage}
-        onSelect={(value) => {
-          setItemPerPage(+value);
-        }}
-      />
+      {phonesArr.length > itemsPerPage && (
+        <>
+          <Select
+            title="Sort by"
+            options={sortBy}
+            className={Styles.catalog__sort}
+            onSelect={(value) => {
+              setSortedBy(value.toString());
+            }}
+          />
+          <Select
+            title="Items on page"
+            options={itemsOnPage}
+            className={Styles.catalog__itemsOnPage}
+            onSelect={(value) => {
+              setItemPerPage(+value);
+            }}
+          />
+        </>
+      )}
+
       <ul className={Styles.catalog__list}>
         {visibleData.map(
           product => (
@@ -88,15 +93,17 @@ export const Catalog: React.FC<Props> = ({ products }) => {
           ),
         )}
       </ul>
-      <div className={Styles.catalog__paginationWrapper}>
-        <PaginationBlock
-          className={Styles.catalog__customPagination}
-          currentPage={currentPage}
-          total={products.length}
-          setCurrentPage={setCurrentPage}
-          itemsPerPage={itemsPerPage}
-        />
-      </div>
+      {phonesArr.length > itemsPerPage && (
+        <div className={Styles.catalog__paginationWrapper}>
+          <PaginationBlock
+            className={Styles.catalog__customPagination}
+            currentPage={currentPage}
+            total={products.length}
+            setCurrentPage={setCurrentPage}
+            itemsPerPage={itemsPerPage}
+          />
+        </div>
+      )}
     </>
   );
 };

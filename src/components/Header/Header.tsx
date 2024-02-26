@@ -1,16 +1,21 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './header.scss';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { useState } from 'react';
 import { ReactComponent as Favorites } from '../../styles/icons/Favourites.svg';
 import { ReactComponent as Cart } from '../../styles/icons/Cart.svg';
 import { ReactComponent as Menu } from '../../styles/icons/menu.svg';
 import { ReactComponent as Close } from '../../styles/icons/close.svg';
+import { useFavoriteState } from '../../customHooks/useFavoriteState';
+import { useCartState } from '../../customHooks/useCartState';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [onClose, setOnClose] = useState(false);
+  const { favoritesProducts } = useFavoriteState();
+  const { cartCount } = useCartState();
 
   const navItemClassName = (
     { isActive }: { isActive: boolean },
@@ -27,7 +32,15 @@ export function Header() {
     'header_nav__link--active': isActive,
   });
 
-  const changeMenuOpen = () => setMenuOpen(!menuOpen);
+  const changeMenuOpen = () => {
+    if (menuOpen) {
+      setOnClose(true);
+    } else {
+      setOnClose(false);
+    }
+
+    setTimeout(() => setMenuOpen(!menuOpen), 200);
+  };
 
   return (
     <>
@@ -75,6 +88,9 @@ export function Header() {
                 to="favourites"
                 className={boxItemClassName}
               >
+                {favoritesProducts.length !== 0 && (
+                  <span>{favoritesProducts.length}</span>
+                )}
                 <Favorites />
               </NavLink>
             </div>
@@ -84,6 +100,9 @@ export function Header() {
                 to="cart"
                 className={boxItemClassName}
               >
+                {cartCount !== 0 && (
+                  <span>{cartCount}</span>
+                )}
                 <Cart />
               </NavLink>
             </div>
@@ -102,7 +121,7 @@ export function Header() {
       </header>
 
       {menuOpen && (
-        <div className="menu">
+        <div className={cn('menu', { '--close': onClose })}>
           <nav className="nav nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
@@ -154,6 +173,9 @@ export function Header() {
               })}
               onClick={changeMenuOpen}
             >
+              {favoritesProducts.length !== 0 && (
+                <span className="menu_item_image_fav">{favoritesProducts.length}</span>
+              )}
               <Favorites />
             </NavLink>
 
@@ -166,6 +188,9 @@ export function Header() {
               })}
               onClick={changeMenuOpen}
             >
+              {cartCount !== 0 && (
+                <span className="menu_item_image_cart">{cartCount}</span>
+              )}
               <Cart />
             </NavLink>
           </div>

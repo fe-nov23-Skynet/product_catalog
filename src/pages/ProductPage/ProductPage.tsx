@@ -1,9 +1,10 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
+import { sha256 } from 'hash.js';
+
+import { toast } from 'react-toastify';
 import { Product } from '../../types/Product';
-import emptyHeart from '../../styles/icons/favourites_heart_like.svg';
-import './productPage.scss';
 
 import { SpecsList } from '../../components/SpecsList';
 import { Loader } from '../../components/Loader';
@@ -18,6 +19,9 @@ import { CartButton } from '../../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { CopyButton } from '../../components/UI/CopyButton';
+import { ErrorNotification } from '../../components/ErrorNotification';
+
+import './productPage.scss';
 
 interface Props {
   product: Product;
@@ -40,6 +44,12 @@ export const SPECS_SHORT = [
   'ram',
 ];
 
+function generateUniqueId(inputString: string): number {
+  const hash = sha256().update(inputString).digest('hex');
+  const numericHash = parseInt(hash, 16);
+  return numericHash % 10000000;
+}
+
 export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { state } = useLocation();
@@ -52,8 +62,13 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const { cartProducts, addToCart } = useCartState();
   const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
 
-  function saveLoadedProduct(productToSave: Product | null):void {
+  function saveLoadedProduct(productToSave: Product | null): void {
     setProduct(productToSave);
+    setLoading(false);
+  }
+
+  function catchError(e: string) {
+    toast.error('Couldn`t load product, check your internet connection.');
     setLoading(false);
   }
 
@@ -62,11 +77,11 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
     getProduct(currentPath, productId as string)
       .then(saveLoadedProduct)
-      .catch()
+      .catch(catchError)
       .finally();
   }, [productId, currentPath]);
 
-  const numericID = 3587941;
+  const numericID = product ? generateUniqueId(product.id) : '0000000';
 
   /* if (!product && !loading) {
     return (<h3>Error</h3>);
@@ -113,11 +128,11 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
           <h2 className="product-page__title">{product.name}</h2>
 
           <div className="product-page__info">
-            <div className="product-page__images">
+            <div className="product-page__images" data-aos="fade-right">
               <SelectImage product={product} />
             </div>
 
-            <div className="product-page__settings">
+            <div className="product-page__settings" data-aos="fade-left">
 
               <div className="product-page__settings-group">
                 <div className="product-page__colors">
@@ -192,7 +207,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
                   />
 
                   <FavoriteButton
-                    onClickAdd={() => addToFavorites(product)}
+                    onClickAdd={() => addToFavorites(product, currentPath)}
                     onClickRemove={() => removeFromFavorites(product)}
                     active={favoritesProducts.some(({ id }) => id === product.id)}
                   />
@@ -205,9 +220,8 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               {`ID: ${numericID}`}
               <CopyButton text={`${numericID}`} />
             </span>
-            <span className="product-page__id text-s-12 id--on-desktop">{`ID: ${numericID}`}</span>
 
-            <div className="product-page__about">
+            <div className="product-page__about" data-aos="fade-up">
               <h3>
                 <p className="product-page__specs-title">About</p>
                 <hr />
@@ -222,7 +236,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
                 </React.Fragment>
               ))}
             </div>
-            <div className="product-page__specs">
+            <div className="product-page__specs" data-aos="fade-up">
               <h3>
                 <p className="product-page__specs-title">Tech specs</p>
                 <hr />

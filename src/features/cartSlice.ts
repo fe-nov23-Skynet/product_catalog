@@ -21,11 +21,6 @@ export interface CartState {
   itemsCount: number;
 }
 
-const initilState: CartState = {
-  cartProducts: [],
-  itemsCount: 0,
-};
-
 const prevState = localStorage.getItem('cartState');
 
 const initialState: CartState = prevState ? JSON.parse(prevState) : {
