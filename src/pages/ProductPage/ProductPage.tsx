@@ -1,8 +1,10 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import { Product } from '../../types/Product';
-import emptyHeart from '../../styles/icons/favourites_heart_like.svg';
 import './productPage.scss';
 
 import { SpecsList } from '../../components/SpecsList';
@@ -56,6 +58,13 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
     setProduct(productToSave);
     setLoading(false);
   }
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1500,
+      once: true,
+    });
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -113,11 +122,11 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
           <h2 className="product-page__title">{product.name}</h2>
 
           <div className="product-page__info">
-            <div className="product-page__images">
+            <div className="product-page__images" data-aos="fade-right">
               <SelectImage product={product} />
             </div>
 
-            <div className="product-page__settings">
+            <div className="product-page__settings" data-aos="fade-left">
 
               <div className="product-page__settings-group">
                 <div className="product-page__colors">
@@ -205,9 +214,8 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               {`ID: ${numericID}`}
               <CopyButton text={`${numericID}`} />
             </span>
-            <span className="product-page__id text-s-12 id--on-desktop">{`ID: ${numericID}`}</span>
 
-            <div className="product-page__about">
+            <div className="product-page__about" data-aos="fade-up">
               <h3>
                 <p className="product-page__specs-title">About</p>
                 <hr />
@@ -222,7 +230,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
                 </React.Fragment>
               ))}
             </div>
-            <div className="product-page__specs">
+            <div className="product-page__specs" data-aos="fade-up">
               <h3>
                 <p className="product-page__specs-title">Tech specs</p>
                 <hr />
