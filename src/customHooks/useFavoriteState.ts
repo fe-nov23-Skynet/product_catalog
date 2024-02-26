@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Product } from '../types/Product';
-import { addFavoriteProduct, removeFavoriteProduct } from '../features/favoritesSlice';
+import { Category, addFavoriteProduct, removeFavoriteProduct } from '../features/favoritesSlice';
 
 export const useFavoriteState = () => {
   const favoritesProducts = useSelector((state: RootState) => state.favorites.favoritesProducts);
@@ -11,19 +11,19 @@ export const useFavoriteState = () => {
 
   const dispatch = useDispatch();
 
-  const addToFavorites = (productToAdd: Product) => {
-    dispatch(addFavoriteProduct(productToAdd));
+  const addToFavorites = (productToAdd: Product, category: Category) => {
+    dispatch(addFavoriteProduct({ category, item: productToAdd }));
   };
 
   const removeFromFavorites = (productToRemove: Product) => {
     dispatch(removeFavoriteProduct(productToRemove));
   };
 
-  const handleFavoriteInFavorites = (productToHandle: Product) => {
+  const handleFavoriteInFavorites = (productToHandle: Product, category: Category) => {
     if (favoritesProducts.some(({ id }) => id === productToHandle.id)) {
       removeFromFavorites(productToHandle);
     } else {
-      addToFavorites(productToHandle);
+      addToFavorites(productToHandle, category);
     }
   };
 
