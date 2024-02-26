@@ -2,10 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { Root } from './Root';
 import { store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
 import './index.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const container = document.getElementById('root')!;
@@ -16,6 +18,7 @@ root.render(
     <Provider store={store}>
       <Router>
         <Root />
+        <ToastContainer position="bottom-right" autoClose={3000} />
       </Router>
     </Provider>
   </React.StrictMode>,

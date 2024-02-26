@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import { toast } from 'react-toastify';
 import { Product } from '../../types/Product';
 import './productPage.scss';
 
@@ -20,6 +21,7 @@ import { CartButton } from '../../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { CopyButton } from '../../components/UI/CopyButton';
+import { ErrorNotification } from '../../components/ErrorNotification';
 
 interface Props {
   product: Product;
@@ -59,6 +61,11 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
     setLoading(false);
   }
 
+  function catchError(e: string) {
+    toast.error('Couldn`t load product, check your internet connection.');
+    setLoading(false);
+  }
+
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -71,7 +78,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
     getProduct(currentPath, productId as string)
       .then(saveLoadedProduct)
-      .catch()
+      .catch(catchError)
       .finally();
   }, [productId, currentPath]);
 
