@@ -48,7 +48,7 @@
     grid-column: 1 / -1;
 
     @include on-tablet {
-      grid-column: 5 / 11;
+      grid-column: 4 / 10;
     }
 
     @include on-desktop {
