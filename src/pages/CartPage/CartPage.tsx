@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { useLocation, Link } from 'react-router-dom';
 import './CartPage.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { useCartState } from '../../customHooks/useCartState';
 import { CartProduct } from '../../components/CartProduct';
 
 export const CartPage: React.FC = () => {
   const [successOrder, setSuccessOrder] = useState<boolean>(false);
+  const [count, setCount] = useState(0);
 
   const {
     cartProducts,
@@ -24,10 +26,17 @@ export const CartPage: React.FC = () => {
 
   const handleCheckout = () => {
     setSuccessOrder(true);
+    setCount(cartCount);
     cartProducts.forEach(p => {
       deleteFromCart(p);
     });
   };
+
+  useEffect(() => {
+    if (successOrder) {
+      toast.success(`Your order in quantity - ${count} was completed successfully :)`);
+    }
+  }, [successOrder]);
 
   return (
     <div className="cart_page">
