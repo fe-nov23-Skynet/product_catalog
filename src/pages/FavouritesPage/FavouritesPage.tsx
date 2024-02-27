@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './favouritesPage.scss';
+import { Helmet } from 'react-helmet';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { Catalog } from '../Catalog';
 
@@ -8,7 +9,12 @@ export const FavouritesPage: React.FC = () => {
 
   return (
     <div className="favourites_page">
-      <h1 className="favourites_title">Favourites</h1>
+      <Helmet>
+        <title>{'favorites'.toUpperCase()}</title>
+      </Helmet>
+      <h1 className="favourites_title">Favorites</h1>
+
+      <span className="favourites_info">{`${favoritesProducts.length} favourites`}</span>
 
       {favoritesProducts.length === 0 ? (
         <div className="empty_favourites">

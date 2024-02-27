@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import Styles from './HomePage.module.scss';
 import Tablets_image from '../../banner-images/Tablets.png';
 import Phones_image from '../../banner-images/Phones.png';
@@ -20,23 +21,30 @@ export const HomePage: React.FC = () => {
   const bestPriceProducts = getBestPrice(allProducts);
   const newestProducts = getNewestProducts(allProducts);
 
+  function reMapProducts(pArray: Product[], category: string) {
+    return pArray.map(p => ({ ...p, category }));
+  }
+
   useEffect(() => {
     getProducts('phones')
-      .then(products => setPhonesArr(products));
+      .then(products => setPhonesArr(reMapProducts(products, 'phones')));
   }, []);
 
   useEffect(() => {
     getProducts('tablets')
-      .then(products => setTabletsArr(products));
+      .then(products => setTabletsArr(reMapProducts(products, 'tablets')));
   }, []);
 
   useEffect(() => {
     getProducts('accessories')
-      .then(products => setAccessoriesArr(products));
+      .then(products => setAccessoriesArr(reMapProducts(products, 'accessories')));
   }, []);
 
   return (
     <section>
+      <Helmet>
+        <title>{'home page'.toUpperCase()}</title>
+      </Helmet>
       <h1 className={Styles.home_page__title}>Welcome to Nice Gadgets store!</h1>
       <div className={Styles.home_page__SlideBarWrapper}>
         <SliderBar />

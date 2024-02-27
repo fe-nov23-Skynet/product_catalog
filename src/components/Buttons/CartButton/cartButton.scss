@@ -11,7 +11,7 @@
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
-  color: $color-h;
+  color: $color-white;
   background-color: $color-primary;
   border: none;
   padding: 0;
@@ -21,7 +21,8 @@
 
   &:hover {
     background-color: $color-primary;
-    box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.4);
+    // box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 3px 13px 0 $color-box-shadow;
   }
 }
 
@@ -36,7 +37,7 @@
   font-weight: 700;
   text-decoration: none;
   pointer-events: none;
-  color: $color-green;;
+  color: $color-cart-button-text;
   background-color: $color-bg;
   border: 1px solid $color-elements;
   padding: 0;

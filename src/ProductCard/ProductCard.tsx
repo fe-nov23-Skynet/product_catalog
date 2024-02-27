@@ -2,7 +2,6 @@ import { useState } from 'react';
 import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 import { Product } from '../types/Product';
-import { client } from '../api/fetchClient';
 import { SpecsList } from '../components/SpecsList';
 import { getSpecsList } from '../utils/getSpecsList';
 import { SPECS_SHORT } from '../pages/ProductPage';
@@ -24,14 +23,6 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { addToCart, cartProducts } = useCartState();
   const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
-
-  const makeFavorite = () => {
-    if (!favoriteProduct) {
-      setfavoriteProduct(product.id);
-    } else {
-      setfavoriteProduct('');
-    }
-  };
 
   return (
     <article
@@ -71,11 +62,12 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       <SpecsList
         specs={getSpecsList(product, SPECS_SHORT)}
         boldValue
+        className="text-s-12"
       />
 
       <div className="card__submit-container">
         <CartButton
-          onClick={() => addToCart(product, currentPath)}
+          onClick={() => addToCart(product, category)}
           active={cartProducts.some(({ id }) => id === product.id)}
         />
 
