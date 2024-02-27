@@ -8,6 +8,8 @@ import cn from 'classnames';
 import { useState } from 'react';
 import { ReactComponent as Favorites } from '../../styles/icons/Favourites.svg';
 import { ReactComponent as Cart } from '../../styles/icons/Cart.svg';
+import { ReactComponent as Moon } from '../../styles/icons/Moon.svg';
+import { ReactComponent as Sun } from '../../styles/icons/Sun.svg';
 import { ReactComponent as Menu } from '../../styles/icons/menu.svg';
 import { ReactComponent as Close } from '../../styles/icons/close.svg';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
@@ -90,7 +92,17 @@ export function Header() {
           <DropdownInput />
 
           <div className="header_box">
-            <ToggleButton componentKey={1} />
+            <div className="theme_button">
+              <div className="theme_badge">
+                {UIState.isDarkMode ? (
+                  <Sun width="15" height="15" />
+                ) : (
+                  <Moon width="15" height="15" />
+                )}
+              </div>
+
+              <ToggleButton componentKey={1} />
+            </div>
 
             <div className="header_box__container">
               <NavLink
