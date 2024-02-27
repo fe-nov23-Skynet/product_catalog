@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import Styles from './HomePage.module.scss';
 import Tablets_image from '../../banner-images/Tablets.png';
 import Phones_image from '../../banner-images/Phones.png';
@@ -41,6 +42,9 @@ export const HomePage: React.FC = () => {
 
   return (
     <section>
+      <Helmet>
+        <title>{'home page'.toUpperCase()}</title>
+      </Helmet>
       <h1 className={Styles.home_page__title}>Welcome to Nice Gadgets store!</h1>
       <div className={Styles.home_page__SlideBarWrapper}>
         <SliderBar />
