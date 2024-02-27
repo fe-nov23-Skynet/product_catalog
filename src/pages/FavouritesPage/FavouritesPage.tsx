@@ -10,6 +10,8 @@ export const FavouritesPage: React.FC = () => {
     <div className="favourites_page">
       <h1 className="favourites_title">Favourites</h1>
 
+      <span className="favourites_info">{`${favoritesProducts.length} favourites`}</span>
+
       {favoritesProducts.length === 0 ? (
         <div className="empty_favourites">
           <h1 className="empty_text">Favourites are empty</h1>
