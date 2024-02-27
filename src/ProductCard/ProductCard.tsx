@@ -62,6 +62,7 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
       <SpecsList
         specs={getSpecsList(product, SPECS_SHORT)}
         boldValue
+        className="text-s-12"
       />
 
       <div className="card__submit-container">
