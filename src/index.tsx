@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation, useParams } from 'react-router-dom';
 import { Root } from './Root';
 import { store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
@@ -14,9 +14,15 @@ const root = createRoot(container as HTMLDivElement);
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+  const currProduct = pathname?.split('-')[1];
+
+  const [prevProduct, setPrevProduct] = useState(currProduct);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (prevProduct !== currProduct) {
+      window.scrollTo(0, 0);
+      setPrevProduct(currProduct);
+    }
   }, [pathname]);
 
   return null;

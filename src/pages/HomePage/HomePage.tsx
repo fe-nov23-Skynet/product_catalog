@@ -20,19 +20,23 @@ export const HomePage: React.FC = () => {
   const bestPriceProducts = getBestPrice(allProducts);
   const newestProducts = getNewestProducts(allProducts);
 
+  function reMapProducts(pArray: Product[], category: string) {
+    return pArray.map(p => ({ ...p, category }));
+  }
+
   useEffect(() => {
     getProducts('phones')
-      .then(products => setPhonesArr(products));
+      .then(products => setPhonesArr(reMapProducts(products, 'phones')));
   }, []);
 
   useEffect(() => {
     getProducts('tablets')
-      .then(products => setTabletsArr(products));
+      .then(products => setTabletsArr(reMapProducts(products, 'tablets')));
   }, []);
 
   useEffect(() => {
     getProducts('accessories')
-      .then(products => setAccessoriesArr(products));
+      .then(products => setAccessoriesArr(reMapProducts(products, 'accessories')));
   }, []);
 
   return (
