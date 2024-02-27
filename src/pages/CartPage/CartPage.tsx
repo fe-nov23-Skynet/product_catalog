@@ -2,11 +2,9 @@
 import { useLocation, Link } from 'react-router-dom';
 import './CartPage.scss';
 import { useState } from 'react';
-import classNames from 'classnames';
-import { ReactComponent as Close } from '../../styles/icons/close.svg';
-import { ReactComponent as Minus } from '../../styles/icons/minus.svg';
-import { ReactComponent as Plus } from '../../styles/icons/plus.svg';
+
 import { useCartState } from '../../customHooks/useCartState';
+import { CartProduct } from '../../components/CartProduct';
 
 export const CartPage: React.FC = () => {
   const [successOrder, setSuccessOrder] = useState<boolean>(false);
@@ -66,58 +64,18 @@ export const CartPage: React.FC = () => {
       ) : (
         <>
           <div className="cart_list_products">
-            {cartProducts.map(product => (
-              <div className="cart_product" key={product.id}>
-                <div className="cart_product__top">
-                  <button
-                    className="cart_product__delete"
-                    onClick={() => deleteFromCart(product)}
-                  >
-                    <Close />
-                  </button>
-
-                  <img
-                    src={product.images[0]}
-                    alt={`${product.namespaceId}`}
-                    className="cart_product__img"
-                  />
-
-                  <Link
-                    to={`/${product.category}/${product.id}`}
-                    className="cart_product__name"
-                    state={{ prevPath }}
-                  >
-                    {product.name}
-                  </Link>
-                </div>
-
-                <div className="cart_product__bottom">
-                  <div className="number">
-                    <button
-                      className={classNames('cart_product__number minus', {
-                        minus_black: product.count > 1,
-                        nocursor: product.count <= 1,
-                      })}
-                      disabled={product.count <= 1}
-                      onClick={() => removeFromCart(product)}
-                    >
-                      <Minus />
-                    </button>
-
-                    <span>{product.count}</span>
-
-                    <button
-                      className="cart_product__number plus"
-                      onClick={() => addToCart(product, product.category)}
-                    >
-                      <Plus />
-                    </button>
-                  </div>
-
-                  <span className="cart_product__price">{`$${product.priceDiscount}`}</span>
-                </div>
-              </div>
-            ))}
+            {cartProducts.map(
+              product => (
+                <CartProduct
+                  product={product}
+                  onAdd={() => addToCart(product, product.category)}
+                  onDelete={() => deleteFromCart(product)}
+                  onMinus={() => removeFromCart(product)}
+                  prevPath={prevPath}
+                  key={product.id}
+                />
+              ),
+            )}
           </div>
 
           <div className="cart_total">
