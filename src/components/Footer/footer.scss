@@ -18,7 +18,7 @@
   &__logo {
     width: 92px;
     height: 32px;
-    background-image: url('../../styles/nice_gadgets_logo.svg');
+    background-image: url('../../styles/icons/nice_gadgets_logo.svg');
     background-repeat: no-repeat;
 
     & .home_link {
@@ -26,6 +26,11 @@
       line-height: 32px;
       color: transparent;
     }
+  }
+
+  .dark__theme {
+    background-image: url('../../styles/icons/logo_footer_dark.svg');
+    width: 89px;
   }
 
   &__links {

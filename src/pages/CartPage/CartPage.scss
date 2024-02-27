@@ -116,7 +116,7 @@
     // font-weight: 600;
     line-height: 21px;
     letter-spacing: 0em;
-    color: $color-primary;
+    color: $color-h;
 
     @include on-tablet {
       width: 176px;
@@ -148,15 +148,21 @@
   }
 
   .minus_black {
-    color: $color-primary;
+    color: $color-h;
     border: 1px solid $color-icons;
     cursor: pointer;
+  }
+
+  .count_product {
+    color: $color-h;
   }
 
   .plus {
     border: 1px solid $color-icons;
     margin-left: 13px;
     cursor: pointer;
+    background-color: inherit;
+    color: $color-h;
   }
 
   &__price {
@@ -165,6 +171,7 @@
     font-weight: 800;
     line-height: 31px;
     text-align: right;
+    color: $color-h;
 
     @include on-tablet {
       width: 80px;
@@ -177,7 +184,7 @@
 }
 
 .cart_product__delete:hover {
-  color: $color-primary;
+  color: $color-h;
 }
 
 .cart_total {
@@ -201,7 +208,7 @@
     line-height: 41px;
     letter-spacing: -0.01em;
     text-align: center;
-    color: $color-primary;
+    color: $color-h;
   }
 
   &__number {
