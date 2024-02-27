@@ -1,4 +1,5 @@
 /* eslint-disable object-curly-newline */
+import classNames from 'classnames';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './DropdownInput.scss';
 import { Link } from 'react-router-dom';
@@ -12,10 +13,11 @@ import { ShortProduct } from '../../types/ShortProduct';
 import { getShortProducts } from '../../api/api';
 
 interface Props {
-  onSelect : (p: Product) => void;
+  setIsSearchOpened: (arg: boolean) => void;
+  isSearchOpened: boolean;
 }
 
-export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
+export const DropdownInput: React.FC<Props> = ({ isSearchOpened, setIsSearchOpened }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [querry, setQuerry] = useState('');
   const [delayedQerry, setDelayedQerry] = useState('');
@@ -37,7 +39,7 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
     ? filterProducts(products, delayedQerry)
     : filterProductsAgain(products, delayedQerry);
 
-  function handleInput(event: React.ChangeEvent<HTMLInputElement>):void {
+  function handleInput(event: React.ChangeEvent<HTMLInputElement>): void {
     setQuerry(event.target.value);
     handleQuerry(event.target.value);
   }
@@ -68,13 +70,13 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
       <input
         type="text"
         placeholder="Enter search string"
-        className="search-input"
+        className={classNames('search-input', { 'open-input': isSearchOpened })}
         value={querry}
         onChange={handleInput}
         onFocus={() => setIsFocused(true)}
       />
 
-      <SearchIcon className="search-icon" />
+      <SearchIcon className="search-icon" onClick={() => setIsSearchOpened(!isSearchOpened)} />
 
       {isFocused && showList && (
         <ul className="dropdown-content">

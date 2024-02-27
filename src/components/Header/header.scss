@@ -73,6 +73,12 @@
   @include hoverHeaderFooter;
 }
 
+.dropdown_input {
+  display: flex;
+  align-items: center;
+  // width: 50px;
+}
+
 .header_box {
   display: flex;
   align-items: center;

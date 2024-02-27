@@ -17,6 +17,7 @@ import { useUIState } from '../../customHooks/useUIState';
 import { DropdownInput } from '../DropdownInput';
 
 export function Header() {
+  const [isSearchOpened, setIsSearchOpened] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [onClose, setOnClose] = useState(false);
   const { favoritesProducts } = useFavoriteState();
@@ -58,38 +59,51 @@ export function Header() {
         />
 
         <div className="header_container">
-          <nav className="header_nav">
-            <NavLink
-              to="/"
-              className={navItemClassName}
-            >
-              HOME
-            </NavLink>
+          {!isSearchOpened && (
+            <nav className="header_nav">
+              <NavLink
+                to="/"
+                className={navItemClassName}
+              >
+                HOME
+              </NavLink>
 
-            <NavLink
-              to="phones"
-              className={navItemClassName}
-            >
-              PHONES
-            </NavLink>
+              <NavLink
+                to="phones"
+                className={navItemClassName}
+              >
+                PHONES
+              </NavLink>
 
-            <NavLink
-              to="tablets"
-              className={navItemClassName}
-            >
-              TABLETS
-            </NavLink>
+              <NavLink
+                to="tablets"
+                className={navItemClassName}
+              >
+                TABLETS
+              </NavLink>
 
-            <NavLink
-              to="accessories"
-              className={navItemClassName}
-            >
-              ACCESSORIES
-            </NavLink>
-          </nav>
-          <DropdownInput />
+              <NavLink
+                to="accessories"
+                className={navItemClassName}
+              >
+                ACCESSORIES
+              </NavLink>
+            </nav>
+          )}
+
+          {/* <div className="dropdown_input">
+            <DropdownInput
+              isSearchOpened={isSearchOpened}
+              setIsSearchOpened={setIsSearchOpened}
+            />
+          </div> */}
 
           <div className="header_box">
+            <DropdownInput
+              isSearchOpened={isSearchOpened}
+              setIsSearchOpened={setIsSearchOpened}
+            />
+
             <ToggleButton componentKey={1} />
 
             <div className="header_box__container">
