@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { Link } from 'react-router-dom';
 import './footer.scss';
 import cn from 'classnames';
@@ -26,7 +27,9 @@ export const Footer = () => {
           </div>
           <div className="footer__go-top go-top">
             <div className="go-top__title">Back to top</div>
-            <div className="go-top__icon" />
+            <a href="#top-page" className="go-top__link">
+              <div className="go-top__icon" />
+            </a>
           </div>
         </footer>
       </div>

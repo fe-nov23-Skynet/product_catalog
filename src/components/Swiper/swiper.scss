@@ -49,7 +49,8 @@
 .swiper-button-next {
   margin-top: -32px;
   right: 0;
-  background-color: #fff;
+  background-color: $color-bg;
+  color: $color-primary;
 
   @media (max-width: 639px) {
     display: none;
@@ -57,7 +58,8 @@
 
   &::after {
     content: '';
-    background-color: #fff;
+    color: $color-primary;
+    background-color: $color-bg;
     background-image: url('../../styles/icons/chevron_arrow_right.svg');
     border: 1px solid $color-secondary;
     background-repeat: no-repeat;
@@ -72,21 +74,23 @@
     }
 
     @media (max-width: 639px) {
-      // width: 0;
-      // height: 0;
       content: none;
     }
   }
 
   &:hover::after {
-    border-color: #000;
+    transition-duration: 1s;
+    background-color: $color-hover;
+    color: $color-primary;
+    border: 1px solid $color-primary;
+    cursor: pointer;
   }
 
   &.swiper-button-disabled {
     opacity: 1;
 
     &::after {
-      border-color: #eee;
+      border-color: $color-secondary;
     }
   }
 }
@@ -94,7 +98,7 @@
 .swiper-button-prev {
   margin-top: -32px;
   left: 0;
-  background-color: #fff;
+  background-color: $color-bg;
 
   @media (max-width: 639px) {
     display: none;
@@ -102,7 +106,8 @@
 
   &::after {
     content: '';
-    background-color: #fff;
+    color: $color-primary;
+    background-color: $color-bg;
     background-image: url('../../styles/icons/chevron_arrow_left.svg');
     border: 1px solid $color-secondary;
     background-repeat: no-repeat;
@@ -120,17 +125,20 @@
   }
 
   &:hover::after {
-    border-color: #000;
+    transition-duration: 1s;
+    background-color: $color-hover;
+    color: $color-primary;
+    border: 1px solid $color-primary;
+    cursor: pointer;
   }
 
   &.swiper-button-disabled {
     opacity: 1;
 
     &::after {
-      border-color: #eee;
+      border-color: $color-secondary;
     }
   }
-
 }
 
 .swiper-pagination {
