@@ -216,7 +216,10 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
               <SpecsList specs={getSpecsList(product, SPECS_SHORT)} boldValue className="text-s-12" />
             </div>
-            <span className="product-page__id text-s-12 id--on-desktop">
+            <span
+              className="product-page__id text-s-12 id--on-desktop"
+              data-aos="fade-left"
+            >
               {`ID: ${numericID}`}
               <CopyButton text={`${numericID}`} />
             </span>

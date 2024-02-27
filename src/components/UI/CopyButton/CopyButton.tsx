@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import './copyButton.scss';
 import { useEffect, useState } from 'react';
+
+import { toast } from 'react-toastify';
 import { ReactComponent as CopyIcon } from './copy-svgrepo-com.svg';
 import { ReactComponent as Done } from './done-all-round-svgrepo-com.svg';
 
@@ -37,6 +39,7 @@ export const CopyButton: React.FC<Props> = (props) => {
 
     if (isCopied) {
       timerID = setTimeout(() => setIsCopied(false), 3000);
+      toast.success(`ID: ${text} successfully copied to clipboard :)`);
     }
 
     return () => clearTimeout(timerID);
