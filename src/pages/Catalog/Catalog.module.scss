@@ -38,20 +38,16 @@
   &__paginationWrapper {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    justify-self: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    margin-top: 40px;
 
     grid-column: 1 / -1;
 
     @include on-tablet {
-      grid-column: 5 / 11;
+      grid-column: 4 / 10;
     }
 
     @include on-desktop {
-      grid-column: 10 / 17;
-      padding-right: 20px;
+      grid-column: 9 / 17;
     }
   }
 
