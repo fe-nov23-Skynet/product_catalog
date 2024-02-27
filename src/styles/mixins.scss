@@ -16,7 +16,7 @@
   display: grid;
   //grid-auto-flow: row;
   column-gap: 16px;
-  grid-template-columns: repeat(var(--columns), minmax(0, 1fr)); 
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
   justify-content: center;
 
   @include on-tablet {
@@ -44,8 +44,22 @@
   }
 }
 
+.item-deleting {
+  animation: deletingAnimation .5s;
+}
+
 @mixin hoverHeaderFooter {
   transition-duration: 1s;
   background-color: $color-hover;
   color: $color-primary;
 }
+
+@keyframes deletingAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+

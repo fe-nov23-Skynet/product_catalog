@@ -5,7 +5,7 @@ import { Product } from '../types/Product';
 // export type Category = 'phones' | 'accessories' | 'tablets';
 export type Category = string;
 
-interface CartItem extends Product {
+export interface CartItem extends Product {
   count: number;
   category: string;
 }
