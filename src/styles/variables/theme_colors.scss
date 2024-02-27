@@ -9,7 +9,8 @@
   --color-green: #37ae60;
   --color-red: #eb5757;
   --color-h: #313237;
-  
+  --color-surface1: #fafbfc;
+  --color-surface2: #e2e6e9;
 }
 
 .dark-theme {
@@ -17,12 +18,14 @@
   --color-secondary: #75767f;
   --color-icons: #4A4D58;
   --color-elements: #3b3e4a;
-  --color-hover:#323542; 
+  --color-hover:#323542;
   --color-bg: #0f1121;
   --color-white: #f1f2f9;
   --color-green: #37ae60;
   --color-red: #eb5757;
   --color-h: #f1f2f9;
+  --color-surface1: #161827;
+  --color-surface2: #161827;
 }
 
 $color-primary: var(--color-primary);
@@ -35,3 +38,5 @@ $color-white: var(--color-white);
 $color-green: var(--color-green);
 $color-red: var(--color-red);
 $color-h: var(--color-h);
+$color-surface1: var(--color-surface1);
+$color-surface2: var(--color-surface2);

@@ -2,13 +2,14 @@
 
 .card {
   width: 100%;
-  border: 1px solid #E2E6E9;
+  border: 1px solid $color-surface2;
   padding: 31px;
   font-family: inherit;
   display: flex;
   flex-direction: column;
   gap: 8px;
   justify-content: end;
+  background-color: $color-surface1;
 
   &__img {
     display: block;
@@ -27,7 +28,7 @@
     margin: 0;
     margin-bottom: 4px;
     font-weight: 500;
-    color: #060b35;
+    color: $color-h;
     padding-top: 16px;
     margin-bottom: 8px;
     font-weight: 600;
@@ -66,7 +67,7 @@
     margin: 0;
     font-size: 22px;
     line-height: 31px;
-    color: $color-primary;
+    color: $color-h;
   }
 
   &__price-current {

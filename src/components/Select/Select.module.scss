@@ -5,11 +5,10 @@ $open-duration: .3s;
 $list-height: 200px;
 
 .select {
-
   display: flex;
   align-items: start;
   flex-direction: column;
-
+  color: $color-primary;
   box-sizing: border-box;
 
   cursor: pointer;
@@ -37,15 +36,15 @@ $list-height: 200px;
     border: 1px solid $color-icons;
     cursor: pointer;
     font: inherit;
+    color: $color-primary;
 
     &:hover {
       border-color: $color-secondary;
     }
-  
+
     &:focus {
       border-color: $color-primary;
     }
-  
   }
 
   &_title {
@@ -66,12 +65,12 @@ $list-height: 200px;
   &_list {
     width: 100%;
     height: 100%;
-  
+
     list-style: none;
     margin: 0;
     padding: 8px 1px;
     border: 1px solid $color-elements;
-    overflow-y: hidden;
+    overflow-y: auto;
   }
 
   &_item {
@@ -81,11 +80,12 @@ $list-height: 200px;
     box-sizing: border-box;
     color: $color-secondary;
     font-weight: 500;
-    transition: background-color $open-duration, color $open-duration;
+    transition: background-color $open-duration * 2,
+                color $open-duration * 2;
 
     &:hover {
       color: $color-primary;
-      background-color: $color-bg;
+      background-color: $color-hover;
       cursor: pointer;
     }
   }
@@ -94,22 +94,30 @@ $list-height: 200px;
 .list_wrapper {
   position: absolute;
   top: $select-height + 4px;
-  left: 0px;
-  width: 100%;
-  background-color: $color-white;
-  max-height: $list-height;
-  overflow-y: auto;
-  opacity: 0;
+  left: 0;
+  right: 0;
+
+  background-color: $color-bg;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+
+  overflow: hidden;
   pointer-events: none;
-  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.05);
-  transition: transform $open-duration ease-out, opacity $open-duration ease-out;
-  transform: translateY(-10%) scaleY(0);
+
+  max-height: 0;
+  opacity: 0;
+
+  transform: translateY(-10%) ;
   transform-origin: top center;
+  transition: transform $open-duration ease-out,
+              max-height $open-duration ease-out,
+              opacity $open-duration ease-in;
 }
 
 .list_wrapper--open {
-  transform: translateX(0%) scaleY(1);
+  transform: translateY(0%);
   opacity: 1;
   pointer-events: auto;
   z-index: 9;
+  overflow: visible;
+  max-height: $list-height;
 }

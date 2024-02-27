@@ -1,3 +1,5 @@
+@import '../../styles/variables/theme_colors.scss';
+
 .specs-list {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,7 @@
   &__item {
     display: flex;
     justify-content: space-between;
+    color: $color-h;
   }
 
   &__spec {
