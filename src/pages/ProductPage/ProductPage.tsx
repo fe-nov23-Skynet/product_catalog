@@ -177,7 +177,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
                           <ColorLink
                             to={`/${currentPath}/${link}`}
                             color={color.replaceAll('-', '')}
-                            selected={productId?.includes(color)}
+                            selected={productId?.includes(`-${color}`)}
                           />
                         </li>
                       );
