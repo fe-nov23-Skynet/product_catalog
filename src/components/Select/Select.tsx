@@ -15,7 +15,7 @@ import Styles from './Select.module.scss';
 
 type SelectValue = string | number;
 
-interface SelectOption {
+export interface SelectOption {
   value: SelectValue;
   title: string;
 }
@@ -25,7 +25,8 @@ interface Props {
   title: string;
   options: SelectOption[];
   selectedOption?: SelectOption;
-  onSelect?: Dispatch<SetStateAction<string | number>>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onSelect?: (...args: any[]) => void;
   className: string;
 
 }
@@ -47,7 +48,7 @@ export const Select: React.FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(selectedOption?.title || '');
   const rootRef = useRef<HTMLDivElement>(null);
-  const placeHolder = title === 'Sort by' ? SORTED_BY_DEFAULT : ITEMS_PER_PAGE_DEFAULT;
+  const placeHolder = selectedOption?.title || 'Select option';
 
   function handleList() {
     setIsOpen(!isOpen);
@@ -56,7 +57,7 @@ export const Select: React.FC<Props> = (props) => {
   function selectItem(option: SelectOption) {
     setSelectedValue(option.title);
     setIsOpen(false);
-    onSelect(option.value);
+    onSelect(option);
   }
 
   function handleKeyOnOption(

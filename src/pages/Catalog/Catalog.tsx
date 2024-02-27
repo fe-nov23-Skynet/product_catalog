@@ -1,11 +1,12 @@
 /* eslint-disable indent */
 import { useState } from 'react';
 import 'rc-pagination/assets/index.css';
-import { Select } from '../../components/Select/Select';
+import { Select, SelectOption } from '../../components/Select/Select';
 import Styles from './Catalog.module.scss';
 import { ProductCard } from '../../ProductCard/ProductCard';
 import { Product } from '../../types/Product';
 import { PaginationBlock } from '../../components/Pagination/Pagination';
+import { useLocalStorage } from '../../customHooks/useLocalStorage';
 
 interface Props {
   products: Product[];
@@ -15,8 +16,8 @@ export const Catalog: React.FC<Props> = ({ products }) => {
   const a = 0;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemPerPage] = useState(12);
-  const [sortedBy, setSortedBy] = useState('');
+  const [itemsPerPage, setItemPerPage] = useLocalStorage<SelectOption>('itemsPerPage', { value: 20, title: '12' });
+  const [sortedBy, setSortedBy] = useLocalStorage<SelectOption>('sortedBy', { value: 'price-low', title: 'Price low' });
 
   const sortBy = [
     { value: 'price-low', title: 'Price low' },
@@ -53,30 +54,32 @@ export const Catalog: React.FC<Props> = ({ products }) => {
     return sortedphonesArr;
   };
 
-  const phonesArr = handleSortBy(sortedBy) || products;
+  const phonesArr = handleSortBy(sortedBy.value.toString()) || products;
 
-  const startIndex: number = (currentPage - 1) * itemsPerPage;
-  const endIndex: number = startIndex + itemsPerPage;
+  const startIndex: number = (currentPage - 1) * +itemsPerPage.value;
+  const endIndex: number = startIndex + +itemsPerPage.value;
   const visibleData: Product[] = phonesArr.slice(startIndex, endIndex);
 
   return (
     <>
-      {phonesArr.length > itemsPerPage && (
+      {phonesArr.length > +itemsPerPage.value && (
         <>
           <Select
             title="Sort by"
             options={sortBy}
+            selectedOption={sortedBy}
             className={Styles.catalog__sort}
-            onSelect={(value) => {
-              setSortedBy(value.toString());
+            onSelect={(option) => {
+              setSortedBy(option);
             }}
           />
           <Select
             title="Items on page"
             options={itemsOnPage}
+            selectedOption={itemsPerPage}
             className={Styles.catalog__itemsOnPage}
-            onSelect={(value) => {
-              setItemPerPage(+value);
+            onSelect={(option) => {
+              setItemPerPage(option);
             }}
           />
         </>
@@ -93,14 +96,14 @@ export const Catalog: React.FC<Props> = ({ products }) => {
           ),
         )}
       </ul>
-      {phonesArr.length > itemsPerPage && (
+      {phonesArr.length > +itemsPerPage.value && (
         <div className={Styles.catalog__paginationWrapper}>
           <PaginationBlock
             className={Styles.catalog__customPagination}
             currentPage={currentPage}
             total={products.length}
             setCurrentPage={setCurrentPage}
-            itemsPerPage={itemsPerPage}
+            itemsPerPage={+itemsPerPage.value}
           />
         </div>
       )}

@@ -76,7 +76,7 @@ export const CartProduct: React.FC<Props> = (props) => {
             <Minus />
           </button>
 
-          <span>{product.count}</span>
+          <span className="count_product">{product.count}</span>
 
           <button
             className="cart_product__number plus"
