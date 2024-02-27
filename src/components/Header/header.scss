@@ -29,7 +29,7 @@
     }
   }
 
-  
+
   .dark__theme {
     background-image: url('../../styles/icons/LogoSmall_Dark.svg');
 
@@ -65,6 +65,7 @@
       line-height: 11px;
       letter-spacing: 0.04em;
       height: 100%;
+      padding: 0 10px;
     }
   }
 }
@@ -76,6 +77,18 @@
 .header_box {
   display: flex;
   align-items: center;
+
+  .theme_button {
+    display: flex;
+    align-items: center;   
+  }
+}
+
+.theme_badge {
+  height: 15px;
+  width: 15px;
+  color: $color-h;
+  margin-right: 10px;
 }
 
 .header_box__container {
