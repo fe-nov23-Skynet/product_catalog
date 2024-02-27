@@ -14,6 +14,7 @@ import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { useCartState } from '../../customHooks/useCartState';
 import { ToggleButton } from './ToggleButton';
 import { useUIState } from '../../customHooks/useUIState';
+import { DropdownInput } from '../DropdownInput';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -86,6 +87,7 @@ export function Header() {
               ACCESSORIES
             </NavLink>
           </nav>
+          <DropdownInput />
 
           <div className="header_box">
             <ToggleButton componentKey={1} />
