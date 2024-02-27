@@ -4,6 +4,7 @@ import './CartPage.scss';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
+import { Helmet } from 'react-helmet';
 import { useCartState } from '../../customHooks/useCartState';
 import { CartProduct } from '../../components/CartProduct';
 
@@ -40,6 +41,10 @@ export const CartPage: React.FC = () => {
 
   return (
     <div className="cart_page">
+      <Helmet>
+        <title>{'cart'.toUpperCase()}</title>
+      </Helmet>
+
       <h1 className="cart_title">Cart</h1>
 
       {cartProducts.length === 0 ? (

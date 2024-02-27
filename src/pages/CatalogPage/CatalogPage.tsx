@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { Product } from '../../types/Product';
 import { getProducts } from '../../api/api';
 import { Loader } from '../../components/Loader';
@@ -29,6 +30,10 @@ export const CatalogPage: React.FC<Props> = ({ pageTitle }) => {
 
   return (
     <div className="catalog-page">
+      <Helmet>
+        <title>{pageTitle.toUpperCase()}</title>
+      </Helmet>
+
       <h1 className="catalog-page__title">{pageTitle}</h1>
       <span className="catalog-page__info">{`${productsArray.length} models`}</span>
       {loading && <Loader />}
