@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
-import { ToastContainer } from 'react-toastify';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { Root } from './Root';
 import { store } from './redux/store';
@@ -29,7 +28,7 @@ root.render(
       <Router>
         <ScrollToTop />
         <Root />
-        <ToastContainer position="bottom-right" autoClose={3000} />
+
       </Router>
     </Provider>
   </React.StrictMode>,
