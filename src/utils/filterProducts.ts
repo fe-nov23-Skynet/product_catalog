@@ -20,3 +20,23 @@ export function filterProducts(
 
   return productsCopy;
 }
+
+export function filterProductsAgain(
+  products: ShortProduct[],
+  query: string,
+): ShortProduct[] {
+  const normalizedQuery = query.toLowerCase().trim();
+
+  if (!normalizedQuery) {
+    return products;
+  }
+
+  const queryWords = normalizedQuery.split(' ').filter(Boolean);
+
+  return products.filter(
+    product => queryWords.every(
+      word => Object.values(product)
+        .some(value => typeof value === 'string' && value.toLowerCase().includes(word)),
+    ),
+  );
+}

@@ -2,8 +2,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './DropdownInput.scss';
 import { Link } from 'react-router-dom';
+import { ReactComponent as SearchIcon } from './searchIcon.svg';
 import { debounce } from '../../utils/debounce';
-import { filterProducts } from '../../utils/filterProducts';
+import { filterProducts, filterProductsAgain } from '../../utils/filterProducts';
 
 import { Product } from '../../types/Product';
 
@@ -20,7 +21,7 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
   const [delayedQerry, setDelayedQerry] = useState('');
   const rootRef = useRef<HTMLDivElement>(null);
   const [products, setProducts] = useState<ShortProduct[]>([]);
-  const showList = querry === delayedQerry && products.length > 0 && querry;
+  const showList = /* querry === delayedQerry && */ products.length > 0 && delayedQerry;
   const delay = 500;
 
   useEffect(() => {
@@ -32,7 +33,9 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
 
   const handleQuerry = useCallback(debounce(setDelayedQerry, delay), [delay]);
 
-  const visibleProducts = filterProducts(products, delayedQerry);
+  const visibleProducts = filterProducts(products, delayedQerry).length > 0
+    ? filterProducts(products, delayedQerry)
+    : filterProductsAgain(products, delayedQerry);
 
   function handleInput(event: React.ChangeEvent<HTMLInputElement>):void {
     setQuerry(event.target.value);
@@ -70,6 +73,8 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
         onChange={handleInput}
         onFocus={() => setIsFocused(true)}
       />
+
+      <SearchIcon className="search-icon" />
 
       {isFocused && showList && (
         <ul className="dropdown-content">
