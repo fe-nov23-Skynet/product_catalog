@@ -1,3 +1,4 @@
+import { ShortProduct } from '../types/ShortProduct';
 import { Product } from '../types/Product';
 import { client } from './fetchClient';
 
@@ -10,4 +11,7 @@ export function getProduct(currentPath: string, productId: string) {
 
 export function getProducts(currentPath: string) {
   return client.get<Product[]>(`api/${currentPath}.json`);
+}
+export function getShortProducts(currentPath: string) {
+  return client.get<ShortProduct[]>(`api/${currentPath}.json`);
 }

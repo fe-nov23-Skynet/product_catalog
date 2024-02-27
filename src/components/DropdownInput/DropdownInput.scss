@@ -1,0 +1,106 @@
+@import '../../styles/variables/theme_colors.scss';
+
+$search-height: 40px;
+
+.searchSection {
+  display: flex;
+  position: relative;
+  gap: 5px;
+  width: 350px;
+  color: $color-h;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: $search-height + 4px;
+  max-height: 250px;
+  overflow: auto;
+  width: 100%;
+  background-color: $color-bg;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid $color-elements;
+  box-shadow: 0 0 10px $color-elements;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.search-input {
+  border: 1px solid $color-icons;
+  height: $search-height;
+  width: 100%;
+  font-family: inherit;
+  padding: 8px;
+  background-color: $color-elements;
+  border-radius: 2px;
+  transition: border-color .3s;
+
+  &:hover {
+    border-color: $color-secondary;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+}
+
+.search__link {
+  padding: 8px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding-inline: 12px;
+  gap: 8px;
+  align-items: center;
+  color: $color-h;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.search__product {
+  position: relative;
+  height: $search-height * 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-surface1;
+  transition: background-color .3s;
+
+  &:not(:last-child)::after {
+    content: '';
+    bottom: -2px;
+    left: 10px;
+    right: 10px;
+    background-color: $color-elements;
+    position: absolute;
+    border-bottom: 1px solid $color-elements;
+  }
+
+  &:hover {
+    background-color: $color-elements;
+  }
+}
+
+.search__product-img {
+  height: 70%;
+  width: auto;
+  aspect-ratio: 1;
+  object-fit: scale-down;
+}
+
+/* .input-width {
+  width: 100px;
+}
+
+.field-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+a.dropdown-item, button.dropdown-item {
+  padding-right: 0;
+}
+ */
