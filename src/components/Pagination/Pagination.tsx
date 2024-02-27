@@ -15,11 +15,20 @@ export const PaginationBlock: React.FC<Props> = ({
   currentPage,
   setCurrentPage,
   itemsPerPage,
-}) => (
-  <Pagination
-    current={currentPage}
-    total={total}
-    pageSize={itemsPerPage}
-    onChange={setCurrentPage}
-  />
-);
+}) => {
+  const handleScrollUp = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <Pagination
+      current={currentPage}
+      total={total}
+      pageSize={itemsPerPage}
+      onChange={(event) => {
+        setCurrentPage(event);
+        handleScrollUp();
+      }}
+    />
+  );
+};

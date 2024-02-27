@@ -11,6 +11,10 @@
   --color-h: #313237;
   --color-surface1: #fafbfc;
   --color-surface2: #e2e6e9;
+  --color-white-counter: #fff;
+  --color-cart-button-text: #37ae60;
+  --color-favorite-button-svg: #313237;
+  --color-box-shadow: rgba(0, 0, 0, 0.4);
 }
 
 .dark-theme {
@@ -26,6 +30,10 @@
   --color-h: #f1f2f9;
   --color-surface1: #161827;
   --color-surface2: #161827;
+  --color-white-counter: #0f1121;
+  --color-cart-button-text: #F1F2F9;
+  --color-favorite-button-svg: #f1f2f9;
+  --color-box-shadow: rgba(143, 205, 231, 0.4);
 }
 
 $color-primary: var(--color-primary);
@@ -40,3 +48,7 @@ $color-red: var(--color-red);
 $color-h: var(--color-h);
 $color-surface1: var(--color-surface1);
 $color-surface2: var(--color-surface2);
+$color-white-counter: var(--color-white-counter);
+$color-cart-button-text: var(--color-cart-button-text);
+$color-favorite-button-svg: var(--color-favorite-button-svg);
+$color-box-shadow: var(--color-box-shadow);

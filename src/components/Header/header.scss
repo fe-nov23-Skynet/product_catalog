@@ -100,6 +100,10 @@
   justify-content: center;
   border-left: 1px solid $color-secondary;
 
+  svg {
+    color: $color-favorite-button-svg;
+  }
+
   @include on-desktop {
     width: 64px;
     height: 64px;
@@ -116,14 +120,13 @@
     align-items: center;
     justify-content: center;
     color: $color-white;
-    border: 2px solid $color-white;
+    border: 2px solid $color-white-counter;
     font-family: Mont;
     font-size: 8px;
-    font-weight: 700;
-    line-height: 12px;
-    letter-spacing: 0em;
 
     @include on-tablet {
+      padding-top: 1px;
+      padding-right: 1px;
       top: 15%;
       right: 18%;
     }
@@ -131,6 +134,7 @@
     @include on-desktop {
       top: 23%;
       right: 25%;
+      padding-top: 2px;
     }
   }
 }
@@ -229,6 +233,10 @@
     border-right: 1px solid $color-secondary;
     text-align: center;
 
+    svg {
+      color: $color-favorite-button-svg;
+    }
+
     &_image_fav {
       position: absolute;
       top: 23%;
@@ -242,12 +250,9 @@
       align-items: center;
       justify-content: center;
       color: $color-white;
-      border: 2px solid $color-white;
+      border: 2px solid $color-white-counter;
       font-family: Mont;
       font-size: 8px;
-      font-weight: 700;
-      line-height: 12px;
-      letter-spacing: 0em;
     }
 
     &_image_cart {
@@ -263,12 +268,10 @@
       align-items: center;
       justify-content: center;
       color: $color-white;
-      border: 2px solid $color-white;
+      border: 2px solid $color-white-counter;
       font-family: Mont;
       font-size: 8px;
-      font-weight: 700;
-      line-height: 12px;
-      letter-spacing: 0em;
+
     }
   }
 }
@@ -292,6 +295,6 @@
     bottom: 0;
     width: 100%;
     height: 2px;
-    background-color: $color-primary;
+    background-color: $color-favorite-button-svg;
   }
 }

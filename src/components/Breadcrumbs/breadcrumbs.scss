@@ -14,6 +14,10 @@
 
 .crumb_home {
   display: flex;
+
+  svg {
+    color: $color-favorite-button-svg;
+  }
 }
 
 .crumb_arrow {

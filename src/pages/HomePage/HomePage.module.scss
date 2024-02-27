@@ -55,6 +55,8 @@
 
   &__image {
     width: 288px;
+    transition: transform .3s,
+                box-shadow .3s;
 
     @include on-tablet {
       width: 187px;
@@ -62,6 +64,12 @@
 
     @include on-desktop {
       width: 368px;
+      box-shadow: 0px 0px 0px $color-box-shadow;
+
+      &:hover {
+        transform: translateY(-5%);
+        box-shadow: 0px 40px 40px -10px $color-box-shadow;
+      }
     }
   }
 

@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation } from 'swiper/modules';
+import { Autoplay, Navigation, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
 import './slider.scss';
 import { ProductCard } from '../../ProductCard/ProductCard';
 import { Product } from '../../types/Product';
@@ -22,7 +23,8 @@ export const SliderGoods: React.FC<Props> = ({ title, products }) => {
         {products.length !== 0 && (
           <Swiper
             navigation
-            modules={[Autoplay, Navigation]}
+            // effect="fade"
+            modules={[Autoplay, Navigation, EffectFade]}
             autoplay={{
               delay: 3500,
               disableOnInteraction: true,

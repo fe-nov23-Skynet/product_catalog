@@ -51,7 +51,7 @@ export function Header() {
 
   return (
     <>
-      <header className="header">
+      <header className="header" id="top-page">
         <NavLink
           to="/"
           className={cn('header_logo__img', { dark__theme: UIState.isDarkMode })}

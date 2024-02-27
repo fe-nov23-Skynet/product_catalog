@@ -1,3 +1,5 @@
+@import '../../../styles/variables/theme_colors.scss';
+
 .make-favorite {
   display: flex;
   cursor: pointer;
@@ -5,10 +7,16 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  border: solid 1px #B4BDC3;
-  background-color: white;
+  border: solid 1px $color-secondary;
+  background-color: $color-bg;
+  ;
+
+  svg {
+    color: $color-favorite-button-svg;
+  }
 
   &:hover {
-    border: 1px solid #313237
+    border: 1px solid $color-primary;
   }
+
 }
