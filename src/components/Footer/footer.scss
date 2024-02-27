@@ -6,7 +6,6 @@
 }
 
 .footer {
-  // max-width: 1440px;
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: 1fr auto 1fr;
@@ -86,17 +85,25 @@
     line-height: 12px;
   }
 
+  &__link {
+    scroll-behavior: smooth;
+  }
+
   &__icon {
     box-sizing: border-box;
     width: 32px;
     height: 32px;
+    // border-radius: 2px;
     background-image: url('../../styles/icons/chevron_arrow_up.svg');
     background-position: center;
     background-repeat: no-repeat;
     border: 1px solid $color-secondary;
 
     &:hover {
-      border: 1px solid #000;
+      transition-duration: 1s;
+      background-color: $color-hover;
+      color: $color-primary;
+      border: 1px solid $color-primary;
       cursor: pointer;
     }
   }

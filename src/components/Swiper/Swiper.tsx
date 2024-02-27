@@ -1,11 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import {
+  Pagination, Navigation, Autoplay, EffectFade,
+} from 'swiper/modules';
 import Slide_1_image from '../../banner-images/banner-tablets.png';
 import Slide_2_image from '../../banner-images/banner-phones.png';
 import Slide_3_image from '../../banner-images/banner-accessories.png';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 import './swiper.scss';
 
 export const SliderBar = () => (
@@ -14,12 +17,13 @@ export const SliderBar = () => (
       <Swiper
         navigation
         pagination={{ dynamicBullets: true }}
-        modules={[Pagination, Navigation, Autoplay]}
+        modules={[Pagination, Navigation, Autoplay, EffectFade]}
         spaceBetween={20}
         slidesPerView={1}
+        effect="fade"
         autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
+          delay: 2500,
+          disableOnInteraction: true,
         }}
       >
         <SwiperSlide>
