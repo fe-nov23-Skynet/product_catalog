@@ -1,7 +1,8 @@
 /* eslint-disable object-curly-newline */
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from 'react';
 import './DropdownInput.scss';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as SearchIcon } from './searchIcon.svg';
 import { ReactComponent as CloseIcon } from '../../styles/icons/close.svg';
 import { debounce } from '../../utils/debounce';
@@ -24,6 +25,8 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
   const [products, setProducts] = useState<ShortProduct[]>([]);
   const showList = products.length > 0 && delayedQerry;
   const delay = 500;
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (delayedQerry) {
@@ -68,7 +71,7 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
     <div className="searchSection" ref={rootRef}>
       <input
         type="text"
-        placeholder="Enter search string"
+        placeholder={t('search.placeHolder')}
         className="search-input"
         value={querry}
         onChange={handleInput}
@@ -86,7 +89,7 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
       {isFocused && showList && (
         <ul className="dropdown-content">
           {visibleProducts.length < 1 && (
-            <li className="search__product">No results found</li>
+            <li className="search__product">{t('search.notFound')}</li>
           )}
 
           {visibleProducts.length > 0 && visibleProducts.map(

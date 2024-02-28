@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 import { Product } from '../../types/Product';
 import { getProducts } from '../../api/api';
 import { Loader } from '../../components/Loader';
@@ -15,6 +16,7 @@ export const CatalogPage: React.FC<Props> = ({ pageTitle }) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const [productsArray, setProductsArray] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   function saveLoadedProducts(productsToSave: Product[]): void {
     setProductsArray(productsToSave);
@@ -35,7 +37,7 @@ export const CatalogPage: React.FC<Props> = ({ pageTitle }) => {
       </Helmet>
 
       <h1 className="catalog-page__title">{pageTitle}</h1>
-      <span className="catalog-page__info">{`${productsArray.length} models`}</span>
+      <span className="catalog-page__info">{`${productsArray.length} ${t('catalog.models')}`}</span>
       {loading && <Loader />}
       {loading ? (
         <Loader />

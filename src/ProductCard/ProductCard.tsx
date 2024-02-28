@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import classNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 import { Product } from '../types/Product';
@@ -10,6 +10,7 @@ import { CartButton } from '../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../customHooks/useFavoriteState';
 import { FavoriteItem } from '../features/favoritesSlice';
+import { useTranslate } from '../customHooks/useTranslate';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props {
@@ -23,6 +24,10 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { addToCart, cartProducts } = useCartState();
   const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
+
+  const { LanguageState } = useTranslate();
+
+  const currency = LanguageState.language === 'en' ? '$' : '₴';
 
   return (
     <article
@@ -51,9 +56,9 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
 
       <div className={classNames('card__price')}>
         <span className="card__price-current">
-          {`$${product.priceDiscount}`}
+          {`${currency}${product.priceDiscount}`}
           <span className="card__price-old">
-            {`$${product.priceRegular}`}
+            {`${currency}${product.priceRegular}`}
           </span>
         </span>
         <hr />
