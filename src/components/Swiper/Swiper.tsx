@@ -40,12 +40,6 @@ export const SliderBar = () => (
         <SwiperSlide>
           <img src={Slide_1_image} alt="" />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src={Slide_3_image} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={Slide_2_image} alt="" />
-        </SwiperSlide>
       </Swiper>
     </div>
   </div>
