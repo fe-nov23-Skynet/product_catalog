@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './DropdownInput.scss';
 import { Link } from 'react-router-dom';
 import { ReactComponent as SearchIcon } from './searchIcon.svg';
+import { ReactComponent as CloseIcon } from '../../styles/icons/close.svg';
 import { debounce } from '../../utils/debounce';
 import { filterProducts, filterProductsAgain } from '../../utils/filterProducts';
 
@@ -12,7 +13,7 @@ import { ShortProduct } from '../../types/ShortProduct';
 import { getShortProducts } from '../../api/api';
 
 interface Props {
-  onSelect : (p: Product) => void;
+  onSelect: (p: Product) => void;
 }
 
 export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
@@ -21,7 +22,7 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
   const [delayedQerry, setDelayedQerry] = useState('');
   const rootRef = useRef<HTMLDivElement>(null);
   const [products, setProducts] = useState<ShortProduct[]>([]);
-  const showList = /* querry === delayedQerry && */ products.length > 0 && delayedQerry;
+  const showList = products.length > 0 && delayedQerry;
   const delay = 500;
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
     ? filterProducts(products, delayedQerry)
     : filterProductsAgain(products, delayedQerry);
 
-  function handleInput(event: React.ChangeEvent<HTMLInputElement>):void {
+  function handleInput(event: React.ChangeEvent<HTMLInputElement>): void {
     setQuerry(event.target.value);
     handleQuerry(event.target.value);
   }
@@ -74,7 +75,13 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
         onFocus={() => setIsFocused(true)}
       />
 
-      <SearchIcon className="search-icon" />
+      {querry === '' ? (<SearchIcon className="search-icon" />)
+        : (
+          <CloseIcon
+            className="removeSearch-icon"
+            onClick={() => setQuerry('')}
+          />
+        )}
 
       {isFocused && showList && (
         <ul className="dropdown-content">

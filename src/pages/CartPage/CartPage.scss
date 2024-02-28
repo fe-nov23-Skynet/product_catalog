@@ -97,6 +97,7 @@
     background-color: inherit;
     padding: 0;
     color: $color-icons;
+    transition: color .3s;
     cursor: pointer;
   }
 
@@ -144,13 +145,19 @@
     border: 1px solid $color-elements;
     margin-right: 13px;
     color: $color-icons;
-    
+
   }
 
   .minus_black {
     color: $color-h;
     border: 1px solid $color-icons;
     cursor: pointer;
+    transition: border-color .3s, box-shadow .3s, ;
+
+    &:hover {
+      border-color: $color-primary;
+      box-shadow: 0 0 5px $color-elements;
+    }
   }
 
   .count_product {
@@ -163,6 +170,12 @@
     cursor: pointer;
     background-color: inherit;
     color: $color-h;
+    transition: border-color .3s, box-shadow .3s, ;
+
+    &:hover {
+      border-color: $color-primary;
+      box-shadow: 0 0 5px $color-elements;
+    }
   }
 
   &__price {
@@ -234,6 +247,12 @@
     // font-weight: 700;
     line-height: 21px;
     cursor: pointer;
+
+    transition: box-shadow .3s, ;
+
+    &:hover {
+      box-shadow: 0 0 10px $color-box-shadow;
+    }
   }
 }
 
