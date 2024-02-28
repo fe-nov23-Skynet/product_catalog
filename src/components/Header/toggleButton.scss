@@ -5,6 +5,10 @@
   width: 30px;
   height: 15px;
   margin-right: 20px;
+
+  @include on-tablet {
+    margin-right: 10px;
+  }
 }
 
 .toggle-mobile {

@@ -51,6 +51,7 @@ $search-height: 40px;
     border: 1px solid $color-secondary;
     /* box-shadow: 0 0 5px $color-icons; */
   }
+
   @include on-desktop {
     display: inline;
   }
@@ -58,17 +59,53 @@ $search-height: 40px;
 
 .open-input {
   display: inline;
+  z-index: 9;
+  position: absolute;
+  right: 0;
+  top: -20px;
+  width: 170px;
+
+  @include on-tablet {
+    width: 350px;
+    right: 17px;
+    top: -20px;
+  }
 }
 
 .search-icon {
-  width: 20px;
-  height: 20px;
-  right: 10px;
-  top: 10px;
+  width: 15px;
+  height: 15px;
   color: $color-secondary;
+  z-index: 9;
+  position: absolute;
+  right: 2px;
+  top: -8px;
+
+  @include on-tablet {
+    width: 15px;
+    height: 15px;
+    right: 2px;
+    top: -8px;
+  }
 
   @include on-desktop {
+    width: 20px;
+    height: 20px;
     position: absolute;
+    right: 10px;
+    top: 10px;
+    pointer-events: none;
+  }
+}
+
+.open-search {
+  position: absolute;
+  right: 15px;
+  top: -9px;
+
+  @include on-tablet {
+    right: 31px;
+    top: -8px;
   }
 }
 
@@ -121,6 +158,7 @@ $search-height: 40px;
     transform: translateY(-10%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0%);
     opacity: 1;

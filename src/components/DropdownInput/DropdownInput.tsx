@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './DropdownInput.scss';
 import { Link } from 'react-router-dom';
 import { ReactComponent as SearchIcon } from './searchIcon.svg';
+import { ReactComponent as Close } from '../../styles/icons/close.svg';
 import { debounce } from '../../utils/debounce';
 import { filterProducts, filterProductsAgain } from '../../utils/filterProducts';
 
@@ -75,8 +76,17 @@ export const DropdownInput: React.FC<Props> = ({ isSearchOpened, setIsSearchOpen
         onChange={handleInput}
         onFocus={() => setIsFocused(true)}
       />
-
-      <SearchIcon className="search-icon" onClick={() => setIsSearchOpened(!isSearchOpened)} />
+      {isSearchOpened ? (
+        <Close
+          className={classNames('search-icon', { 'open-search': isSearchOpened })}
+          onClick={() => setIsSearchOpened(!isSearchOpened)}
+        />
+      ) : (
+        <SearchIcon
+          className={classNames('search-icon', { 'open-search': isSearchOpened })}
+          onClick={() => setIsSearchOpened(!isSearchOpened)}
+        />
+      )}
 
       {isFocused && showList && (
         <ul className="dropdown-content">
