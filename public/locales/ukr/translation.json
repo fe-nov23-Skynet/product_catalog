@@ -4,5 +4,70 @@
     "phones": "ТЕЛЕФОНИ",
     "tablets": "ПЛАНШЕТИ",
     "accessories": "АКСЕСУАРИ"
+  },
+  "footer": {
+    "home": "ГОЛОВНА",
+    "github": "GITHUB",
+    "go-top": "Назад догори"
+  },
+  "homePage": {
+    "title": "Вітаємо у магазині Nice Gadgets",
+    "categoriesTitle": "Вибирайте за категорями",
+    "tablets": "Планшети",
+    "phone": "Мобільні телефони",
+    "accessories": "Аксесуари"
+  },
+  "sliders": {
+    "new": "Нові моделі",
+    "hotPrice": "Найкраща ціна"
+  },
+  "button": {
+    "add": "Додати до кошика",
+    "isAdd": "Додано в кошик"
+  },
+  "search": {
+    "notFound": "Результати не знайдені"
+  },
+  "error": {
+    "notification": "Будь ласка, перевір інтернет з'єднання та спробуй пізніше"
+  },
+  "select": {
+    "placeholder": "Select option"
+  },
+  "specsList": {
+    "ram": "ОЗУ"
+  },
+  "cart": {
+    "cart": "Кошик",
+    "success": "Ваше замовлення успішно сформовано!",
+    "thanks": "Дякуємо, що вибрали нас",
+    "orderMore": "Замовити ще",
+    "empty": "Кошик порожній",
+    "emptyAdvice": "Але ще не пізно виправити це",
+    "goShopping": "Повернутись до магазину",
+    "checkout": "Підтвердити"
+  },
+  "favorite": {
+    "title": "Улюблені",
+    "empty": "Нема улюблених товарів",
+    "emptyAdvice": "Але ще не пізно виправити це",
+    "goShopping": "Підтвердити"
+  },
+  "notFound": {
+    "notFound": "Сторінка не знайдена",
+    "error": "Помилка 404"
+  },
+  "phones": {
+    "phones": "Мобільні телефони"
+  },
+  "tablets": {
+    "tablets": "Планшети"
+  },
+  "productPage": {
+    "back": "Назад",
+    "available": "Можливі кольори",
+    "selectCap": "Виберіть пам'ять",
+    "about": "Про товар",
+    "specs": "Характеристики"
   }
 }
