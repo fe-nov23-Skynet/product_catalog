@@ -99,6 +99,13 @@
 
   &__link {
     scroll-behavior: smooth;
+    background-color: $color-bg;
+  }
+
+  &>button {
+    padding-inline: 0;
+    border-width: 0;
+    border-style: none;
   }
 
   &__icon {

@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { Catalog } from '../Catalog';
 import Styles from './Tablets.module.scss';
@@ -11,6 +12,7 @@ import { Loader } from '../../components/Loader';
 export const TabletsPage: React.FC = () => {
   const currentPath = useLocation().pathname.split('/')[1];
   const [tabletsArr, setTabletsArr] = useState<Product[]>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     getProducts(currentPath)
@@ -19,8 +21,8 @@ export const TabletsPage: React.FC = () => {
 
   return (
     <div className={Styles.tablets_page}>
-      <h1 className={Styles.tablets_page__title}>Tablets</h1>
-      <span className={Styles.tablets_page__info}>{`${tabletsArr.length} models`}</span>
+      <h1 className={Styles.tablets_page__title}>{t('tablets.tablets')}</h1>
+      <span className={Styles.tablets_page__info}>{`${tabletsArr.length} ${t('tablets.models')}`}</span>
 
       {tabletsArr.length === 0 ? (
         <Loader />

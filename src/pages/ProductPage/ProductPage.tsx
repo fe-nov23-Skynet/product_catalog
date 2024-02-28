@@ -1,5 +1,6 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { sha256 } from 'hash.js';
 
@@ -55,6 +56,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { state } = useLocation();
   const { id: productId } = useParams();
+  const { t } = useTranslation();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -142,7 +144,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
       ) : (
         <Link to={`/${currentPath}`} className="product-page__back-link">
           <IconLeft />
-          Back
+          {t('productPage.back')}
         </Link>
       )}
       {product && (
@@ -159,7 +161,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               <div className="product-page__settings-group">
                 <div className="product-page__colors">
                   <div className="colors__header">
-                    <span className="product-page__settings-title">Available colors</span>
+                    <span className="product-page__settings-title">{t('productPage.available')}</span>
                     <span className="product-page__id text-s-12 id--on-mobile">
                       {`ID: ${numericID}`}
                       <CopyButton text={`${numericID}`} /* className="text-s-12" */ />
@@ -188,7 +190,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
                 </div>
 
                 <div className="product-page__capacity">
-                  <span className="product-page__settings-title">Select capacity</span>
+                  <span className="product-page__settings-title">{t('productPage.selectCap')}</span>
 
                   <ul className="product-page__settings-list">
                     {product.capacityAvailable.map(capacity => {
@@ -248,7 +250,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
             <div className="product-page__about" data-aos="fade-up">
               <h3>
-                <p className="product-page__specs-title">About</p>
+                <p className="product-page__specs-title">{t('productPage.about')}</p>
                 <hr />
               </h3>
 
@@ -263,7 +265,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             </div>
             <div className="product-page__specs" data-aos="fade-up">
               <h3>
-                <p className="product-page__specs-title">Tech specs</p>
+                <p className="product-page__specs-title">{t('productPage.specs')}</p>
                 <hr />
               </h3>
 
