@@ -53,10 +53,14 @@ $header-height-desktop: 64px;
   }
 
   &_nav {
-    width: 425px;
+    max-width: 425px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include on-desktop {
+      width: 400px;
+    }
 
     &__link {
       display: flex;
@@ -310,5 +314,41 @@ $header-height-desktop: 64px;
 
   @include on-desktop {
     top: $header-height-desktop + 10px;
+  }
+}
+
+.search_icon {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  top: 10px;
+  right: -25px;
+  color: $color-icons;
+  cursor: pointer;
+}
+
+.search-container {
+  display: none;
+  position: absolute;
+  left: 2%;
+  top: 65px;
+  width: calc(90% - 15px);
+  justify-content: center;
+  align-content: center;
+
+  @include on-desktop {
+    display: flex;
+    position: static;
+    left: auto;
+    top: auto;
+    margin-right: 15px;
+  }
+}
+
+.mobile_search {
+  display: flex;
+
+  @include on-desktop {
+    display: none;
   }
 }
