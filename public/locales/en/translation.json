@@ -46,10 +46,13 @@
     "empty": "Shopping cart is empty",
     "emptyAdvice": "But it's never too late to fix it",
     "goShopping": "Go shopping",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "totalFor": "Total for",
+    "items": "items"
   },
   "favorite": {
     "title": "Favorites",
+    "desc": "favorites",
     "empty": "Favorites are empty",
     "emptyAdvice": "But it's never too late to fix it",
     "goShopping": "Go shopping"

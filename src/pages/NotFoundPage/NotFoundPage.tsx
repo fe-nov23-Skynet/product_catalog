@@ -1,8 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import './NotFoundPage.scss';
 
-export const NotFoundPage = () => (
-  <div className="text">
-    <h1>Error 404</h1>
-    <h2>Page not found</h2>
-  </div>
-);
+export const NotFoundPage = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="text">
+      <h1>{t('notFound.error')}</h1>
+      <h2>{t('notFound.notFound')}</h2>
+    </div>
+  );
+};
