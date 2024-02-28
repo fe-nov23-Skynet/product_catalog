@@ -1,0 +1,66 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables/theme_colors.scss';
+
+.languageArea {
+  display: flex;
+  gap: 4px;
+  filter: drop-shadow(0 0 10px $color-icons);
+}
+
+.lang-theme {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 30px;
+  height: 15px;
+}
+
+.langIcon {
+  display: flex;
+  width: 20px;
+  /* cursor: pointer; */
+}
+
+.lang-mobile {
+  display: flex;
+
+  @include on-tablet {
+    display: none;
+  }
+}
+
+.lang-input {
+  display: none;
+}
+
+.lang-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-icons;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.lang-label:before {
+  position: absolute;
+  content: '';
+  height: 13px;
+  width: 13px;
+  left: 1px;
+  bottom: 1px;
+  background-color: $color-h;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.lang-input:checked+.lang-label {
+  background-color: $color-icons;
+}
+
+.lang-input:checked+.lang-label:before {
+  transform: translateX(15px);
+}
