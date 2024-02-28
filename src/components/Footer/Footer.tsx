@@ -34,8 +34,8 @@ export const Footer = () => {
           </div>
           <div className="footer__links">
             {/* eslint-disable-next-line */}
-            <a href="#" target="_blanc">github</a>
-            <a href="#/">
+            <a href="https://github.com/fe-nov23-Skynet" target="_blanc">github</a>
+            <a href="/">
               {t('footer.home')}
             </a>
           </div>
