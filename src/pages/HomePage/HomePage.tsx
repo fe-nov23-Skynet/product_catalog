@@ -62,26 +62,24 @@ export const HomePage: React.FC = () => {
       <div className={Styles.home_page__SlideBarWrapper}>
         <SliderGoods title={t('sliders.new')} products={newestProducts} />
       </div>
-      <div className="container">
-        <div className={Styles.home_page__CategoryChoiseWrapper}>
-          <h2 className={Styles.home_page__categoriestitle}>{t('homePage.categoriesTitle')}</h2>
-          <Link className={Styles.home_page__category} to="tablets">
-            <img className={Styles.home_page__image} src={Tablets_image} alt="" />
-            <h3 className={Styles.home_page__categoryItem}>{t('homePage.tablets')}</h3>
-            <span className={Styles.home_page__info}>{`${tabletsArr.length} ${t('homePage.models')}`}</span>
-          </Link>
+      <div className={Styles.home_page__CategoryChoiseWrapper}>
+        <h2 className={Styles.home_page__categoriestitle}>{t('homePage.categoriesTitle')}</h2>
+        <Link className={Styles.home_page__category} to="tablets">
+          <img className={Styles.home_page__image} src={Tablets_image} alt="" />
+          <h3 className={Styles.home_page__categoryItem}>{t('homePage.tablets')}</h3>
+          <span className={Styles.home_page__info}>{`${tabletsArr.length} ${t('homePage.models')}`}</span>
+        </Link>
 
-          <Link className={Styles.home_page__category} to="phones">
-            <img className={Styles.home_page__image} src={Phones_image} alt="" />
-            <h3 className={Styles.home_page__categoryItem}>{t('homePage.phone')}</h3>
-            <span className={Styles.home_page__info}>{`${phonesArr.length} ${t('homePage.models')}`}</span>
-          </Link>
-          <Link className={Styles.home_page__category} to="accessories">
-            <img className={Styles.home_page__image} src={Accessories_image} alt="" />
-            <h3 className={Styles.home_page__categoryItem}>{t('homePage.accessories')}</h3>
-            <span className={Styles.home_page__info}>{`${accessoriesArr.length} ${t('homePage.models')}`}</span>
-          </Link>
-        </div>
+        <Link className={Styles.home_page__category} to="phones">
+          <img className={Styles.home_page__image} src={Phones_image} alt="" />
+          <h3 className={Styles.home_page__categoryItem}>{t('homePage.phone')}</h3>
+          <span className={Styles.home_page__info}>{`${phonesArr.length} ${t('homePage.models')}`}</span>
+        </Link>
+        <Link className={Styles.home_page__category} to="accessories">
+          <img className={Styles.home_page__image} src={Accessories_image} alt="" />
+          <h3 className={Styles.home_page__categoryItem}>{t('homePage.accessories')}</h3>
+          <span className={Styles.home_page__info}>{`${accessoriesArr.length} ${t('homePage.models')}`}</span>
+        </Link>
       </div>
       <div className={Styles.home_page__SlideBarWrapper}>
         <SliderGoods title={t('sliders.hotPrice')} products={bestPriceProducts} />
