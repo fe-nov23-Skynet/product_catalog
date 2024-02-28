@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import { sha256 } from 'hash.js';
 
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 import { Product } from '../../types/Product';
@@ -20,7 +21,6 @@ import { CartButton } from '../../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { CopyButton } from '../../components/UI/CopyButton';
-import { ErrorNotification } from '../../components/ErrorNotification';
 
 import './productPage.scss';
 
@@ -63,6 +63,8 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const { cartProducts, addToCart } = useCartState();
   const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
 
+  const { t } = useTranslation();
+
   function saveLoadedProduct(productToSave: Product | null): void {
     setProduct(productToSave);
     setLoading(false);
@@ -86,13 +88,10 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
   const pageTitle = `${product?.name} - Nice Gadgets Store`;
 
-  // Формируем описание страницы с кратким описанием товара
   const pageDescription = `Explore ${product?.name} at Nice Gadgets store. Find out more about its features and specifications.`;
 
-  // Формируем URL страницы товара
   const pageUrl = `https://example.com/products/${product?.id}`;
 
-  // Формируем URL изображения для предпросмотра страницы товара
   const imageUrl = product?.images[0] || '/img/category-accessories.png';
 
   function slitCapacity(capacity: string): string {
@@ -137,12 +136,12 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
       {state?.prevPath ? (
         <Link to={state.prevPath} className="product-page__back-link">
           <IconLeft />
-          {`Back to ${state.prevPath.replaceAll('/', '')}`}
+          {`${t('productPage.back')} ${state.prevPath.replaceAll('/', '')}`}
         </Link>
       ) : (
         <Link to={`/${currentPath}`} className="product-page__back-link">
           <IconLeft />
-          Back
+          {t('productPage.back').split(' ')[0]}
         </Link>
       )}
       {product && (
@@ -159,7 +158,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               <div className="product-page__settings-group">
                 <div className="product-page__colors">
                   <div className="colors__header">
-                    <span className="product-page__settings-title">Available colors</span>
+                    <span className="product-page__settings-title">{t('productPage.available')}</span>
                     <span className="product-page__id text-s-12 id--on-mobile">
                       {`ID: ${numericID}`}
                       <CopyButton text={`${numericID}`} /* className="text-s-12" */ />
@@ -188,7 +187,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
                 </div>
 
                 <div className="product-page__capacity">
-                  <span className="product-page__settings-title">Select capacity</span>
+                  <span className="product-page__settings-title">{t('productPage.selectCap')}</span>
 
                   <ul className="product-page__settings-list">
                     {product.capacityAvailable.map(capacity => {
@@ -248,7 +247,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
             <div className="product-page__about" data-aos="fade-up">
               <h3>
-                <p className="product-page__specs-title">About</p>
+                <p className="product-page__specs-title">{t('productPage.about')}</p>
                 <hr />
               </h3>
 
@@ -263,7 +262,7 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
             </div>
             <div className="product-page__specs" data-aos="fade-up">
               <h3>
-                <p className="product-page__specs-title">Tech specs</p>
+                <p className="product-page__specs-title">{t('productPage.specs')}</p>
                 <hr />
               </h3>
 

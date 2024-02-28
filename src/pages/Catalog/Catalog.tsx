@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 import { useState } from 'react';
 import 'rc-pagination/assets/index.css';
+import { useTranslation } from 'react-i18next';
 import { Select, SelectOption } from '../../components/Select/Select';
 import Styles from './Catalog.module.scss';
 import { ProductCard } from '../../ProductCard/ProductCard';
@@ -19,6 +20,8 @@ export const Catalog: React.FC<Props> = ({ products }) => {
   const [itemsPerPage, setItemPerPage] = useLocalStorage<SelectOption>('itemsPerPage', { value: 20, title: '12' });
   const [sortedBy, setSortedBy] = useLocalStorage<SelectOption>('sortedBy', { value: 'price-low', title: 'Price low' });
 
+  const { t } = useTranslation();
+
   const sortBy = [
     { value: 'price-low', title: 'Price low' },
     { value: 'price-high', title: 'Price high' },
@@ -27,10 +30,10 @@ export const Catalog: React.FC<Props> = ({ products }) => {
   ];
 
   const itemsOnPage = [
-    { value: 5, title: '6' },
-    { value: 20, title: '12' },
-    { value: 30, title: '25' },
-    { value: 50, title: '50' },
+    { value: 6, title: '6' },
+    { value: 12, title: '12' },
+    { value: 25, title: '25' },
+    { value: 40, title: '40' },
   ];
 
   const handleSortBy = (value: string) => {
@@ -65,7 +68,7 @@ export const Catalog: React.FC<Props> = ({ products }) => {
       {phonesArr.length > +itemsPerPage.value && (
         <>
           <Select
-            title="Sort by"
+            title={t('catalog.sortBy')}
             options={sortBy}
             selectedOption={sortedBy}
             className={Styles.catalog__sort}
@@ -74,7 +77,7 @@ export const Catalog: React.FC<Props> = ({ products }) => {
             }}
           />
           <Select
-            title="Items on page"
+            title={t('catalog.ItemsPerPage')}
             options={itemsOnPage}
             selectedOption={itemsPerPage}
             className={Styles.catalog__itemsOnPage}

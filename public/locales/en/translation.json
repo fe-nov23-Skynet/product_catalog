@@ -27,7 +27,8 @@
     "isAdd": "Added to cart"
   },
   "search": {
-    "notFound": "No results found"
+    "notFound": "No results found",
+    "placeHolder": "What are you searching for?"
   },
   "error": {
     "notification": "Please check your internet connection and try again later"
@@ -64,11 +65,19 @@
   "phones": {
     "phones": "Mobile Phones"
   },
+  "accessories": {
+    "accessories": "Acessories"
+  },
+  "catalog": {
+    "models": "models",
+    "sortBy": "Sort by",
+    "ItemsPerPage": "Items on page"
+  },
   "tablets": {
     "tablets": "Tablets"
   },
   "productPage": {
-    "back": "Back",
+    "back": "Back to",
     "available": "Available colors",
     "selectCap": "Select capacity",
     "about": "About",
