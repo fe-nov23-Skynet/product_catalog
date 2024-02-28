@@ -60,7 +60,9 @@
   },
   "notFound": {
     "notFound": "Page not found",
-    "error": "Error 404"
+    "error": "Error 404",
+    "product": "Can't load product info.",
+    "checkPath": "Check location path or internet connection."
   },
   "phones": {
     "phones": "Mobile Phones",
