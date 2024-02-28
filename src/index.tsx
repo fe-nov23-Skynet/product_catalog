@@ -5,6 +5,7 @@ import { BrowserRouter as Router, useLocation, useParams } from 'react-router-do
 import { Root } from './Root';
 import { store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
+import './i18n';
 import './index.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
