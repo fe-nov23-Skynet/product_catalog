@@ -92,6 +92,12 @@ $header-height-desktop: 64px;
   }
 }
 
+.mobile {
+  @include on-tablet {
+    display: none;
+  }
+}
+
 .theme_badge {
   height: 15px;
   width: 15px;

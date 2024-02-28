@@ -175,7 +175,18 @@ export function Header() {
               )}
             </div>
 
-            <ToggleButton onMobile componentKey={2} />
+            <div className="theme_button">
+              <div className="theme_badge mobile">
+                {UIState.isDarkMode ? (
+                  <Sun width="15" height="15" />
+                ) : (
+                  <Moon width="15" height="15" />
+                )}
+              </div>
+
+              <ToggleButton onMobile componentKey={2} />
+            </div>
+
             <button className="burger-toggle" onClick={changeMenuOpen}>
               <Menu />
             </button>
