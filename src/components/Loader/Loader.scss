@@ -1,7 +1,7 @@
 @import '../../styles/variables/theme_colors.scss';
 
 .Loader {
-  position: absolute;
+  position: fixed;
   display: flex;
 
   height: 100%;
