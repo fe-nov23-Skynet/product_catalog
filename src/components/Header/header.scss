@@ -170,6 +170,11 @@ $header-height-desktop: 64px;
   width: 48px;
   border: none;
   border-left: 1px solid $color-secondary;
+  color: $color-favorite-button-svg;
+
+  svg {
+    color: $color-favorite-button-svg;
+  }
 
   @include on-tablet {
     display: none;
