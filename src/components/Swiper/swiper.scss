@@ -60,7 +60,7 @@
     content: '';
     color: $color-primary;
     background-color: $color-bg;
-    background-image: url('../../styles/icons/chevron_arrow_right.svg');
+    background-image: $chevron-icon-right;
     border: 1px solid $color-secondary;
     background-repeat: no-repeat;
     background-position: center;
@@ -108,7 +108,7 @@
     content: '';
     color: $color-primary;
     background-color: $color-bg;
-    background-image: url('../../styles/icons/chevron_arrow_left.svg');
+    background-image: $chevron-icon-left;
     border: 1px solid $color-secondary;
     background-repeat: no-repeat;
     background-position: center;

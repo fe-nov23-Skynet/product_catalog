@@ -20,6 +20,7 @@ import { ToggleButton } from './ToggleButton';
 import { useUIState } from '../../customHooks/useUIState';
 import { useTranslate } from '../../customHooks/useTranslate';
 import { DropdownInput } from '../DropdownInput';
+import { LangSwitch } from '../UI/LangSwitch';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -64,7 +65,13 @@ export function Header() {
   return (
     <>
       <header className="header" id="top-page">
-        <button onClick={toggleLanguage}>Change</button>
+        <div className="languageContainer">
+          <LangSwitch
+            checked={LanguageState.language === 'en'}
+            onCheck={toggleLanguage}
+          />
+        </div>
+
         <NavLink
           to="/"
           className={cn('header_logo__img', { dark__theme: UIState.isDarkMode })}
