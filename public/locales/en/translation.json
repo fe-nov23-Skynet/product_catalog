@@ -62,10 +62,16 @@
     "error": "Error 404"
   },
   "phones": {
-    "phones": "Mobile Phones"
+    "phones": "Mobile Phones",
+    "models": "models"
   },
   "tablets": {
-    "tablets": "Tablets"
+    "tablets": "Tablets",
+    "models": "models"
+  },
+  "accessories": {
+    "accessories": "Accessories",
+    "models": "models"
   },
   "productPage": {
     "back": "Back",
