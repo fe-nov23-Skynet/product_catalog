@@ -18,6 +18,7 @@
   --color-search: #f2f2f3;
   --chevron-icon-right: url('../../styles/icons/chevron_arrow_right.svg');
   --chevron-icon-left: url('../../styles/icons/chevron_arrow_left.svg');
+  --chevron-icon-up: url('../../styles/icons/chevron_arrow_up.svg');
 }
 
 .dark-theme {
@@ -40,6 +41,7 @@
   --color-search: #11142a;
   --chevron-icon-right: url('../../styles/icons/chevron_arrow_right_light.svg');
   --chevron-icon-left: url('../../styles/icons/chevron_arrow_left_light.svg');
+  --chevron-icon-up: url('../../styles/icons/chevron_arrow_up_light.svg');
 }
 
 $color-primary: var(--color-primary);
@@ -61,3 +63,4 @@ $color-box-shadow: var(--color-box-shadow);
 $color-search: var(--color-search);
 $chevron-icon-right: var(--chevron-icon-right);
 $chevron-icon-left: var(--chevron-icon-left);
+$chevron-icon-up: var(--chevron-icon-up);

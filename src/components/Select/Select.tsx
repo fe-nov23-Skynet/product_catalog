@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable arrow-parens */
+import { useTranslation } from 'react-i18next';
 import React, {
   Dispatch,
   SetStateAction,
@@ -45,10 +46,11 @@ export const Select: React.FC<Props> = (props) => {
     ...other
   } = props;
 
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(selectedOption?.title || '');
   const rootRef = useRef<HTMLDivElement>(null);
-  const placeHolder = selectedOption?.title || 'Select option';
+  const placeHolder = selectedOption?.title || t('select.placeholder');
 
   function handleList() {
     setIsOpen(!isOpen);
