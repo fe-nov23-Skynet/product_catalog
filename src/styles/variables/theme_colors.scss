@@ -16,6 +16,8 @@
   --color-favorite-button-svg: #313237;
   --color-box-shadow: rgba(0, 0, 0, 0.4);
   --color-search: #f2f2f3;
+  --chevron-icon-right: url('../../styles/icons/chevron_arrow_right.svg');
+  --chevron-icon-left: url('../../styles/icons/chevron_arrow_left.svg');
 }
 
 .dark-theme {
@@ -23,7 +25,7 @@
   --color-secondary: #75767f;
   --color-icons: #4A4D58;
   --color-elements: #3b3e4a;
-  --color-hover:#323542;
+  --color-hover: #323542;
   --color-bg: #0f1121;
   --color-white: #f1f2f9;
   --color-green: #37ae60;
@@ -36,6 +38,8 @@
   --color-favorite-button-svg: #f1f2f9;
   --color-box-shadow: rgba(143, 205, 231, 0.4);
   --color-search: #11142a;
+  --chevron-icon-right: url('../../styles/icons/chevron_arrow_right_light.svg');
+  --chevron-icon-left: url('../../styles/icons/chevron_arrow_left_light.svg');
 }
 
 $color-primary: var(--color-primary);
@@ -54,4 +58,6 @@ $color-white-counter: var(--color-white-counter);
 $color-cart-button-text: var(--color-cart-button-text);
 $color-favorite-button-svg: var(--color-favorite-button-svg);
 $color-box-shadow: var(--color-box-shadow);
-$color-search: var(--color-search)
+$color-search: var(--color-search);
+$chevron-icon-right: var(--chevron-icon-right);
+$chevron-icon-left: var(--chevron-icon-left);

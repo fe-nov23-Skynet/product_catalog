@@ -6,6 +6,8 @@ import './header.scss';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { useState } from 'react';
+// import { TFunction, changeLanguage } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as Favorites } from '../../styles/icons/Favourites.svg';
 import { ReactComponent as Cart } from '../../styles/icons/Cart.svg';
 import { ReactComponent as Moon } from '../../styles/icons/Moon.svg';
@@ -16,7 +18,9 @@ import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { useCartState } from '../../customHooks/useCartState';
 import { ToggleButton } from './ToggleButton';
 import { useUIState } from '../../customHooks/useUIState';
+import { useTranslate } from '../../customHooks/useTranslate';
 import { DropdownInput } from '../DropdownInput';
+import { LangSwitch } from '../UI/LangSwitch';
 
 export function Header() {
   const [isSearchOpened, setIsSearchOpened] = useState(false);
@@ -25,6 +29,14 @@ export function Header() {
   const { favoritesProducts } = useFavoriteState();
   const { cartCount } = useCartState();
   const { UIState } = useUIState();
+
+  const { t } = useTranslation();
+  const { LanguageState, changeLanguage } = useTranslate();
+
+  const toggleLanguage = () => {
+    const newLanguage = LanguageState.language === 'en' ? 'ukr' : 'en';
+    changeLanguage(newLanguage);
+  };
 
   const navItemClassName = (
     { isActive }: { isActive: boolean },
@@ -54,6 +66,13 @@ export function Header() {
   return (
     <>
       <header className="header" id="top-page">
+        <div className="languageContainer">
+          <LangSwitch
+            checked={LanguageState.language === 'en'}
+            onCheck={toggleLanguage}
+          />
+        </div>
+
         <NavLink
           to="/"
           className={cn('header_logo__img', { dark__theme: UIState.isDarkMode })}
@@ -67,28 +86,28 @@ export function Header() {
                 to="/"
                 className={navItemClassName}
               >
-                HOME
+                {t('header.home')}
               </NavLink>
 
               <NavLink
                 to="phones"
                 className={navItemClassName}
               >
-                PHONES
+                {t('header.phones')}
               </NavLink>
 
               <NavLink
                 to="tablets"
                 className={navItemClassName}
               >
-                TABLETS
+                {t('header.tablets')}
               </NavLink>
 
               <NavLink
                 to="accessories"
                 className={navItemClassName}
               >
-                ACCESSORIES
+                {t('header.accessories')}
               </NavLink>
             </nav>
           )}

@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import cartReducer from '../features/cartSlice';
 import favoritesReducer from '../features/favoritesSlice';
 import UIReducer from '../features/UISlice';
+import LangReducer from '../features/translateSlice';
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
@@ -17,5 +18,6 @@ export const store = configureStore({
     cart: cartReducer,
     favorites: favoritesReducer,
     ui: UIReducer,
+    language: LangReducer,
   },
 });

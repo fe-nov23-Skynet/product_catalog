@@ -1,15 +1,19 @@
 @import '../../styles/variables/theme_colors.scss';
 @import '../../styles/mixins.scss';
 
+$header-height-base: 48px;
+$header-height-desktop: 64px;
+
 .header {
+  position: relative;
   display: flex;
-  height: 48px;
+  height: $header-height-base;
   border-bottom: 1px solid $color-secondary;
   justify-content: space-between;
 
 
   @include on-desktop {
-    height: 64px;
+    height: $header-height-desktop;
   }
 
   &_logo__img {
@@ -104,7 +108,7 @@
 
   .theme_button {
     display: flex;
-    align-items: center;   
+    align-items: center;
   }
 }
 
@@ -328,3 +332,14 @@
     background-color: $color-favorite-button-svg;
   }
 }
+
+.languageContainer {
+  position: absolute;
+  right: 10px;
+  top: $header-height-base +10px;
+
+  @include on-desktop {
+    top: $header-height-desktop + 10px;
+  }
+}
+
