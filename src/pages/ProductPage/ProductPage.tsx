@@ -23,6 +23,8 @@ import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { CopyButton } from '../../components/UI/CopyButton';
 
 import './productPage.scss';
+import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
+import { useTranslate } from '../../customHooks/useTranslate';
 
 interface Props {
   product: Product;
@@ -64,6 +66,8 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
 
   const { t } = useTranslation();
+  const { LanguageState } = useTranslate();
+  const currency = LanguageState.language === 'en' ? '$' : '₴';
 
   function saveLoadedProduct(productToSave: Product | null): void {
     setProduct(productToSave);
@@ -213,9 +217,9 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               <div className="product-page__settings-group">
                 <div className="product-page__price">
                   <span className="product-page__price-current">
-                    {`$${product.priceDiscount}`}
+                    {`${currency}${product.priceDiscount}`}
                     <span className="product-page__price-old">
-                      {`$${product.priceRegular}`}
+                      {`${currency}${product.priceRegular}`}
                     </span>
                   </span>
                   <hr />
@@ -271,6 +275,12 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
           </div>
         </>
 
+      )}
+      {!product && !loading && (
+        <NotFoundPage
+          tittle={t('notFound.product')}
+          text={t('notFound.checkPath')}
+        />
       )}
     </section>
   );
