@@ -22,7 +22,7 @@ export const SliderBar = () => (
         modules={[Pagination, Navigation, Autoplay, EffectFade]}
         spaceBetween={20}
         slidesPerView={1}
-        effect="fade"
+        // effect="fade"
         autoplay={{
           delay: 2500,
           disableOnInteraction: true,
