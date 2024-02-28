@@ -5,6 +5,8 @@ import {
 import Slide_1_image from '../../banner-images/banner-tablets.png';
 import Slide_2_image from '../../banner-images/banner-phones.png';
 import Slide_3_image from '../../banner-images/banner-accessories.png';
+import Slide_4_image from '../../banner-images/banner.webp';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -27,7 +29,7 @@ export const SliderBar = () => (
         }}
       >
         <SwiperSlide>
-          <img src={Slide_1_image} alt="" />
+          <img src={Slide_4_image} alt="" />
         </SwiperSlide>
         <SwiperSlide>
           <img src={Slide_2_image} alt="" />
