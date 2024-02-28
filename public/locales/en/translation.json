@@ -4,5 +4,70 @@
     "phones": "PHONES",
     "tablets": "TABLETS",
     "accessories": "ACCESSORIES"
+  },
+  "footer": {
+    "home": "HOME",
+    "github": "GITHUB",
+    "go-top": "Back to top"
+  },
+  "homePage": {
+    "title": "Welcome to Nice Gadgets store!",
+    "categoriesTitle": "Shop by category",
+    "tablets": "Tablets",
+    "phone": "Mobile phones",
+    "accessories": "Accessories"
+  },
+  "sliders": {
+    "new": "Brand new models",
+    "hotPrice": "Hot prices"
+  },
+  "button": {
+    "add": "Add to cart",
+    "isAdd": "Added to cart"
+  },
+  "search": {
+    "notFound": "No results found"
+  },
+  "error": {
+    "notification": "Please check your internet connection and try again later"
+  },
+  "select": {
+    "placeholder": "Select option"
+  },
+  "specsList": {
+    "ram": "RAM"
+  },
+  "cart": {
+    "cart": "Cart",
+    "success": "Your order has been completed successfully!",
+    "thanks": "Thanks for choosing us",
+    "orderMore": "Go to order more",
+    "empty": "Shopping cart is empty",
+    "emptyAdvice": "But it's never too late to fix it",
+    "goShopping": "Go shopping",
+    "checkout": "Checkout"
+  },
+  "favorite": {
+    "title": "Favorites",
+    "empty": "Favorites are empty",
+    "emptyAdvice": "But it's never too late to fix it",
+    "goShopping": "Go shopping"
+  },
+  "notFound": {
+    "notFound": "Page not found",
+    "error": "Error 404"
+  },
+  "phones": {
+    "phones": "Mobile Phones",
+  },
+  "tablets": {
+    "tablets": "Tablets"
+  },
+  "productPage": {
+    "back": "Back",
+    "available": "Available colors",
+    "selectCap": "Select capacity",
+    "about": "About",
+    "specs": "Tech specs"
   }
 }
