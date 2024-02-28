@@ -19,7 +19,14 @@ export const HomePage: React.FC = () => {
 
   const allProducts = [...phonesArr, ...tabletsArr, ...accessoriesArr];
   const bestPriceProducts = getBestPrice(allProducts);
+  if (bestPriceProducts.length > 32) {
+    bestPriceProducts.length = 32;
+  }
+
   const newestProducts = getNewestProducts(allProducts);
+  if (newestProducts.length > 32) {
+    newestProducts.length = 32;
+  }
 
   function reMapProducts(pArray: Product[], category: string) {
     return pArray.map(p => ({ ...p, category }));
