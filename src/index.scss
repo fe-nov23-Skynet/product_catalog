@@ -97,7 +97,7 @@ main {
   &:has(.menu) {
     overflow: hidden;
     height: 100vh;
-  
+
     @include on-tablet {
       overflow: auto;
       height: auto;
