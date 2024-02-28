@@ -16,7 +16,9 @@ export const FavouritesPage: React.FC = () => {
       </Helmet>
       <h1 className="favourites_title">{t('favorite.title')}</h1>
 
-      <span className="favourites_info">{`${favoritesProducts.length} ${t('favorite.desc')}`}</span>
+      {favoritesProducts.length > 0 && (
+        <span className="favourites_info">{`${favoritesProducts.length} ${t('favorite.desc')}`}</span>
+      )}
 
       {favoritesProducts.length === 0 ? (
         <div className="empty_favourites">
