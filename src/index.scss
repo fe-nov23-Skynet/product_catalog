@@ -90,9 +90,6 @@ hr {
 main {
   min-height: calc(100vh - 193px);
 
-  @include on-tablet {
-    min-height: calc(100vh - 193px);
-  }
   @include on-desktop {
     min-height: calc(100vh - 209px);
   }
