@@ -6,7 +6,7 @@ $search-height: 40px;
   display: flex;
   position: relative;
   gap: 5px;
-  width: 350px;
+  width: 100%;
   color: $color-h;
 }
 
@@ -58,6 +58,38 @@ $search-height: 40px;
   right: 10px;
   top: 10px;
   color: $color-secondary;
+}
+
+.removeSearch-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 10px;
+  top: 10px;
+  color: $color-icons;
+  transition: color .3s;
+  animation: rotating .6s ease-out;
+  transform-origin: center;
+  cursor: pointer;
+  
+  &:hover {
+    color: $color-secondary;
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(-70deg);
+  }
+  50% {
+    transform: rotate(50deg);
+  }
+  70% {
+    transform: rotate(-50deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .search__link {
