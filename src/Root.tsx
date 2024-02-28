@@ -3,6 +3,7 @@ import {
 } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { App } from './App';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { ProductPage } from './pages/ProductPage';
@@ -14,6 +15,7 @@ import { useUIState } from './customHooks/useUIState';
 
 export const Root = () => {
   const { UIState } = useUIState();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -22,15 +24,15 @@ export const Root = () => {
           <Route index element={<HomePage />} />
           <Route path="home" element={<Navigate to="/" />} />
           <Route path="phones">
-            <Route index element={<CatalogPage pageTitle="Mobile phones" />} />
+            <Route index element={<CatalogPage pageTitle={t('phones.phones')} />} />
             <Route path=":id" element={<ProductPage />} />
           </Route>
           <Route path="tablets">
-            <Route index element={<CatalogPage pageTitle="Tablets" />} />
+            <Route index element={<CatalogPage pageTitle={t('tablets.tablets')} />} />
             <Route path=":id" element={<ProductPage />} />
           </Route>
           <Route path="accessories">
-            <Route index element={<CatalogPage pageTitle="Accessories" />} />
+            <Route index element={<CatalogPage pageTitle={t('accessories.accessories')} />} />
             <Route path=":id?" element={<ProductPage />} />
           </Route>
           <Route path="favourites" element={<FavouritesPage />} />

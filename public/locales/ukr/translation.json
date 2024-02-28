@@ -27,7 +27,8 @@
     "isAdd": "Додано в кошик"
   },
   "search": {
-    "notFound": "Результати не знайдені"
+    "notFound": "Результати не знайдені",
+    "placeHolder": "Що ви шукаєте?"
   },
   "error": {
     "notification": "Будь ласка, перевір інтернет з'єднання та спробуй пізніше"
@@ -65,6 +66,14 @@
     "phones": "Мобільні телефони",
     "models": "моделей"
   },
+  "accessories": {
+    "accessories": "Аксесуари"
+  },
+  "catalog": {
+    "sortBy": "Сортувати за",
+    "models": "товарiв",
+    "ItemsPerPage": "Кiлькicть на сторiнцi"
+  },
   "tablets": {
     "tablets": "Планшети",
     "models": "моделей"
@@ -74,7 +83,7 @@
     "models": "моделей"
   },
   "productPage": {
-    "back": "Назад",
+    "back": "Назад до",
     "available": "Можливі кольори",
     "selectCap": "Виберіть пам'ять",
     "about": "Про товар",

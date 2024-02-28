@@ -1,9 +1,9 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { sha256 } from 'hash.js';
 
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 import { Product } from '../../types/Product';
@@ -21,7 +21,6 @@ import { CartButton } from '../../components/Buttons/CartButton/CartButton';
 import { FavoriteButton } from '../../components/Buttons/FavoriteButton/FavoriteButton';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { CopyButton } from '../../components/UI/CopyButton';
-import { ErrorNotification } from '../../components/ErrorNotification';
 
 import './productPage.scss';
 
@@ -56,7 +55,6 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { state } = useLocation();
   const { id: productId } = useParams();
-  const { t } = useTranslation();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -64,6 +62,8 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   // eslint-disable-next-line object-curly-newline
   const { cartProducts, addToCart } = useCartState();
   const { addToFavorites, removeFromFavorites, favoritesProducts } = useFavoriteState();
+
+  const { t } = useTranslation();
 
   function saveLoadedProduct(productToSave: Product | null): void {
     setProduct(productToSave);
@@ -88,13 +88,10 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
 
   const pageTitle = `${product?.name} - Nice Gadgets Store`;
 
-  // Формируем описание страницы с кратким описанием товара
   const pageDescription = `Explore ${product?.name} at Nice Gadgets store. Find out more about its features and specifications.`;
 
-  // Формируем URL страницы товара
   const pageUrl = `https://example.com/products/${product?.id}`;
 
-  // Формируем URL изображения для предпросмотра страницы товара
   const imageUrl = product?.images[0] || '/img/category-accessories.png';
 
   function slitCapacity(capacity: string): string {
@@ -139,12 +136,12 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
       {state?.prevPath ? (
         <Link to={state.prevPath} className="product-page__back-link">
           <IconLeft />
-          {`Back to ${state.prevPath.replaceAll('/', '')}`}
+          {`${t('productPage.back')} ${state.prevPath.replaceAll('/', '')}`}
         </Link>
       ) : (
         <Link to={`/${currentPath}`} className="product-page__back-link">
           <IconLeft />
-          {t('productPage.back')}
+          {t('productPage.back').split(' ')[0]}
         </Link>
       )}
       {product && (
