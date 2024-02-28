@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { CartItem } from '../../features/cartSlice';
@@ -19,6 +20,7 @@ export const CartProduct: React.FC<Props> = (props) => {
   // eslint-disable-next-line object-curly-newline
   const { product, prevPath, onAdd, onDelete, onMinus } = props;
   const [deleting, setDeleting] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     let timerID: NodeJS.Timeout | undefined;

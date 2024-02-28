@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import './cartButton.scss';
 import classNames from 'classnames';
 
@@ -10,6 +11,9 @@ interface Props {
 
 export const CartButton: React.FC<Props> = (props) => {
   const { onClick, active } = props;
+  const { t } = useTranslation();
+  const add = t('button.add');
+  const isAdd = t('button.isAdd');
 
   return (
     <button
@@ -19,7 +23,7 @@ export const CartButton: React.FC<Props> = (props) => {
         'button-submited': active,
       })}
     >
-      {!active ? 'Add to cart' : 'Added to cart'}
+      {!active ? add : isAdd}
     </button>
   );
 };

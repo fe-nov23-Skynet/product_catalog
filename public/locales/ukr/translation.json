@@ -12,10 +12,11 @@
   },
   "homePage": {
     "title": "Вітаємо у магазині Nice Gadgets",
-    "categoriesTitle": "Вибирайте за категорями",
+    "categoriesTitle": "Вибирайте за категоріями",
     "tablets": "Планшети",
     "phone": "Мобільні телефони",
-    "accessories": "Аксесуари"
+    "accessories": "Аксесуари",
+    "models": "моделей"
   },
   "sliders": {
     "new": "Нові моделі",
