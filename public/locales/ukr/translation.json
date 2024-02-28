@@ -63,7 +63,8 @@
     "error": "Помилка 404"
   },
   "phones": {
-    "phones": "Мобільні телефони"
+    "phones": "Мобільні телефони",
+    "models": "моделей"
   },
   "accessories": {
     "accessories": "Аксесуари"
@@ -74,7 +75,12 @@
     "ItemsPerPage": "Кiлькicть на сторiнцi"
   },
   "tablets": {
-    "tablets": "Планшети"
+    "tablets": "Планшети",
+    "models": "моделей"
+  },
+  "accessories": {
+    "accessories": "Аксесуари",
+    "models": "моделей"
   },
   "productPage": {
     "back": "Назад до",

@@ -17,6 +17,10 @@ export const Footer = () => {
     changeLanguage(newLanguage);
   };
 
+  const handleScrollUp = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div>
       <div className="divider" />
@@ -38,9 +42,15 @@ export const Footer = () => {
 
           <div className="footer__go-top go-top">
             <div className="go-top__title">{t('footer.go-top')}</div>
-            <a href="#top-page" className="go-top__link">
+            <button
+              type="button"
+              className="go-top__link"
+              onClick={(event) => handleScrollUp()}
+            >
+              {/* <a href="#top-page" className="go-top__link"> */}
               <div className="go-top__icon" />
-            </a>
+              {/* </a> */}
+            </button>
           </div>
           <div className="footer__language">
             <LangSwitch
