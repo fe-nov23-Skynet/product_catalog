@@ -305,10 +305,10 @@ $header-height-desktop: 64px;
 
 .languageContainer {
   position: absolute;
-  right: 20px;
-  top: $header-height-base +20px;
+  right: 10px;
+  top: $header-height-base +10px;
 
   @include on-desktop {
-    top: $header-height-desktop + 20px;
+    top: $header-height-desktop + 10px;
   }
 }
