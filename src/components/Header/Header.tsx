@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable jsx-a11y/control-has-associated-label */
@@ -14,6 +15,7 @@ import { ReactComponent as Moon } from '../../styles/icons/Moon.svg';
 import { ReactComponent as Sun } from '../../styles/icons/Sun.svg';
 import { ReactComponent as Menu } from '../../styles/icons/menu.svg';
 import { ReactComponent as Close } from '../../styles/icons/close.svg';
+import { ReactComponent as SearchIcon } from '../DropdownInput/searchIcon.svg';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { useCartState } from '../../customHooks/useCartState';
 import { ToggleButton } from './ToggleButton';
@@ -25,6 +27,7 @@ import { LangSwitch } from '../UI/LangSwitch';
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [onClose, setOnClose] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { favoritesProducts } = useFavoriteState();
   const { cartCount } = useCartState();
   const { UIState } = useUIState();
@@ -65,12 +68,12 @@ export function Header() {
   return (
     <>
       <header className="header" id="top-page">
-        <div className="languageContainer">
+        {/* <div className="languageContainer">
           <LangSwitch
             checked={LanguageState.language === 'en'}
             onCheck={toggleLanguage}
           />
-        </div>
+        </div> */}
 
         <NavLink
           to="/"
@@ -108,9 +111,12 @@ export function Header() {
               {t('header.accessories')}
             </NavLink>
           </nav>
-          <DropdownInput />
 
           <div className="header_box">
+            <div className="search-container">
+              <DropdownInput />
+            </div>
+
             <div className="theme_button">
               <div className="theme_badge">
                 {UIState.isDarkMode ? (
@@ -151,6 +157,24 @@ export function Header() {
 
         {!menuOpen ? (
           <div className="header_box">
+            <div className="search-container mobile_search">
+              {isSearchOpen ? (
+                <Close
+                  className="search_icon"
+                  onClick={() => setIsSearchOpen(!isSearchOpen)}
+                />
+              ) : (
+                <SearchIcon
+                  className="search_icon"
+                  onClick={() => setIsSearchOpen(!isSearchOpen)}
+                />
+              )}
+
+              {isSearchOpen && (
+                <DropdownInput />
+              )}
+            </div>
+
             <ToggleButton onMobile componentKey={2} />
             <button className="burger-toggle" onClick={changeMenuOpen}>
               <Menu />
