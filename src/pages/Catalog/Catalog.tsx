@@ -32,8 +32,8 @@ export const Catalog: React.FC<Props> = ({ products }) => {
   const itemsOnPage = [
     { value: 6, title: '6' },
     { value: 12, title: '12' },
-    { value: 25, title: '25' },
-    { value: 40, title: '40' },
+    { value: 24, title: '24' },
+    { value: 36, title: '36' },
   ];
 
   const handleSortBy = (value: string) => {

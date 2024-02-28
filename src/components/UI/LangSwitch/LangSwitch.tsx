@@ -19,7 +19,7 @@ export const LangSwitch: React.FC<Props> = ({ checked, onCheck }) => {
     <p className="languageArea">
       <span
         className="langIcon"
-        onClick={() => (checked ? onCheck() : () => {})}
+        onClick={() => (checked ? onCheck() : () => { })}
       >
         <UaIcon />
       </span>
@@ -35,7 +35,7 @@ export const LangSwitch: React.FC<Props> = ({ checked, onCheck }) => {
       </p>
       <span
         className="langIcon"
-        onClick={() => (!checked ? onCheck() : () => {})}
+        onClick={() => (!checked ? onCheck() : () => { })}
       >
         <UkIcon />
       </span>
