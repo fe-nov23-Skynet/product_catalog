@@ -333,9 +333,33 @@ $header-height-desktop: 64px;
   height: 15px;
   width: 15px;
   top: 10px;
-  right: -25px;
-  color: $color-icons;
+  right: -40px;
+  color: $color-primary;
   cursor: pointer;
+  //border: 1px solid $color-secondary;
+  padding: 4px;
+  box-sizing: content-box;
+  margin-left: 4px;
+  filter: drop-shadow(0 0 4px $color-secondary);
+  animation: searchRotate 3s infinite ease-out;
+  //transform-origin: top;
+  //box-shadow: 0 0 2px $color-icons;
+}
+
+@keyframes searchRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(30deg) scale(1.1);
+
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .search-container {
@@ -346,6 +370,10 @@ $header-height-desktop: 64px;
   width: calc(90% - 15px);
   justify-content: center;
   align-content: center;
+
+
+  background-color: $color-bg;
+
 
   @include on-desktop {
     display: flex;
@@ -359,6 +387,9 @@ $header-height-desktop: 64px;
 
 .mobile_search {
   display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 10px $color-icons;
 
   @include on-desktop {
     display: none;

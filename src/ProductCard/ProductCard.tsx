@@ -28,6 +28,8 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
   const { LanguageState } = useTranslate();
 
   const currency = LanguageState.language === 'en' ? '$' : '₴';
+  const currPrice = LanguageState.language === 'en' ? product.priceDiscount : Math.ceil(product.priceDiscount * 38.5);
+  const oldPrice = LanguageState.language === 'en' ? product.priceRegular : product.priceRegular * 40;
 
   return (
     <article
@@ -56,9 +58,9 @@ export const ProductCard: React.FC<Props> = ({ product, className = '' }) => {
 
       <div className={classNames('card__price')}>
         <span className="card__price-current">
-          {`${currency}${product.priceDiscount}`}
+          {`${currency}${currPrice}`}
           <span className="card__price-old">
-            {`${currency}${product.priceRegular}`}
+            {`${currency}${oldPrice}`}
           </span>
         </span>
         <hr />

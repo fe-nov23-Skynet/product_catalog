@@ -69,6 +69,14 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
   const { LanguageState } = useTranslate();
   const currency = LanguageState.language === 'en' ? '$' : '₴';
 
+  let currPrice = 0;
+  let oldPrice = 0;
+
+  if (product) {
+    currPrice = LanguageState.language === 'en' ? product?.priceDiscount : Math.ceil(product.priceDiscount * 38.5);
+    oldPrice = LanguageState.language === 'en' ? product?.priceRegular : product.priceRegular * 40;
+  }
+
   function saveLoadedProduct(productToSave: Product | null): void {
     setProduct(productToSave);
     setLoading(false);
@@ -217,9 +225,9 @@ export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
               <div className="product-page__settings-group">
                 <div className="product-page__price">
                   <span className="product-page__price-current">
-                    {`${currency}${product.priceDiscount}`}
+                    {`${currency}${currPrice}`}
                     <span className="product-page__price-old">
-                      {`${currency}${product.priceRegular}`}
+                      {`${currency}${oldPrice}`}
                     </span>
                   </span>
                   <hr />
