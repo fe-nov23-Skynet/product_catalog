@@ -140,7 +140,7 @@ $header-height-desktop: 64px;
 
     @include on-tablet {
       padding-top: 1px;
-      padding-right: 1px;
+      padding-right: 0.5px;
       top: 15%;
       right: 18%;
     }
@@ -148,7 +148,8 @@ $header-height-desktop: 64px;
     @include on-desktop {
       top: 23%;
       right: 25%;
-      padding-top: 2px;
+      padding-top: 1px;
+      padding-right: 0.5px;
     }
   }
 }
