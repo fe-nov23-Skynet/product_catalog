@@ -28,7 +28,7 @@ export const CartProduct: React.FC<Props> = (props) => {
     if (deleting) {
       timerID = setTimeout(() => {
         onDelete();
-      }, 500);
+      }, 900);
     }
     return () => clearTimeout(timerID);
   }, [deleting]);
