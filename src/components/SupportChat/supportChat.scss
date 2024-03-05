@@ -4,32 +4,36 @@
   position: fixed;
   right: 50px;
   bottom: 50px;
-  z-index: 5;
+  z-index: 10;
 }
 
 .chatWindow {
   position: absolute;
-  right: calc(100% + 20px);
-  bottom: 20px;
-  background-color: $color-elements;
+  right: 0;
+  bottom: calc(100% + 10px);
+  background-color: $color-bg;
   width: 350px;
   height: 500px;
   display: flex;
+
+  border: 1px solid $color-icons;
   border-radius: 4px;
   overflow: hidden;
   flex-direction: column;
-  box-shadow: 0 0 30px $color-box-shadow;
+  box-shadow: 0 0 40px 5px $color-box-shadow;
 
   animation: openChat .5s;
 }
 
 .chatHeader {
   height: 10%;
-  background-color: $color-secondary;
   padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $color-elements;
+  box-shadow: 0 0 5px $color-box-shadow;
+  border-bottom: 1px solid $color-icons;
 }
 
 .chatBody {
@@ -39,21 +43,37 @@
   height: 100%;
   padding: 8px;
   overflow-y: scroll;
+  padding-bottom: 16px;
 }
 
 .chatInputArea {
   display: flex;
   max-height: 150px;
-  align-items: start;
+  align-items: center;
   gap: 4px;
   height: max-content;
-  background-color: $color-secondary;
+  background-color: $color-elements;
+  padding-inline: 4px;
+  padding-block: 4px;
+  box-shadow: 0 0 10px $color-box-shadow;
 
   textarea {
     width: 100%;
     font: inherit;
     resize: none;
     height: max-content;
+    border: 1px solid $color-icons;
+    transition: border-color .2s;
+    border-radius: 2px;
+
+    &:hover {
+      border-color: $color-secondary;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+    }
   }
 }
 
@@ -62,6 +82,7 @@
   align-items: center;
   gap: 4px;
   align-items: start;
+  width: 80%;
 
   &--from {
     align-self: start;
@@ -77,17 +98,20 @@
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
+    border: 1px solid $color-elements;
   }
 
   &__text {
-    max-width: 70%;
+    max-width: 100%;
     width: fit-content;
     min-height: 32px;
     display: flex;
-    background-color: $color-icons;
+    background-color: $color-elements;
     border-radius: 8px;
     padding-inline: 8px;
     padding-block: 4px;
+    text-wrap: wrap;
+    word-break: break-all;
   }
 }
 
@@ -107,6 +131,13 @@
 
   &:active {
     scale: 0.95;
+  }
+
+  &--close {
+    background-color: $color-red;
+    &:hover {
+      box-shadow: 0 0 10px $color-red;
+    }
   }
 }
 
