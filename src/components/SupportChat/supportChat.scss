@@ -1,0 +1,124 @@
+@import '../../styles/variables/theme_colors.scss';
+
+.supportChat {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  z-index: 5;
+}
+
+.chatWindow {
+  position: absolute;
+  right: calc(100% + 20px);
+  bottom: 20px;
+  background-color: $color-elements;
+  width: 350px;
+  height: 500px;
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-direction: column;
+  box-shadow: 0 0 30px $color-box-shadow;
+
+  animation: openChat .5s;
+}
+
+.chatHeader {
+  height: 10%;
+  background-color: $color-secondary;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  padding: 8px;
+  overflow-y: scroll;
+}
+
+.chatInputArea {
+  display: flex;
+  max-height: 150px;
+  align-items: start;
+  gap: 4px;
+  height: max-content;
+  background-color: $color-secondary;
+
+  textarea {
+    width: 100%;
+    font: inherit;
+    resize: none;
+    height: max-content;
+  }
+}
+
+.chatMessage {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  align-items: start;
+
+  &--from {
+    align-self: start;
+  }
+
+  &--my {
+    align-self: end;
+    flex-direction: row-reverse;
+  }
+
+  &__avatar {
+    --size: 32px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+  }
+
+  &__text {
+    max-width: 70%;
+    width: fit-content;
+    min-height: 32px;
+    display: flex;
+    background-color: $color-icons;
+    border-radius: 8px;
+    padding-inline: 8px;
+    padding-block: 4px;
+  }
+}
+
+.showSupport {
+  background-color: $color-green;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  font: inherit;
+  color: $color-h;
+  transition: box-shadow .3s,
+              scale .3s;
+
+  &:hover {
+    box-shadow: 0 0 10px $color-green;
+  }
+
+  &:active {
+    scale: 0.95;
+  }
+}
+
+
+@keyframes openChat {
+  from {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
