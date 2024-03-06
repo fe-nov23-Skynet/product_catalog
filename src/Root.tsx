@@ -4,6 +4,7 @@ import {
 
 import { ToastContainer } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 import { App } from './App';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { ProductPage } from './pages/ProductPage';

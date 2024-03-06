@@ -30,15 +30,15 @@ const ScrollToTop = () => {
 };
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <ScrollToTop />
-        <Root />
 
-      </Router>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <Router>
+      <ScrollToTop />
+      <Root />
+
+    </Router>
+  </Provider>,
+
 );
 
 // If you want to start measuring performance in your app, pass a function
