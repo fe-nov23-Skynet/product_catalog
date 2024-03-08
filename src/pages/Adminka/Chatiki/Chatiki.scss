@@ -1,0 +1,55 @@
+@import '../../../styles/variables/theme_colors.scss';
+
+.supportSection {
+  display: flex;
+}
+
+.roomsList {
+  width: 20%;
+  padding-inline: 8px;
+  color: $color-h;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__room {
+    position: relative;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: end;
+
+    &--active {
+      background-color: $color-elements;
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      width: 100%;
+      height: 1px;
+      opacity: 0.5;
+      background-color: $color-elements;
+    }
+
+    &:hover {
+      background-color: $color-elements;
+    }
+  }
+}
+
+.roomChat {
+  width: 80%;
+}
+
+.roomTitle {
+  display: flex;
+  background-color: $color-elements;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 16px;
+}

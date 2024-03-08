@@ -4,7 +4,6 @@ import {
 
 import { ToastContainer } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
 import { App } from './App';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { ProductPage } from './pages/ProductPage';
@@ -13,6 +12,7 @@ import { HomePage } from './pages/HomePage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { CatalogPage } from './pages/CatalogPage';
 import { useUIState } from './customHooks/useUIState';
+import { Adminka } from './pages/Adminka/Adminka';
 
 export const Root = () => {
   const { UIState } = useUIState();
@@ -38,7 +38,7 @@ export const Root = () => {
           </Route>
           <Route path="favourites" element={<FavouritesPage />} />
           <Route path="cart" element={<CartPage />} />
-
+          <Route path="/adminka" element={<Adminka />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

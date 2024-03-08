@@ -72,10 +72,15 @@ const startMessages = [
     body: 'Yes, but it didn\'t help.',
   },
 ];
+interface Message {
+  authorId: number;
+  authorName: string;
+  body: string;
+}
 
 export const SupportChat: React.FC = () => {
   const [showChat, setShowChat] = useState(true);
-  const [messages, setMessages] = useState(startMessages);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [messageText, setMessageText] = useState('');
   const chatBody = useRef<HTMLDivElement>(null);
@@ -90,6 +95,11 @@ export const SupportChat: React.FC = () => {
       setMessageText('');
     }
   }
+  useEffect(() => {
+    if (showChat && !messages.length) {
+      socket.emit('user:needHelp');
+    }
+  }, [showChat]);
 
   useEffect(() => {
     if (chatBody.current) {
@@ -128,6 +138,11 @@ export const SupportChat: React.FC = () => {
   const adminImgURL = 'https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?w=826&t=st=1709648780~exp=1709649380~hmac=e6da2190413b81007a9de61df1b142fc9fcd723c64a26f6c24a55053513a4dc7';
   const userImgURL = 'https://img.freepik.com/premium-vector/cute-bath-bombs-mascot-with-optimistic-face-cute-style-design-t-shirt-sticker-logo-element_152558-9578.jpg';
 
+  // eslint-disable-next-line no-restricted-globals
+  if (!location.origin.includes('localhost')) {
+    return null;
+  }
+
   return (
     <div className="supportChat">
       <button
@@ -146,7 +161,7 @@ export const SupportChat: React.FC = () => {
             {!isConnected && ' DIS-CONNECTED'}
           </div>
           <div className="chatBody" ref={chatBody}>
-            {messages.map(message => (
+            {messages.length > 0 && messages.map(message => (
               <p className={classNames('chatMessage', {
                 'chatMessage--from': message.authorId !== myID,
                 'chatMessage--my': message.authorId === myID,

@@ -34,6 +34,7 @@
   background-color: $color-elements;
   box-shadow: 0 0 5px $color-box-shadow;
   border-bottom: 1px solid $color-icons;
+  z-index: 1;
 }
 
 .chatBody {

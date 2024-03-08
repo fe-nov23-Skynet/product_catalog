@@ -1,0 +1,53 @@
+@import '../../styles/variables/theme_colors.scss';
+
+.chatBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  padding: 8px;
+  overflow-y: scroll;
+  padding-bottom: 16px;
+
+  &--bg {
+    background-color: $color-icons;
+  }
+}
+
+.chatMessage {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  align-items: start;
+  width: 80%;
+
+  &--from {
+    align-self: start;
+  }
+
+  &--my {
+    align-self: end;
+    flex-direction: row-reverse;
+  }
+
+  &__avatar {
+    --size: 32px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    border: 1px solid $color-elements;
+  }
+
+  &__text {
+    max-width: 100%;
+    width: fit-content;
+    min-height: 32px;
+    display: flex;
+    background-color: $color-elements;
+    border-radius: 8px;
+    padding-inline: 8px;
+    padding-block: 4px;
+    text-wrap: wrap;
+    word-break: break-all;
+  }
+}
