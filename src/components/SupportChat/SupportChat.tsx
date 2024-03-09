@@ -234,29 +234,3 @@ export const SupportChat: React.FC = () => {
     </div>
   );
 };
-
-{ /* <div className="chatBody" ref={chatBody}>
-            {messages.length > 0 && messages.map(message => (
-              <p className={classNames('chatMessage', {
-                'chatMessage--from': message.authorId !== myID,
-                'chatMessage--my': message.authorId === myID,
-              })}
-              >
-                <img
-                  src={message.avatarURL}
-                  alt="profilePhoto"
-                  className="chatMessage__avatar"
-                />
-                <span className="chatMessage__text">{message.body}</span>
-              </p>
-            ))}
-          </div>
-          <div className="chatInputArea">
-            <textarea
-              placeholder="type your question here"
-              onChange={handleTextArea}
-              value={messageText}
-              onKeyUp={handleEnterTeaxtArea}
-            />
-            <IconButton type="sendMsg" onClick={() => sendMessage()} />
-          </div> */ }
