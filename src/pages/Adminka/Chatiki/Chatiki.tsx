@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable object-curly-newline */
@@ -8,6 +9,7 @@ import './Chatiki.scss';
 import { Room } from '../../../types/Chat';
 import { MessagesList } from '../../../components/MessagesList';
 import { ChatSendArea } from '../../../components/ChatSendArea';
+import { adminImgURL } from '../../../utils/chatConstants';
 
 /* const initialRooms: Room[] = [
   {
@@ -104,8 +106,6 @@ export const Chatiki: React.FC = () => {
 
   useEffect(() => {
     socket.on('server:msg', (message) => {
-      console.log('message', message);
-      console.log(`selectedRoom.id: ${selectedRoom?.id}, message.roomId: ${message.roomId}`);
       if (selectedRoom?.id === message.roomId) {
         setMessages((prev) => [...prev, message]);
       }
@@ -134,6 +134,18 @@ export const Chatiki: React.FC = () => {
     setMessages((prev) => [...prev, ...room.messages]);
   }
 
+  function sendMessage(message: string) {
+    if (selectedRoom) {
+      socket.emit('admin:msg', {
+        roomId: selectedRoom.id,
+        authorId: 1,
+        authorName: 'ADMIN',
+        body: message,
+        avatarURL: adminImgURL,
+      });
+    }
+  }
+
   return (
     <section className="supportSection">
       <ul className="roomsList">
@@ -152,7 +164,7 @@ export const Chatiki: React.FC = () => {
       <article className="roomChat">
         <p className="roomTitle">{`Room: ${selectedRoom?.id}`}</p>
         <MessagesList messages={messages} myID={1} />
-        <ChatSendArea onSend={() => {}} />
+        <ChatSendArea onSend={sendMessage} />
       </article>
     </section>
   );

@@ -3,7 +3,8 @@ import { IconButton } from '../UI/IconButton';
 import './ChatSendArea.scss';
 
 interface Props {
-  onSend: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onSend: (...args: any) => void;
 }
 
 export const ChatSendArea: React.FC<Props> = (props) => {
@@ -14,9 +15,14 @@ export const ChatSendArea: React.FC<Props> = (props) => {
     setMessageText(e.target.value);
   }
 
+  function sendMsg() {
+    onSend(messageText);
+    setMessageText('');
+  }
+
   function handleEnterTeaxtArea(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Enter') {
-      onSend();
+      sendMsg();
     }
   }
 
@@ -28,7 +34,7 @@ export const ChatSendArea: React.FC<Props> = (props) => {
         value={messageText}
         onKeyUp={handleEnterTeaxtArea}
       />
-      <IconButton type="sendMsg" onClick={() => onSend()} />
+      <IconButton type="sendMsg" onClick={() => sendMsg()} />
     </div>
   );
 };
