@@ -1,11 +1,16 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useRef, useState } from 'react';
 import './supportChat.scss';
 import classNames from 'classnames';
+import OpenAI from 'openai';
+
 import { IconButton } from '../UI/IconButton';
 import { socket } from '../../socket';
 import { Message } from '../../types/Chat';
-import { userImgURL } from '../../utils/chatConstants';
+import { adminImgURL, userImgURL } from '../../utils/chatConstants';
+import { MessagesList } from '../MessagesList';
+import { ChatSendArea } from '../ChatSendArea';
 
 const startMessages = [
   {
@@ -82,23 +87,86 @@ export const SupportChat: React.FC = () => {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [messageText, setMessageText] = useState('');
   const chatBody = useRef<HTMLDivElement>(null);
+  const [assistant, setAssistant] = useState<OpenAI.Beta.Assistants.Assistant>();
+  const [thread, setThread] = useState<OpenAI.Beta.Threads.Thread>();
+
+  const openai = new OpenAI({
+    apiKey: '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',
+    dangerouslyAllowBrowser: true,
+  });
+
+  // chatGPT
+  /*   useEffect(() => {
+      const fetchData = async () => {
+        const assistant1 = await openai.beta.assistants.retrieve('asst_gc3HWkC5sYga6z1FOjzzjeT8');
+        setAssistant(assistant1);
+        const thread1 = await openai.beta.threads.create();
+        setThread(thread1);
+      };
+
+      fetchData();
+    }, []);
+
+    async function sendMessage() {
+      setMessageText('');
+
+      if (assistant && thread) {
+        const message = await openai.beta.threads.messages.create(
+          thread.id,
+          {
+            role: 'user',
+            content: messageText,
+          },
+        );
+        const run = await openai.beta.threads.runs.create(
+          thread.id,
+          {
+            assistant_id: assistant.id,
+          },
+        );
+      }
+    }
+
+    useEffect(() => {
+      setInterval(async () => {
+        if (assistant && thread) {
+          const messages3 = await openai.beta.threads.messages.list(
+            thread.id,
+          );
+          console.log(messages3);
+          const newMessages = messages3.data.map(msg => {
+            if ('text' in msg.content[0]) {
+              return {
+                authorId: msg.role === 'assistant' ? 1 : 2,
+                authorName: 'Alice',
+                body: msg.content[0].text.value,
+                avatarURL: msg.role === 'assistant' ? adminImgURL : userImgURL,
+              };
+            }
+            return null;
+          });
+          setMessages(newMessages.filter(Boolean).reverse() as Message[]);
+        }
+      }, 2000);
+    }, [assistant, thread]); */
 
   function handleTextArea(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setMessageText(e.target.value);
   }
 
-  function sendMessage() {
-    if (messageText.trim()) {
+  function sendMessage(msgText: string) {
+    if (msgText.trim()) {
       const message = {
         authorId: myID,
         authorName: 'Alice',
-        body: messageText.trim(),
+        body: msgText.trim(),
         avatarURL: userImgURL,
       };
       socket.emit('user:msg', message);
-      setMessageText('');
+      // setMessageText('');
     }
   }
+
   useEffect(() => {
     if (showChat && !messages.length) {
       socket.emit('user:needHelp');
@@ -127,12 +195,6 @@ export const SupportChat: React.FC = () => {
     socket.on('disconnect', onDisconnect);
     socket.on('server:msg', onServerMessage);
   }, []);
-
-  function handleEnterTeaxtArea(e: React.KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === 'Enter') {
-      sendMessage();
-    }
-  }
 
   function handleShowChat() {
     setShowChat(!showChat);
@@ -165,7 +227,15 @@ export const SupportChat: React.FC = () => {
             {isConnected && ' CONNECTED'}
             {!isConnected && ' DIS-CONNECTED'}
           </div>
-          <div className="chatBody" ref={chatBody}>
+          <MessagesList messages={messages} myID={myID} />
+          <ChatSendArea onSend={sendMessage} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+{ /* <div className="chatBody" ref={chatBody}>
             {messages.length > 0 && messages.map(message => (
               <p className={classNames('chatMessage', {
                 'chatMessage--from': message.authorId !== myID,
@@ -189,9 +259,4 @@ export const SupportChat: React.FC = () => {
               onKeyUp={handleEnterTeaxtArea}
             />
             <IconButton type="sendMsg" onClick={() => sendMessage()} />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
+          </div> */ }

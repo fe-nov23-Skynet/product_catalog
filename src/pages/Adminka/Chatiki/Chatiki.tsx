@@ -91,8 +91,8 @@ import { adminImgURL } from '../../../utils/chatConstants';
 
 export const Chatiki: React.FC = () => {
   const [rooms, setRooms] = useState<Room[]>([]);
-  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
-  const [messages, setMessages] = useState<Room['messages']>([]);
+  const [selectedRoom, setSelectedRoom] = useState<string>('');
+  const messages = rooms.find(r => r.id === selectedRoom)?.messages || [];
 
   useEffect(() => {
     socket.emit('admin:rooms');
@@ -104,40 +104,32 @@ export const Chatiki: React.FC = () => {
     });
   }, []);
 
-  useEffect(() => {
-    socket.on('server:msg', (message) => {
-      if (selectedRoom?.id === message.roomId) {
-        setMessages((prev) => [...prev, message]);
+  socket.on('server:msg', (message) => {
+    const newRooms = rooms.map((room) => {
+      if (room.id === message.roomId) {
+        return {
+          ...room,
+          messages: [...room.messages, message],
+        };
       }
-      /* setRooms((prev) => {
-        const newRooms = prev.map((room) => {
-          if (room.id === message.roomId) {
-            return {
-              ...room,
-              messages: [...room.messages, message],
-            };
-          }
-          return room;
-        });
-        return newRooms;
-      }); */
+      return room;
     });
-  }, [selectedRoom?.id]);
+    setRooms(newRooms);
+  });
 
   function joinRoom(room: Room) {
     socket.emit('admin:joinRoom', { id: room.id });
   }
 
   function selectRoom(room: Room) {
-    setSelectedRoom(room);
+    setSelectedRoom(room.id);
     joinRoom(room);
-    setMessages((prev) => [...prev, ...room.messages]);
   }
 
   function sendMessage(message: string) {
     if (selectedRoom) {
       socket.emit('admin:msg', {
-        roomId: selectedRoom.id,
+        roomId: selectedRoom,
         authorId: 1,
         authorName: 'ADMIN',
         body: message,
@@ -148,23 +140,32 @@ export const Chatiki: React.FC = () => {
 
   return (
     <section className="supportSection">
-      <ul className="roomsList">
-        {rooms.map((room) => (
-          <li
-            className={classNames('roomsList__room', {
-              'roomsList__room--active': room.id === selectedRoom?.id,
-            })}
-            key={room.id}
-            onClick={() => selectRoom(room)}
-          >
-            {`Room: ${room.id}`}
-          </li>
-        ))}
-      </ul>
+      <article className="ticketsList">
+        <p className="roomTitle">Tickets</p>
+        <ul className="roomsList">
+          {rooms.map((room) => (
+            <li
+              className={classNames('roomsList__room', {
+                'roomsList__room--active': room.id === selectedRoom,
+              })}
+              key={room.id}
+              onClick={() => selectRoom(room)}
+            >
+              {`Ticket: ${room.id}`}
+            </li>
+          ))}
+        </ul>
+      </article>
+
       <article className="roomChat">
-        <p className="roomTitle">{`Room: ${selectedRoom?.id}`}</p>
-        <MessagesList messages={messages} myID={1} />
-        <ChatSendArea onSend={sendMessage} />
+        {!selectedRoom && (<p>Please select ticket</p>)}
+        {selectedRoom && (
+          <>
+            <p className="roomTitle">{`Chat of ticket: ${selectedRoom}`}</p>
+            <MessagesList messages={messages} myID={1} />
+            <ChatSendArea onSend={sendMessage} />
+          </>
+        )}
       </article>
     </section>
   );
