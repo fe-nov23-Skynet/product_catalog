@@ -4,6 +4,8 @@ import './supportChat.scss';
 import classNames from 'classnames';
 import { IconButton } from '../UI/IconButton';
 import { socket } from '../../socket';
+import { Message } from '../../types/Chat';
+import { userImgURL } from '../../utils/chatConstants';
 
 const startMessages = [
   {
@@ -72,11 +74,7 @@ const startMessages = [
     body: 'Yes, but it didn\'t help.',
   },
 ];
-interface Message {
-  authorId: number;
-  authorName: string;
-  body: string;
-}
+const myID = 2;
 
 export const SupportChat: React.FC = () => {
   const [showChat, setShowChat] = useState(true);
@@ -91,7 +89,13 @@ export const SupportChat: React.FC = () => {
 
   function sendMessage() {
     if (messageText.trim()) {
-      socket.emit('user:msg', { messageText });
+      const message = {
+        authorId: myID,
+        authorName: 'Alice',
+        body: messageText.trim(),
+        avatarURL: userImgURL,
+      };
+      socket.emit('user:msg', message);
       setMessageText('');
     }
   }
@@ -115,7 +119,7 @@ export const SupportChat: React.FC = () => {
     function onDisconnect() {
       setIsConnected(false);
     }
-    function onServerMessage(data: { authorId: number; authorName: string; body: string; }) {
+    function onServerMessage(data: Message) {
       setMessages(prev => [...prev, data]);
     }
 
@@ -134,12 +138,13 @@ export const SupportChat: React.FC = () => {
     setShowChat(!showChat);
   }
 
-  const myID = 1;
-  const adminImgURL = 'https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?w=826&t=st=1709648780~exp=1709649380~hmac=e6da2190413b81007a9de61df1b142fc9fcd723c64a26f6c24a55053513a4dc7';
-  const userImgURL = 'https://img.freepik.com/premium-vector/cute-bath-bombs-mascot-with-optimistic-face-cute-style-design-t-shirt-sticker-logo-element_152558-9578.jpg';
-
   // eslint-disable-next-line no-restricted-globals
   if (!location.origin.includes('localhost')) {
+    return null;
+  }
+
+  // eslint-disable-next-line no-restricted-globals
+  if (location.pathname.includes('adminka')) {
     return null;
   }
 
@@ -168,7 +173,7 @@ export const SupportChat: React.FC = () => {
               })}
               >
                 <img
-                  src={myID === message.authorId ? userImgURL : adminImgURL}
+                  src={message.avatarURL}
                   alt="profilePhoto"
                   className="chatMessage__avatar"
                 />

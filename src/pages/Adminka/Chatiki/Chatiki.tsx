@@ -1,17 +1,15 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable object-curly-newline */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { socket } from '../../../socket';
 import './Chatiki.scss';
 import { Room } from '../../../types/Chat';
 import { MessagesList } from '../../../components/MessagesList';
+import { ChatSendArea } from '../../../components/ChatSendArea';
 
-const adminImgURL = 'https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?w=826&t=st=1709648780~exp=1709649380~hmac=e6da2190413b81007a9de61df1b142fc9fcd723c64a26f6c24a55053513a4dc7';
-const userImgURL = 'https://img.freepik.com/premium-vector/cute-bath-bombs-mascot-with-optimistic-face-cute-style-design-t-shirt-sticker-logo-element_152558-9578.jpg';
-
-const initialRooms: Room[] = [
+/* const initialRooms: Room[] = [
   {
     id: 1,
     messages: [
@@ -87,10 +85,13 @@ const initialRooms: Room[] = [
       { authorId: 2, authorName: 'Alice', body: 'Message 10', avatarURL: userImgURL },
     ],
   },
-];
+]; */
+
 export const Chatiki: React.FC = () => {
-  const [rooms, setRooms] = React.useState<Room[]>(initialRooms);
-  const [selectedRoom, setSelectedRoom] = React.useState<Room | null>(rooms[0] || null);
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+  const [messages, setMessages] = useState<Room['messages']>([]);
+
   useEffect(() => {
     socket.emit('admin:rooms');
   }, []);
@@ -101,6 +102,38 @@ export const Chatiki: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    socket.on('server:msg', (message) => {
+      console.log('message', message);
+      console.log(`selectedRoom.id: ${selectedRoom?.id}, message.roomId: ${message.roomId}`);
+      if (selectedRoom?.id === message.roomId) {
+        setMessages((prev) => [...prev, message]);
+      }
+      /* setRooms((prev) => {
+        const newRooms = prev.map((room) => {
+          if (room.id === message.roomId) {
+            return {
+              ...room,
+              messages: [...room.messages, message],
+            };
+          }
+          return room;
+        });
+        return newRooms;
+      }); */
+    });
+  }, [selectedRoom?.id]);
+
+  function joinRoom(room: Room) {
+    socket.emit('admin:joinRoom', { id: room.id });
+  }
+
+  function selectRoom(room: Room) {
+    setSelectedRoom(room);
+    joinRoom(room);
+    setMessages((prev) => [...prev, ...room.messages]);
+  }
+
   return (
     <section className="supportSection">
       <ul className="roomsList">
@@ -110,7 +143,7 @@ export const Chatiki: React.FC = () => {
               'roomsList__room--active': room.id === selectedRoom?.id,
             })}
             key={room.id}
-            onClick={() => setSelectedRoom(room)}
+            onClick={() => selectRoom(room)}
           >
             {`Room: ${room.id}`}
           </li>
@@ -118,7 +151,8 @@ export const Chatiki: React.FC = () => {
       </ul>
       <article className="roomChat">
         <p className="roomTitle">{`Room: ${selectedRoom?.id}`}</p>
-        <MessagesList messages={selectedRoom?.messages || []} myID={1} />
+        <MessagesList messages={messages} myID={1} />
+        <ChatSendArea onSend={() => {}} />
       </article>
     </section>
   );

@@ -6,6 +6,6 @@ export interface Message {
 }
 
 export interface Room {
-  id: number;
-  messages?: Message[];
+  id: string;
+  messages: Message[];
 }
