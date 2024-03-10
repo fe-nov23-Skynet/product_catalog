@@ -183,7 +183,6 @@ export const SupportChat: React.FC = () => {
     }
     function onServerMessage(data: Message) {
       setMessages(prev => [...prev, data]);
-      console.log(data);
     }
 
     socket.on('connect', onConnect);
