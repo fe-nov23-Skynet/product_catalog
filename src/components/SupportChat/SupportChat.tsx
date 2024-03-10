@@ -87,13 +87,6 @@ export const SupportChat: React.FC = () => {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [messageText, setMessageText] = useState('');
   const chatBody = useRef<HTMLDivElement>(null);
-  const [assistant, setAssistant] = useState<OpenAI.Beta.Assistants.Assistant>();
-  const [thread, setThread] = useState<OpenAI.Beta.Threads.Thread>();
-
-  const openai = new OpenAI({
-    apiKey: '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',
-    dangerouslyAllowBrowser: true,
-  });
 
   // chatGPT
   /*   useEffect(() => {
@@ -168,7 +161,8 @@ export const SupportChat: React.FC = () => {
   }
 
   useEffect(() => {
-    if (showChat && !messages.length) {
+    // eslint-disable-next-line no-restricted-globals
+    if (showChat && !messages.length && !location.pathname.includes('adminka')) {
       socket.emit('user:needHelp');
     }
   }, [showChat]);
@@ -189,6 +183,7 @@ export const SupportChat: React.FC = () => {
     }
     function onServerMessage(data: Message) {
       setMessages(prev => [...prev, data]);
+      console.log(data);
     }
 
     socket.on('connect', onConnect);

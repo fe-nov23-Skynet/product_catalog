@@ -36,7 +36,7 @@ export const MessagesList: React.FC<Props> = (props) => {
                 alt="profilePhoto"
                 className="chatMessage__avatar"
               />
-              <span className="chatMessage__text">{message.body}</span>
+              <pre className="chatMessage__text">{message.body}</pre>
             </p>
           );
         },

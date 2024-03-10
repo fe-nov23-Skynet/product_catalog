@@ -74,6 +74,8 @@
     padding-inline: 8px;
     padding-block: 4px;
     text-wrap: wrap;
-    word-break: break-all;
+    word-break: keep-all;
+    font: inherit;
+    margin: 0;
   }
 }

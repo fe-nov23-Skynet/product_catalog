@@ -22,7 +22,7 @@ export const Chatiki: React.FC = () => {
 
   useEffect(() => {
     socket.on('server:rooms', (supportRooms: Room[]) => {
-      setRooms(prev => [...prev, ...supportRooms]);
+      setRooms(prev => [...supportRooms]);
     });
   }, []);
 
