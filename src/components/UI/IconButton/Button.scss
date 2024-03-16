@@ -19,12 +19,13 @@
   &:hover {
     border-color: $color-primary;
     color: $color-primary;
+    cursor: pointer;
   }
 
   &:active {
     scale: 0.95;
   }
-  
+
   &:disabled {
     border-color: $color-elements;
     cursor: not-allowed;

@@ -2,8 +2,8 @@
 
 .supportChat {
   position: fixed;
-  right: 50px;
-  bottom: 50px;
+  right: 5%;
+  bottom: 5%;
   z-index: 10;
 }
 
@@ -38,6 +38,7 @@
 .chatHeader {
   position: relative;
   height: 10%;
+  min-height: 7%;
   padding: 4px;
   display: flex;
   align-items: center;
