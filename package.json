@@ -19,7 +19,6 @@
     "i18next": "^23.10.0",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.5.0",
-    "openai": "^4.28.4",
     "rc-pagination": "^4.0.4",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
@@ -34,7 +33,6 @@
     "swiper": "^11.0.6",
     "typescript": "^4.9.5",
     "usehooks-ts": "^2.15.1",
-    "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

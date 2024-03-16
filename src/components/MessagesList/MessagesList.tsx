@@ -1,15 +1,19 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { Message } from '../../types/Chat';
 import './messagesList.scss';
+import { adminImgURL } from '../../utils/chatConstants';
+import { Typing } from './Typing';
 
 interface Props {
   messages: Message[];
   myID: number | string;
+  typing?: boolean;
 }
 
 export const MessagesList: React.FC<Props> = (props) => {
-  const { messages, myID } = props;
+  const { messages, myID, typing = false } = props;
   const chatBody = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,6 +44,18 @@ export const MessagesList: React.FC<Props> = (props) => {
             </p>
           );
         },
+      )}
+      {typing && (
+        <p className={classNames('chatMessage', 'chatMessage--from')}>
+          <img
+            src={adminImgURL}
+            alt="profilePhoto"
+            className="chatMessage__avatar"
+          />
+          <pre className="chatMessage__text">
+            <Typing />
+          </pre>
+        </p>
       )}
     </div>
   );

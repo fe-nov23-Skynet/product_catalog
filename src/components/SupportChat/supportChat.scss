@@ -23,9 +23,20 @@
   box-shadow: 0 0 40px 5px $color-box-shadow;
 
   animation: openChat .5s;
+
+  @media (max-width: 639px) {
+    position: fixed;
+    right: 5px;
+    left: 5px;
+    top: 5px;
+    bottom: 5px;
+    width: auto;
+    height: auto;
+  }
 }
 
 .chatHeader {
+  position: relative;
   height: 10%;
   padding: 4px;
   display: flex;
@@ -63,6 +74,12 @@
   }
 }
 
+.closeChat {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 2%;
+}
 
 @keyframes openChat {
   from {

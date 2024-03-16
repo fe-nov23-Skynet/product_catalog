@@ -9,6 +9,7 @@ import { ReactComponent as ArrowDownIcon } from '../../../styles/icons/chevron_a
 import { ReactComponent as ArrowLeftIcon } from '../../../styles/icons/chevron_arrow_left.svg';
 import { ReactComponent as ArrowRightIcon } from '../../../styles/icons/chevron_arrow_right.svg';
 import { ReactComponent as SendIcon } from '../../../styles/icons/send_message.svg';
+import { ReactComponent as CloseIcon } from '../../../styles/icons/close.svg';
 
 interface Props {
   type: string;
@@ -29,6 +30,7 @@ export const IconButton: React.FC<Props> = (props) => {
     switch (type) {
       case 'plus': return (<PlusIcon />);
       case 'minus': return (<MinusIcon />);
+      case 'close': return (<CloseIcon />);
       case 'arrowUp': return (<ArrowUpIcon />);
       case 'arrowDown': return (<ArrowDownIcon />);
       case 'arrowLeft': return (<ArrowLeftIcon />);

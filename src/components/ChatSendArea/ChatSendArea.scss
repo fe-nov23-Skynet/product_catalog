@@ -20,6 +20,7 @@
     border: 1px solid $color-icons;
     transition: border-color .2s;
     border-radius: 2px;
+    background-color: $color-elements;
 
     &:hover {
       border-color: $color-secondary;
