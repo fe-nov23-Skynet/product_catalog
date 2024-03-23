@@ -1,0 +1,108 @@
+@import '../../styles/variables/theme_colors.scss';
+
+.chatBody1 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: auto;
+  width: 100%;
+  flex-grow: 1;
+  padding: 8px;
+  overflow-y: scroll;
+  padding-bottom: 16px;
+
+  &--bg {
+    background-color: $color-icons;
+  }
+}
+
+.chatMessage {
+  --in-duration: .5s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  align-items: start;
+  width: 80%;
+
+  &--from {
+    align-self: start;
+    animation: messageInFrom var(--in-duration) ease-in-out;
+
+    .chatMessage__text {
+      background-color: $color-icons;
+    }
+  }
+
+  &--my {
+    align-self: end;
+    flex-direction: row-reverse;
+    animation: messageInMy var(--in-duration) ease-in-out;
+  }
+
+  &--system {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+
+    padding-inline: 6px;
+
+    max-width: 100%;
+    width: fit-content;
+
+    font-size: 12px;
+    background-color: $color-icons;
+    opacity: 0.5;
+    border-radius: 16px;
+
+    text-wrap: wrap;
+    word-break: break-all;
+  }
+
+  &__avatar {
+    --size: 32px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    border: 1px solid $color-elements;
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    width: fit-content;
+    min-height: 32px;
+    display: flex;
+    background-color: $color-elements;
+    border-radius: 8px;
+    padding-inline: 8px;
+    padding-block: 4px;
+    text-wrap: wrap;
+    word-break: keep-all;
+    font: inherit;
+    margin: 0;
+  }
+}
+
+@keyframes messageInFrom {
+  from {
+    opacity: 0;
+    transform: translateX(-0%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes messageInMy{
+  from {
+    opacity: 0;
+    transform: translateX(5%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
