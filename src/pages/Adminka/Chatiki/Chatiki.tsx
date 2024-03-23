@@ -84,7 +84,7 @@ export const Chatiki: React.FC = () => {
         {selectedRoom && (
           <>
             <p className="roomTitle">{`Chat of ticket: ${selectedRoom}`}</p>
-            <MessagesList messages={messages} myID={1} />
+            <MessagesList messages={messages} myID={1} reUser />
             <ChatSendArea onSend={sendMessage} />
           </>
         )}

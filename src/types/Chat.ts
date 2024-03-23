@@ -3,6 +3,7 @@ export interface Message {
   avatarURL: string;
   authorName: string;
   body: string;
+  role: string;
 }
 
 export interface Room {

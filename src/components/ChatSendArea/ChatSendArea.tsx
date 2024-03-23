@@ -16,6 +16,11 @@ export const ChatSendArea: React.FC<Props> = (props) => {
   }
 
   function sendMsg() {
+    if (!messageText.trim()) {
+      setMessageText('');
+      return;
+    }
+
     onSend(messageText);
     setMessageText('');
   }

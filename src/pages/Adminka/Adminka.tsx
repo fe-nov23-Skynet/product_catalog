@@ -33,32 +33,7 @@ export const Adminka = () => {
 
   return (
     <div className="adminka">
-      <div className="adminka__buttons">
-        <button onClick={handleShowList} className="adminka__button">
-          <CloudLoadList />
-          Load product list
-        </button>
-        <button onClick={handleShowProductForm} className="adminka__button">
-          <PlusIcon />
-          Add new product
-        </button>
-        <button onClick={handleShowChats} className="adminka__button">
-          <PlusIcon />
-          Show chats
-        </button>
-      </div>
-
-      {showProductForm && (
-        <div className="adminka__form">
-          <ProductEditForm />
-        </div>
-      )}
-
-      {showList && (
-        <div className="adminka__list">
-          <ProductTable />
-        </div>
-      )}
+      <h2>Support center</h2>
 
       {showChats && (
         <div className="adminka__chats">

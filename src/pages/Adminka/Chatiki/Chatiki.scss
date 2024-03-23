@@ -1,10 +1,10 @@
 @import '../../../styles/variables/theme_colors.scss';
 
-
-
 .supportSection {
   display: flex;
-  min-height: 500px;
+  min-height: 800px;
+  height: 100%;
+  // max-height: 800px;
   $color: var($color-h);
   background-color: $color-bg-opacity;
 }
@@ -59,13 +59,13 @@
   align-items: center;
   width: 80%;
   min-height: 100%;
-  max-height: 500px;
-
+  max-height: 900px;
 }
 
 .roomTitle {
   display: flex;
   height: 10%;
+  max-height: 50px;
   width: 100%;
   background-color: $color-elements;
   padding: 8px;

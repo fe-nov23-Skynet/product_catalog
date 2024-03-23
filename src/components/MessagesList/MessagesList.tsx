@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable react/jsx-curly-brace-presence */
 import { useEffect, useRef } from 'react';
 import classNames from 'classnames';
@@ -10,10 +11,12 @@ interface Props {
   messages: Message[];
   myID: number | string;
   typing?: boolean;
+  reUser?: boolean;
 }
 
 export const MessagesList: React.FC<Props> = (props) => {
-  const { messages, myID, typing = false } = props;
+  // eslint-disable-next-line object-curly-newline
+  const { messages, myID, typing = false, reUser } = props;
   const chatBody = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -22,6 +25,18 @@ export const MessagesList: React.FC<Props> = (props) => {
     }
   }, [messages.length]);
 
+  function getMesageRole(message: Message) {
+    switch (message.role) {
+      case 'assistant':
+        return 'AI';
+      case 'user':
+        return reUser ? 'User' : 'You';
+      case 'Support':
+        return 'Team';
+      default:
+        return 'You';
+    }
+  }
   return (
     <div className="chatBody1" ref={chatBody}>
       {messages.length > 0 && messages.map(
@@ -35,11 +50,17 @@ export const MessagesList: React.FC<Props> = (props) => {
               'chatMessage--my': message.authorId === myID,
             })}
             >
-              <img
-                src={message.avatarURL}
-                alt="profilePhoto"
-                className="chatMessage__avatar"
-              />
+              <div className="chatMessage__author">
+                <img
+                  src={message.avatarURL}
+                  alt="profilePhoto"
+                  className="chatMessage__avatar"
+                />
+                <span className="chatMessage__role">
+                  {getMesageRole(message)}
+                </span>
+              </div>
+
               <pre className="chatMessage__text">{message.body}</pre>
             </p>
           );
