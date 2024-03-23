@@ -28,8 +28,6 @@ export const Chatiki: React.FC = () => {
 
   useEffect(() => {
     socket.on('server:msg', (message) => {
-      console.log('server msg: ', message);
-
       setRooms((prevRooms) => {
         const newRooms = prevRooms.map((room) => {
           if (room.id === message.roomId) {
