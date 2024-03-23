@@ -24,7 +24,6 @@ export const CatalogPage: React.FC<Props> = ({ pageTitle }) => {
   }
 
   useEffect(() => {
-    // setProductsArray([]);
     setLoading(true);
     getProducts(currentPath)
       .then(saveLoadedProducts);

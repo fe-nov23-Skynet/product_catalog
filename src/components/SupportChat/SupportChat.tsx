@@ -82,7 +82,7 @@ const startMessages = [
 const myID = 2;
 
 export const SupportChat: React.FC = () => {
-  const [showChat, setShowChat] = useState(true);
+  const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [typing, setTyping] = useState(false);
@@ -128,11 +128,6 @@ export const SupportChat: React.FC = () => {
 
   function handleShowChat() {
     setShowChat(!showChat);
-  }
-
-  // eslint-disable-next-line no-restricted-globals
-  if (!location.origin.includes('localhost')) {
-    return null;
   }
 
   // eslint-disable-next-line no-restricted-globals
