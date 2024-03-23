@@ -26,18 +26,22 @@ export const Chatiki: React.FC = () => {
     });
   }, []);
 
-  socket.on('server:msg', (message) => {
-    const newRooms = rooms.map((room) => {
-      if (room.id === message.roomId) {
-        return {
-          ...room,
-          messages: [...room.messages, message],
-        };
-      }
-      return room;
+  useEffect(() => {
+    socket.on('server:msg', (message) => {
+      setRooms((prevRooms) => {
+        const newRooms = prevRooms.map((room) => {
+          if (room.id === message.roomId) {
+            return {
+              ...room,
+              messages: [...room.messages, message],
+            };
+          }
+          return room;
+        });
+        return newRooms;
+      });
     });
-    setRooms(newRooms);
-  });
+  }, []);
 
   function joinRoom(room: Room) {
     socket.emit('admin:joinRoom', { id: room.id });
