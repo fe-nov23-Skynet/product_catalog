@@ -1,5 +1,11 @@
 @import '../../styles/variables/theme_colors';
 .adminka {
+  height: 100%;
+  padding-block: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
   &__buttons{
     width: 100%;
     display: flex;

@@ -9,76 +9,8 @@ import { Message } from '../../types/Chat';
 import { userImgURL } from '../../utils/chatConstants';
 import { MessagesList } from '../MessagesList';
 import { ChatSendArea } from '../ChatSendArea';
-import { ReactComponent as CloseIcon } from '../../styles/icons/close.svg';
 import { IconButton } from '../UI/IconButton';
 
-const startMessages = [
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'Hey, can you help me?',
-  },
-  {
-    authorId: 2,
-    authorName: 'Alice',
-    body: 'Sure, what do you need?',
-  },
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'I\'m having trouble with my computer.',
-  },
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'I\'m having trouble with my computer.',
-  },
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'I\'m having trouble with my computer.',
-  },
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'I\'m having trouble with my computer.',
-  },
-  {
-    authorId: 2,
-    authorName: 'Alice',
-    body: 'What seems to be the problem?',
-  },
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'It keeps crashing whenever I open this program.',
-  },
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'It keeps crashing whenever I open this program.',
-  },
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'It keeps crashing whenever I open this program.',
-  },
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'It keeps crashing whenever I open this program.',
-  },
-  {
-    authorId: 2,
-    authorName: 'Alice',
-    body: 'Have you tried restarting it?',
-  },
-  {
-    authorId: 1,
-    authorName: 'Pavlo',
-    body: 'Yes, but it didn\'t help.',
-  },
-];
 const myID = 2;
 
 export const SupportChat: React.FC = () => {
@@ -96,7 +28,7 @@ export const SupportChat: React.FC = () => {
         avatarURL: userImgURL,
       };
       socket.emit('user:msg', message);
-      setMessages(prev => [...prev, message]);
+      // setMessages(prev => [...prev, message]);
       setTyping(true);
     }
   }
@@ -118,7 +50,9 @@ export const SupportChat: React.FC = () => {
     }
     function onServerMessage(data: Message) {
       setMessages(prev => [...prev, data]);
-      setTyping(false);
+      if (data.authorId !== myID) {
+        setTyping(false);
+      }
     }
 
     socket.on('connect', onConnect);

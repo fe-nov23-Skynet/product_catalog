@@ -9,6 +9,7 @@
   flex-grow: 1;
   padding: 8px;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding-bottom: 16px;
 
   &--bg {
@@ -57,6 +58,29 @@
 
     text-wrap: wrap;
     word-break: break-all;
+  }
+
+  &__author {
+    display: flex;
+    position: relative;
+  }
+
+  &__role {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: $color-elements;
+    transform: translateY(60%) translateX(-50%);
+    border-radius: 4px;
+
+    font-size: 10px;
+    line-height: 10px;
+    padding: 4px;
   }
 
   &__avatar {
