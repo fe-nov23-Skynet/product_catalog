@@ -9,6 +9,7 @@ interface Props {
 
 export function SelectImage({ product }: Props) {
   const [activeImage, setActiveImage] = useState(product.images?.[0]);
+  const activeImgSrc = activeImage.includes('http') ? activeImage : `/${activeImage.replace('imgs', 'img')}`;
 
   useEffect(() => {
     setActiveImage(product.images?.[0]);
@@ -17,25 +18,29 @@ export function SelectImage({ product }: Props) {
   return (
     <div className="product-images">
       <div className="product-images__list">
-        {product.images.map(image => (
-          <button
-            key={image}
-            className={cn('product-images__item', {
-              'product-images__item--active': image === activeImage,
-            })}
-            onClick={() => setActiveImage(image)}
-          >
-            <img
-              src={`/${image.replace('imgs', 'img')}`}
-              alt={product.name}
-              className="product-images__image"
-            />
-          </button>
-        ))}
+        {product.images.map(image => {
+          const imgSource = image.includes('http') ? image : `/${image.replace('imgs', 'img')}`;
+
+          return (
+            <button
+              key={image}
+              className={cn('product-images__item', {
+                'product-images__item--active': image === activeImage,
+              })}
+              onClick={() => setActiveImage(image)}
+            >
+              <img
+                src={imgSource}
+                alt={product.name}
+                className="product-images__image"
+              />
+            </button>
+          );
+        })}
       </div>
       <div className="product-images__main">
         <img
-          src={`/${activeImage.replace('imgs', 'img')}`}
+          src={activeImgSrc}
           alt={product.name}
           className="product-images__main-image"
         />
