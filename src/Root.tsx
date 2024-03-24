@@ -41,7 +41,6 @@ export const Root = () => {
           <Route path="cart" element={<CartPage />} />
           <Route path="/adminka" element={<Adminka />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="login" element={<LoginForm />} />
         </Route>
       </Routes>
       <ToastContainer
