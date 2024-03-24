@@ -12,7 +12,6 @@ import { HomePage } from './pages/HomePage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { CatalogPage } from './pages/CatalogPage';
 import { useUIState } from './customHooks/useUIState';
-import { LoginForm } from './components/Login/LoginForm';
 import { Adminka } from './pages/Adminka/Adminka';
 
 export const Root = () => {
