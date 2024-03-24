@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+// import NextAuth from '@auth-kit/next/NextAuth';
 import { Helmet } from 'react-helmet';
 import Styles from './HomePage.module.scss';
 import Tablets_image from '../../banner-images/Tablets.png';
@@ -17,6 +19,7 @@ export const HomePage: React.FC = () => {
   const [phonesArr, setPhonesArr] = useState<Product[]>([]);
   const [tabletsArr, setTabletsArr] = useState<Product[]>([]);
   const [accessoriesArr, setAccessoriesArr] = useState<Product[]>([]);
+  const { user, isAuthenticated } = useAuth0();
 
   const allProducts = [...phonesArr, ...tabletsArr, ...accessoriesArr];
   const bestPriceProducts = getBestPrice(allProducts);
