@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+// import { useAuth0 } from '@auth0/auth0-react';
 import { ReactComponent as Favorites } from '../../styles/icons/Favourites.svg';
 import { ReactComponent as Cart } from '../../styles/icons/Cart.svg';
 import { ReactComponent as Moon } from '../../styles/icons/Moon.svg';
@@ -32,6 +33,13 @@ export function Header() {
   const { UIState } = useUIState();
 
   const { t } = useTranslation();
+
+  const {
+    user,
+    logout,
+    loginWithRedirect,
+    isAuthenticated,
+  } = useAuth0();
 
   const navItemClassName = (
     { isActive }: { isActive: boolean },
@@ -58,9 +66,45 @@ export function Header() {
     setTimeout(() => setMenuOpen(!menuOpen), 200);
   };
 
+  const loginB = {
+    backgroundColor: 'green',
+    cursor: 'pointer',
+  };
+
+  const logoutB = {
+    backgroundColor: 'red',
+    cursor: 'pointer',
+  };
+
   return (
     <>
       <header className="header" id="top-page">
+        {/* <div className="languageContainer">
+          <LangSwitch
+            checked={LanguageState.language === 'en'}
+            onCheck={toggleLanguage}
+          />
+        </div> */}
+        {/* {!isAuthenticated ? (
+          <button
+            style={loginB}
+            onClick={() => {
+              loginWithRedirect();
+            }}
+          >
+            Login
+          </button>
+        ) : (
+          <button
+            style={logoutB}
+            onClick={() => {
+              logout();
+            }}
+          >
+            Logout
+          </button>
+        )} */}
+
         <NavLink
           to="/"
           className={cn('header_logo__img', { dark__theme: UIState.isDarkMode })}

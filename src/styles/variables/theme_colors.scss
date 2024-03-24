@@ -1,3 +1,7 @@
+@function HexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
 .light-theme {
   --color-primary: #313237;
   --color-secondary: #89939a;
@@ -19,6 +23,7 @@
   --chevron-icon-right: url('../../styles/icons/chevron_arrow_right.svg');
   --chevron-icon-left: url('../../styles/icons/chevron_arrow_left.svg');
   --chevron-icon-up: url('../../styles/icons/chevron_arrow_up.svg');
+  --color-bg-opacity: rgba(#{HexToRGB(#b4bdc3)}, 0.1);
 }
 
 .dark-theme {
@@ -42,6 +47,7 @@
   --chevron-icon-right: url('../../styles/icons/chevron_arrow_right_light.svg');
   --chevron-icon-left: url('../../styles/icons/chevron_arrow_left_light.svg');
   --chevron-icon-up: url('../../styles/icons/chevron_arrow_up_light.svg');
+  --color-bg-opacity: rgba(#{HexToRGB(#11142a)}, 0.8);
 }
 
 $color-primary: var(--color-primary);
@@ -64,3 +70,4 @@ $color-search: var(--color-search);
 $chevron-icon-right: var(--chevron-icon-right);
 $chevron-icon-left: var(--chevron-icon-left);
 $chevron-icon-up: var(--chevron-icon-up);
+$color-bg-opacity: var(--color-bg-opacity);

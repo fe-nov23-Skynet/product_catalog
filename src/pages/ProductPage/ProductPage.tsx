@@ -25,6 +25,7 @@ import { CopyButton } from '../../components/UI/CopyButton';
 import './productPage.scss';
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import { useTranslate } from '../../customHooks/useTranslate';
+import fetchAxiosData from '../../api/axiosClient';
 
 interface Props {
   product: Product;
@@ -53,7 +54,7 @@ function generateUniqueId(inputString: string): number {
   return numericHash % 10000000;
 }
 
-export const ProductPage: React.FC/* <Props> */ = (/* props */) => {
+export const ProductPage: React.FC = () => {
   const currentPath = useLocation().pathname.split('/')[1];
   const { state } = useLocation();
   const { id: productId } = useParams();
