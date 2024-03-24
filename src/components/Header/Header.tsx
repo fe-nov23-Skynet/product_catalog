@@ -22,12 +22,14 @@ import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { useCartState } from '../../customHooks/useCartState';
 import { ToggleButton } from './ToggleButton';
 import { useUIState } from '../../customHooks/useUIState';
+import { Loader } from '../Loader';
 import { DropdownInput } from '../DropdownInput';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [onClose, setOnClose] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { favoritesProducts } = useFavoriteState();
   const { cartCount } = useCartState();
   const { UIState } = useUIState();
@@ -148,10 +150,20 @@ export function Header() {
                 </NavLink>
               ) : (
                 <div>
+                  {isLoading && (
+                    <Loader />
+                  )}
                   <NavLink
                     to="/profile"
                     className={boxItemClassName}
-                    onClick={() => loginWithRedirect()}
+                    onClick={() => {
+                      setIsLoading(true);
+                      loginWithRedirect();
+
+                      setTimeout(() => {
+                        setIsLoading(false);
+                      }, 10000);
+                    }}
                   >
                     <Profile />
                   </NavLink>
@@ -236,10 +248,20 @@ export function Header() {
                 </NavLink>
               ) : (
                 <div>
+                  {isLoading && (
+                    <Loader />
+                  )}
                   <NavLink
                     to="/profile"
                     className={boxItemClassName}
-                    onClick={() => loginWithRedirect()}
+                    onClick={() => {
+                      setIsLoading(true);
+                      loginWithRedirect();
+
+                      setTimeout(() => {
+                        setIsLoading(false);
+                      }, 10000);
+                    }}
                   >
                     <Profile />
                   </NavLink>
