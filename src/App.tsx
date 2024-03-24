@@ -42,7 +42,6 @@ export function App() {
           <Outlet />
         </div>
       </main>
-
       <Footer />
     </div>
   );

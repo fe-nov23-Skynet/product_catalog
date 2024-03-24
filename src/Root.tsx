@@ -12,6 +12,7 @@ import { HomePage } from './pages/HomePage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { CatalogPage } from './pages/CatalogPage';
 import { useUIState } from './customHooks/useUIState';
+import { LoginForm } from './components/Login/LoginForm';
 
 export const Root = () => {
   const { UIState } = useUIState();
@@ -37,8 +38,8 @@ export const Root = () => {
           </Route>
           <Route path="favourites" element={<FavouritesPage />} />
           <Route path="cart" element={<CartPage />} />
-
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="login" element={<LoginForm />} />
         </Route>
       </Routes>
       <ToastContainer
