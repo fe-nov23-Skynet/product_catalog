@@ -11,7 +11,7 @@
 .toggle-mobile {
   display: flex;
 
-  @include on-tablet {
+  @include on-desktop {
     display: none;
   }
 }
