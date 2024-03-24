@@ -154,6 +154,11 @@ $header-height-desktop: 64px;
   }
 }
 
+.profile__picture {
+  width: 20px;
+  border-radius: 50%;
+}
+
 .header_box__link {
   text-decoration: none;
   color: $color-secondary;
