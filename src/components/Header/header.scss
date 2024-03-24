@@ -47,7 +47,7 @@ $header-height-desktop: 64px;
     justify-content: space-between;
     width: 100%;
 
-    @include on-tablet {
+    @include on-desktop {
       display: flex;
     }
   }
@@ -93,7 +93,7 @@ $header-height-desktop: 64px;
 }
 
 .mobile {
-  @include on-tablet {
+  @include on-desktop {
     display: none;
   }
 }
@@ -154,21 +154,29 @@ $header-height-desktop: 64px;
   }
 }
 
+.profile__picture {
+  width: 20px;
+  border-radius: 50%;
+}
+
 .header_box__link {
   text-decoration: none;
   color: $color-secondary;
-  padding: 0;
   margin: 0;
-  padding: 13px 15px;
+  padding: 15px 15px;
+  text-align: center;
+  display: flex;
+  align-content: center;
 
   @include on-desktop {
-    padding: 21px 23px;
+    padding: 23px 23px;
   }
 }
 
 .burger-toggle {
   background-color: inherit;
   width: 48px;
+  height: 100%;
   border: none;
   border-left: 1px solid $color-secondary;
   color: $color-favorite-button-svg;
@@ -177,7 +185,7 @@ $header-height-desktop: 64px;
     color: $color-favorite-button-svg;
   }
 
-  @include on-tablet {
+  @include on-desktop {
     display: none;
   }
 }
@@ -187,7 +195,7 @@ $header-height-desktop: 64px;
   animation: menuAnimationOpen .5s;
   position: relative;
 
-  @include on-tablet {
+  @include on-desktop {
     display: none;
   }
 }
@@ -319,16 +327,6 @@ $header-height-desktop: 64px;
   }
 }
 
-.languageContainer {
-  position: absolute;
-  right: 10px;
-  top: $header-height-base +10px;
-
-  @include on-desktop {
-    top: $header-height-desktop + 10px;
-  }
-}
-
 .search_icon {
   position: absolute;
   height: 15px;
@@ -376,13 +374,23 @@ $header-height-desktop: 64px;
   background-color: $color-bg;
 
 
-  @include on-desktop {
+  @include on-tablet {
     display: flex;
     position: static;
     left: auto;
     top: auto;
     margin-right: 15px;
+    width: 250px;
+  }
+
+  @include on-desktop {
     width: 350px;
+  }
+}
+
+.tablet_search {
+  @include on-desktop {
+    display: none;
   }
 }
 
@@ -392,7 +400,7 @@ $header-height-desktop: 64px;
   gap: 8px;
   box-shadow: 0 0 10px $color-icons;
 
-  @include on-desktop {
+  @include on-tablet {
     display: none;
   }
 }

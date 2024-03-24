@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-indent */
@@ -6,10 +7,9 @@
 import './header.scss';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
-import { useState } from 'react';
-// import { TFunction, changeLanguage } from 'i18next';
-import { useTranslation } from 'react-i18next';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ReactComponent as Favorites } from '../../styles/icons/Favourites.svg';
 import { ReactComponent as Cart } from '../../styles/icons/Cart.svg';
 import { ReactComponent as Moon } from '../../styles/icons/Moon.svg';
@@ -17,13 +17,12 @@ import { ReactComponent as Sun } from '../../styles/icons/Sun.svg';
 import { ReactComponent as Menu } from '../../styles/icons/menu.svg';
 import { ReactComponent as Close } from '../../styles/icons/close.svg';
 import { ReactComponent as SearchIcon } from '../DropdownInput/searchIcon.svg';
+import { ReactComponent as Profile } from '../../styles/icons/profile.svg';
 import { useFavoriteState } from '../../customHooks/useFavoriteState';
 import { useCartState } from '../../customHooks/useCartState';
 import { ToggleButton } from './ToggleButton';
 import { useUIState } from '../../customHooks/useUIState';
-import { useTranslate } from '../../customHooks/useTranslate';
 import { DropdownInput } from '../DropdownInput';
-import { LangSwitch } from '../UI/LangSwitch';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,12 +33,6 @@ export function Header() {
   const { UIState } = useUIState();
 
   const { t } = useTranslation();
-  const { LanguageState, changeLanguage } = useTranslate();
-
-  const toggleLanguage = () => {
-    const newLanguage = LanguageState.language === 'en' ? 'ukr' : 'en';
-    changeLanguage(newLanguage);
-  };
 
   const {
     user,
@@ -86,31 +79,6 @@ export function Header() {
   return (
     <>
       <header className="header" id="top-page">
-        {/* <div className="languageContainer">
-          <LangSwitch
-            checked={LanguageState.language === 'en'}
-            onCheck={toggleLanguage}
-          />
-        </div> */}
-        {/* {!isAuthenticated ? (
-          <button
-            style={loginB}
-            onClick={() => {
-              loginWithRedirect();
-            }}
-          >
-            Login
-          </button>
-        ) : (
-          <button
-            style={logoutB}
-            onClick={() => {
-              logout();
-            }}
-          >
-            Logout
-          </button>
-        )} */}
 
         <NavLink
           to="/"
@@ -167,6 +135,32 @@ export function Header() {
             </div>
 
             <div className="header_box__container">
+              {isAuthenticated ? (
+                <NavLink
+                  to="/profile"
+                  className={boxItemClassName}
+                >
+                  <img
+                    src={user?.picture}
+                    alt="Photo profile"
+                    className="profile__picture"
+                  />
+                </NavLink>
+              ) : (
+                <div>
+                  <NavLink
+                    to="/profile"
+                    className={boxItemClassName}
+                    onClick={() => loginWithRedirect()}
+                  >
+                    <Profile />
+                  </NavLink>
+                </div>
+              )}
+
+            </div>
+
+            <div className="header_box__container">
               <NavLink
                 to="favourites"
                 className={boxItemClassName}
@@ -212,6 +206,10 @@ export function Header() {
               )}
             </div>
 
+            <div className="search-container tablet_search">
+              <DropdownInput />
+            </div>
+
             <div className="theme_button">
               <div className="theme_badge mobile">
                 {UIState.isDarkMode ? (
@@ -224,11 +222,35 @@ export function Header() {
               <ToggleButton onMobile componentKey={2} />
             </div>
 
+            <div className="header_box__container burger-toggle">
+              {isAuthenticated ? (
+                <NavLink
+                  to="/profile"
+                  className={boxItemClassName}
+                >
+                  <img
+                    src={user?.picture}
+                    alt="Photo profile"
+                    className="profile__picture"
+                  />
+                </NavLink>
+              ) : (
+                <div>
+                  <NavLink
+                    to="/profile"
+                    className={boxItemClassName}
+                    onClick={() => loginWithRedirect()}
+                  >
+                    <Profile />
+                  </NavLink>
+                </div>
+              )}
+            </div>
+
             <button className="burger-toggle" onClick={changeMenuOpen}>
               <Menu />
             </button>
           </div>
-
         ) : (
           <button className="burger-toggle" onClick={changeMenuOpen}>
             <Close />

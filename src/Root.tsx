@@ -13,6 +13,7 @@ import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { CatalogPage } from './pages/CatalogPage';
 import { useUIState } from './customHooks/useUIState';
 import { Adminka } from './pages/Adminka/Adminka';
+import { ProfilePage } from './pages/ProfilePage';
 
 export const Root = () => {
   const { UIState } = useUIState();
@@ -36,6 +37,7 @@ export const Root = () => {
             <Route index element={<CatalogPage pageTitle={t('accessories.accessories')} />} />
             <Route path=":id?" element={<ProductPage />} />
           </Route>
+          <Route path="profile" element={<ProfilePage />} />
           <Route path="favourites" element={<FavouritesPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="/adminka" element={<Adminka />} />
