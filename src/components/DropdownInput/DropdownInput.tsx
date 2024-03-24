@@ -48,8 +48,8 @@ export const DropdownInput: React.FC/* <Props> */ = (/* { onSelect } */) => {
 
   const stopSearch = () => {
     setProducts([]);
-    setQuerry('');
-    setDelayedQerry('');
+    /* setQuerry('');
+    setDelayedQerry(''); */
   };
 
   useEffect(() => {

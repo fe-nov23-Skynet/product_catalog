@@ -1,0 +1,47 @@
+@import '../../styles/variables/theme_colors';
+.adminka {
+  height: 100%;
+  padding-block: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 20px;
+  }
+
+  &__button {
+    gap: 5px;
+    width: 300px;
+    height: 40px;
+    display: flex;
+    font-family: inherit;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 14px;
+    text-decoration: none;
+    color: $color-primary;
+    background-color: $color-white;
+    border: 1px solid $color-primary;
+    padding: 20px;
+    cursor: pointer;
+    transition:
+      box-shadow .3s,
+      border-color 300ms,
+      scale 100ms;
+
+    &:hover {
+      background-color: $color-white;
+      box-shadow: 0 3px 13px 0 $color-box-shadow;
+    }
+
+    &:active {
+      scale: 0.99;
+    }
+  }
+}

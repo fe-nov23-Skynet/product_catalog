@@ -8,6 +8,7 @@ import { Header } from './components/Header/Header';
 import 'aos/dist/aos.css';
 import { Breadcrumbs } from './components/Breadcrumbs/Breadcrumbs';
 import { useUIState } from './customHooks/useUIState';
+import { SupportChat } from './components/SupportChat';
 
 // type LocalesType = {
 //   en: { title: string },
@@ -42,6 +43,7 @@ export function App() {
           <Outlet />
         </div>
       </main>
+      <SupportChat />
       <Footer />
     </div>
   );
