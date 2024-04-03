@@ -1,8 +1,26 @@
-Nice Gadgets Store Repo
+# Nice Gadgets Store
+Weclome to our Online Gadgets Shop Project - WHERE YOU CAN FIND A PIECE OF AI AND COOL GADGETS 👌
 
-Demo: https://product-catalog-iota.vercel.app/
+[DEMO LINK](https://product-catalog-iota.vercel.app/)
 
-Getting Started
+# About
+Welcome to our cutting-edge gadget store project! Explore our vast selection of the latest tech products, seamlessly add items to your shopping cart, and save your favorites for later. Customize your browsing experience with day\night themes and languages. Plus, enjoy the convenience of our smart AI assistant feature, ready to assist you at every step of your shopping journey.
+
+# Features
+ - Shopping cart for adding and managing items.
+ - Ability to add items to the wishlist.
+ - Support for day/night interface themes.
+ - EN/UA languages support for users.
+ - Integrated smart assistant to aid users in finding products, and obtaining information, comparing products.
+ - Products search functionality.
+ - Sorting options for quick product search.
+ - Automatic user data saving for easy repeat purchases.
+ - Notifications
+ - Product ID copying button
+   
+[DEMO LINK](https://product-catalog-iota.vercel.app/)
+
+# Getting Started
 `git clone https://github.com/fe-nov23-Skynet/product_catalog.git`
 
 npm install
